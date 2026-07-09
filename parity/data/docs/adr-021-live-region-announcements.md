@@ -302,8 +302,8 @@ KNOWN-FAIL.
 
 Each fixture exercises the harness end-to-end: state transition,
 mutation, MutationObserver record, oracle parity. Fixtures live under
-`projects/jet/data/parity/fixtures/live-region/` and the manifest lives at
-`projects/jet/data/parity/runners/live-region/manifest.toml`.
+`apps/jet/data/parity/fixtures/live-region/` and the manifest lives at
+`apps/jet/data/parity/runners/live-region/manifest.toml`.
 
 ### #2158 emitter mapping table — politeness column
 

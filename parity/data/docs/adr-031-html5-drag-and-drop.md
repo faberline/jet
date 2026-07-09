@@ -362,7 +362,7 @@ fallbacks), the bridge:
 
 ### Acceptance fixture
 
-`projects/jet/data/parity/fixtures/dnd/sortable-list-v1`:
+`apps/jet/data/parity/fixtures/dnd/sortable-list-v1`:
 a canvas-side list of 10 items, each draggable and
 droppable, modeled on the MUI Sortable
 (`@mui/x-tree-view` / `dnd-kit`) demo captured in
@@ -454,7 +454,7 @@ of trying to cancel the `drop`. We document this
 loudly in the widget contract.
 
 **Cost:** ~1100 lines of JS in
-`projects/jet/data/parity/runtime/dnd-bridge.ts` (proxy
+`apps/jet/data/parity/runtime/dnd-bridge.ts` (proxy
 manager, event handlers, hit-test glue, offscreen-
 canvas snapshot helper, engine shims). ~250 lines
 of widget interface plumbing in the canvas runtime.

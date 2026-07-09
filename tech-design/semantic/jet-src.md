@@ -1,12 +1,12 @@
 ---
 id: semantic-jet-src
-summary: Semantic coverage for "projects/jet/src"
+summary: Semantic coverage for "apps/jet/src"
 capability_refs:
   - id: "rust-native-frontend-toolchain"
     role: primary
     claim: "production-replacement-readiness"
     coverage: partial
-    rationale: "Semantic takeover coverage for existing source group `projects/jet/src`."
+    rationale: "Semantic takeover coverage for existing source group `apps/jet/src`."
 fill_sections: [schema, changes]
 ---
 
@@ -18,11 +18,11 @@ fill_sections: [schema, changes]
 ```yaml
 semantic_domain:
   key: "jet/src"
-  source_group: "projects/jet/src"
+  source_group: "apps/jet/src"
   coverage_kind: semantic
   evidence:
     source_units:
-      - path: "projects/jet/src/frontend.rs"
+      - path: "apps/jet/src/frontend.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["data_model", "service_method"]
@@ -119,8 +119,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src"
-      - path: "projects/jet/src/rerun_manifest.rs"
+          domain: "apps/jet/src"
+      - path: "apps/jet/src/rerun_manifest.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["config_surface", "data_model", "service_method"]
@@ -163,8 +163,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src"
-      - path: "projects/jet/src/ci_summary.rs"
+          domain: "apps/jet/src"
+      - path: "apps/jet/src/ci_summary.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["service_method"]
@@ -180,8 +180,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src"
-      - path: "projects/jet/src/build_target.rs"
+          domain: "apps/jet/src"
+      - path: "apps/jet/src/build_target.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["data_model", "enum_model", "service_method"]
@@ -227,8 +227,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src"
-      - path: "projects/jet/src/lib.rs"
+          domain: "apps/jet/src"
+      - path: "apps/jet/src/lib.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["source_unit"]
@@ -337,8 +337,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src"
-      - path: "projects/jet/src/standard_cli.rs"
+          domain: "apps/jet/src"
+      - path: "apps/jet/src/standard_cli.rs"
         language: "rust"
         ownership_state: "handwrite"
         generator_primitives: ["config_surface", "service_method"]
@@ -372,8 +372,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src"
-      - path: "projects/jet/src/build_clean.rs"
+          domain: "apps/jet/src"
+      - path: "apps/jet/src/build_clean.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["enum_model", "service_method"]
@@ -401,8 +401,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src"
-      - path: "projects/jet/src/main.rs"
+          domain: "apps/jet/src"
+      - path: "apps/jet/src/main.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["service_method"]
@@ -415,8 +415,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src"
-      - path: "projects/jet/src/report_package.rs"
+          domain: "apps/jet/src"
+      - path: "apps/jet/src/report_package.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["data_model", "service_method"]
@@ -456,8 +456,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src"
-      - path: "projects/jet/src/result_envelope.rs"
+          domain: "apps/jet/src"
+      - path: "apps/jet/src/result_envelope.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["config_surface", "data_model", "enum_model", "service_method", "test_case"]
@@ -560,8 +560,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "test"
           section_type: "unit-test"
-          domain: "projects/jet/src"
-      - path: "projects/jet/src/cli.rs"
+          domain: "apps/jet/src"
+      - path: "apps/jet/src/cli.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["service_method"]
@@ -691,7 +691,7 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src"
+          domain: "apps/jet/src"
 ```
 
 ## Changes
@@ -700,37 +700,37 @@ semantic_domain:
 ```yaml
 coverage_kind: semantic
 changes:
-  - path: "projects/jet/src/frontend.rs"
+  - path: "apps/jet/src/frontend.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/src/rerun_manifest.rs"
+  - path: "apps/jet/src/rerun_manifest.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/src/ci_summary.rs"
+  - path: "apps/jet/src/ci_summary.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/src/build_target.rs"
+  - path: "apps/jet/src/build_target.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/src/lib.rs"
+  - path: "apps/jet/src/lib.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/src/standard_cli.rs"
+  - path: "apps/jet/src/standard_cli.rs"
     action: modify
     section: schema
     description: |
@@ -738,31 +738,31 @@ changes:
     impl_mode: hand-written
     replaces:
       - "<handwrite-tracker:projects-jet-src-standard-cli-rs>"
-  - path: "projects/jet/src/build_clean.rs"
+  - path: "apps/jet/src/build_clean.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/src/main.rs"
+  - path: "apps/jet/src/main.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/src/report_package.rs"
+  - path: "apps/jet/src/report_package.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/src/result_envelope.rs"
+  - path: "apps/jet/src/result_envelope.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/src/cli.rs"
+  - path: "apps/jet/src/cli.rs"
     action: modify
     section: schema
     description: |

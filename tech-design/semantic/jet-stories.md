@@ -1,12 +1,12 @@
 ---
 id: semantic-jet-stories
-summary: Semantic coverage for "projects/jet/src/stories"
+summary: Semantic coverage for "apps/jet/src/stories"
 capability_refs:
   - id: "rust-native-frontend-toolchain"
     role: primary
     claim: "production-replacement-readiness"
     coverage: partial
-    rationale: "Semantic takeover coverage for existing source group `projects/jet/src/stories`."
+    rationale: "Semantic takeover coverage for existing source group `apps/jet/src/stories`."
 fill_sections: [schema, changes]
 ---
 
@@ -18,11 +18,11 @@ fill_sections: [schema, changes]
 ```yaml
 semantic_domain:
   key: "jet/stories"
-  source_group: "projects/jet/src/stories"
+  source_group: "apps/jet/src/stories"
   coverage_kind: semantic
   evidence:
     source_units:
-      - path: "projects/jet/src/stories/prop_extractor.rs"
+      - path: "apps/jet/src/stories/prop_extractor.rs"
         language: "rust"
         ownership_state: "handwrite"
         generator_primitives: ["data_model", "enum_model", "service_method"]
@@ -140,8 +140,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src/stories"
-      - path: "projects/jet/src/stories/csf.rs"
+          domain: "apps/jet/src/stories"
+      - path: "apps/jet/src/stories/csf.rs"
         language: "rust"
         ownership_state: "handwrite"
         generator_primitives: ["data_model", "enum_model", "service_method"]
@@ -253,8 +253,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src/stories"
-      - path: "projects/jet/src/stories/build.rs"
+          domain: "apps/jet/src/stories"
+      - path: "apps/jet/src/stories/build.rs"
         language: "rust"
         ownership_state: "handwrite"
         generator_primitives: ["data_model", "enum_model", "service_method"]
@@ -333,8 +333,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src/stories"
-      - path: "projects/jet/src/stories/hmr.rs"
+          domain: "apps/jet/src/stories"
+      - path: "apps/jet/src/stories/hmr.rs"
         language: "rust"
         ownership_state: "handwrite"
         generator_primitives: ["config_surface", "data_model", "enum_model", "service_method"]
@@ -407,8 +407,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src/stories"
-      - path: "projects/jet/src/stories/server.rs"
+          domain: "apps/jet/src/stories"
+      - path: "apps/jet/src/stories/server.rs"
         language: "rust"
         ownership_state: "handwrite"
         generator_primitives: ["config_surface", "data_model", "service_method"]
@@ -508,8 +508,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src/stories"
-      - path: "projects/jet/src/stories/deps.rs"
+          domain: "apps/jet/src/stories"
+      - path: "apps/jet/src/stories/deps.rs"
         language: "rust"
         ownership_state: "handwrite"
         generator_primitives: ["service_method"]
@@ -540,8 +540,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src/stories"
-      - path: "projects/jet/src/stories/controls.rs"
+          domain: "apps/jet/src/stories"
+      - path: "apps/jet/src/stories/controls.rs"
         language: "rust"
         ownership_state: "handwrite"
         generator_primitives: ["data_model", "enum_model", "service_method"]
@@ -587,8 +587,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src/stories"
-      - path: "projects/jet/src/stories/manager.rs"
+          domain: "apps/jet/src/stories"
+      - path: "apps/jet/src/stories/manager.rs"
         language: "rust"
         ownership_state: "handwrite"
         generator_primitives: ["config_surface", "enum_model", "service_method"]
@@ -664,8 +664,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src/stories"
-      - path: "projects/jet/src/stories/mod.rs"
+          domain: "apps/jet/src/stories"
+      - path: "apps/jet/src/stories/mod.rs"
         language: "rust"
         ownership_state: "handwrite"
         generator_primitives: ["config_surface", "data_model", "service_method"]
@@ -753,7 +753,7 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src/stories"
+          domain: "apps/jet/src/stories"
 ```
 
 ## Decision: MDX Compile Strategy (#996)
@@ -785,7 +785,7 @@ keeping arbitrary plugin ecosystems out of this slice.
 ```yaml
 coverage_kind: semantic
 changes:
-  - path: "projects/jet/src/stories/prop_extractor.rs"
+  - path: "apps/jet/src/stories/prop_extractor.rs"
     action: modify
     section: schema
     description: |
@@ -793,7 +793,7 @@ changes:
     impl_mode: hand-written
     replaces:
       - "<handwrite-tracker:standardize-gap-projects-jet-src-stories-prop-extractor-rs>"
-  - path: "projects/jet/src/stories/csf.rs"
+  - path: "apps/jet/src/stories/csf.rs"
     action: modify
     section: schema
     description: |
@@ -801,7 +801,7 @@ changes:
     impl_mode: hand-written
     replaces:
       - "<handwrite-tracker:standardize-gap-projects-jet-src-stories-csf-rs>"
-  - path: "projects/jet/src/stories/build.rs"
+  - path: "apps/jet/src/stories/build.rs"
     action: modify
     section: schema
     description: |
@@ -809,7 +809,7 @@ changes:
     impl_mode: hand-written
     replaces:
       - "<handwrite-tracker:standardize-gap-projects-jet-src-stories-build-rs>"
-  - path: "projects/jet/src/stories/hmr.rs"
+  - path: "apps/jet/src/stories/hmr.rs"
     action: modify
     section: schema
     description: |
@@ -817,7 +817,7 @@ changes:
     impl_mode: hand-written
     replaces:
       - "<handwrite-tracker:standardize-gap-projects-jet-src-stories-hmr-rs>"
-  - path: "projects/jet/src/stories/server.rs"
+  - path: "apps/jet/src/stories/server.rs"
     action: modify
     section: schema
     description: |
@@ -825,7 +825,7 @@ changes:
     impl_mode: hand-written
     replaces:
       - "<handwrite-tracker:standardize-gap-projects-jet-src-stories-server-rs>"
-  - path: "projects/jet/src/stories/deps.rs"
+  - path: "apps/jet/src/stories/deps.rs"
     action: modify
     section: schema
     description: |
@@ -833,7 +833,7 @@ changes:
     impl_mode: hand-written
     replaces:
       - "<handwrite-tracker:standardize-gap-projects-jet-src-stories-deps-rs>"
-  - path: "projects/jet/src/stories/controls.rs"
+  - path: "apps/jet/src/stories/controls.rs"
     action: modify
     section: schema
     description: |
@@ -841,7 +841,7 @@ changes:
     impl_mode: hand-written
     replaces:
       - "<handwrite-tracker:standardize-gap-projects-jet-src-stories-controls-rs>"
-  - path: "projects/jet/src/stories/manager.rs"
+  - path: "apps/jet/src/stories/manager.rs"
     action: modify
     section: schema
     description: |
@@ -849,7 +849,7 @@ changes:
     impl_mode: hand-written
     replaces:
       - "<handwrite-tracker:standardize-gap-projects-jet-src-stories-manager-rs>"
-  - path: "projects/jet/src/stories/mod.rs"
+  - path: "apps/jet/src/stories/mod.rs"
     action: modify
     section: schema
     description: |

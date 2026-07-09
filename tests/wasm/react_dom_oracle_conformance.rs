@@ -127,8 +127,8 @@ fn fixture_parity_cases() -> Vec<FixtureParityCase> {
     ]
 }
 
-const LIBRARY_FIXTURE_MANIFEST: &str = "projects/jet/parity/data/fixtures/libraries/fixtures.toml";
-const LIBRARY_PACKAGE_MANIFEST: &str = "projects/jet/parity/data/fixtures/libraries/package.json";
+const LIBRARY_FIXTURE_MANIFEST: &str = "apps/jet/parity/data/fixtures/libraries/fixtures.toml";
+const LIBRARY_PACKAGE_MANIFEST: &str = "apps/jet/parity/data/fixtures/libraries/package.json";
 
 struct LibraryParityCase {
     id: &'static str,

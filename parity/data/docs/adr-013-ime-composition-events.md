@@ -357,7 +357,7 @@ Expected normalized queue:
 ```
 
 Both tests live as fixtures under
-`projects/jet/data/parity/fixtures/ime-composition/` and feed the parity
+`apps/jet/data/parity/fixtures/ime-composition/` and feed the parity
 gate (#2144) on a `diff_kind: event_log_diff` channel — the diff is
 between the synthesized raw stream and the captured normalized queue,
 not against a Flutter reference (since Flutter consumes its own

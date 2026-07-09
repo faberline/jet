@@ -119,7 +119,7 @@ re-key everything by a stable in-tree path before diffing.
 path"). The diff aligns on `path`, not on the dropped `nodeId`.
 
 The output document conforms to
-`projects/jet/data/parity/schemas/ax-tree-normalised.schema.json` (draft-07),
+`apps/jet/data/parity/schemas/ax-tree-normalised.schema.json` (draft-07),
 which fixes `schema_version: 1`, `renderer` to the three known stacks,
 and `fixture_id` to a kebab-case slug.
 
@@ -156,7 +156,7 @@ Rationale:
   not cost 1.
 
 The **threshold** is `a11y_diff_max_cost`, configurable per fixture in
-`projects/jet/data/parity/parity-gating.toml`. Default is `0` — any drift
+`apps/jet/data/parity/parity-gating.toml`. Default is `0` — any drift
 fails the gate. Fixtures still inside the accname rollout (#2163) can
 locally raise the threshold with a recorded waiver.
 

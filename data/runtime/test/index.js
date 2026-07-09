@@ -6,7 +6,7 @@
 // for the imported spec module, runs the collected plan, and streams NDJSON
 // events back to the Rust runner via stdout.
 //
-// Wire format: see projects/jet/src/test_runner/wire.rs.
+// Wire format: see apps/jet/src/test_runner/wire.rs.
 //
 // Phase 3 additions:
 // - DOM-integrated matchers (`toHaveText`, `toBeVisible`, `toMatchSnapshot`)
@@ -363,7 +363,7 @@ function __emit(event) {
 // ── Stdin NDJSON reader for WireResponse messages ──────────────────────────
 // The Rust runner pipes responses for DOM-matcher RPC calls back over stdin.
 // Each response carries a `req_id` that correlates with the originating
-// request. See projects/jet/src/test_runner/wire.rs::WireResponse.
+// request. See apps/jet/src/test_runner/wire.rs::WireResponse.
 // @spec ...#R4
 let __stdinBuf = "";
 process.stdin.on("data", (chunk) => {
@@ -1579,7 +1579,7 @@ function __jetUnsupported(symbol, alt) {
   const e = new Error(
     `@jet/test: \`${symbol}\` is not part of the @jet/test contract. ` +
       `Supported: ${supported}.${altText} ` +
-      `See projects/jet/data/runtime/test/CONTRACT.md.`
+      `See apps/jet/data/runtime/test/CONTRACT.md.`
   );
   e.name = "JetTestUnsupportedError";
   return e;

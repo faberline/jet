@@ -259,7 +259,7 @@ and Tab agree on what counts as focusable.
 ## Parity fixtures
 
 Four new fixtures land under
-`projects/jet/data/parity/fixtures/mui/`. Each fixture is a pair of files:
+`apps/jet/data/parity/fixtures/mui/`. Each fixture is a pair of files:
 
 - `<fixture-id>.tsx` — JSX placeholder using jet's
   Dialog/Menu/Drawer primitives (the placeholders compile but do not

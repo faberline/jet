@@ -308,13 +308,13 @@ async fn test_baseurl_resolution_relative_path() {
         return;
     }
 
-    // Inline the _resolveUrl algorithm (same logic as projects/jet/data/runtime/test/page.js)
+    // Inline the _resolveUrl algorithm (same logic as apps/jet/data/runtime/test/page.js)
     // in the spec itself. This verifies R3's resolution contract without requiring
     // a live Chromium binary.
     let spec = r#"
 import { test, expect } from '@jet/test';
 
-// Inlined _resolveUrl logic from projects/jet/data/runtime/test/page.js.
+// Inlined _resolveUrl logic from apps/jet/data/runtime/test/page.js.
 // Must match the JS implementation in page.js exactly.
 function resolveUrl(url, baseURL) {
   if (!url) return url;

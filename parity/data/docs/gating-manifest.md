@@ -21,7 +21,7 @@ A companion `waivers.toml` carries the time-boxed exceptions.
 ## File layout
 
 ```
-projects/jet/data/parity/
+apps/jet/data/parity/
 ├── parity-gating.toml      # the manifest (this doc)
 ├── waivers.toml            # time-boxed waivers
 ├── docs/
@@ -29,7 +29,7 @@ projects/jet/data/parity/
 └── fixtures/               # parity corpus (#2140)
 ```
 
-The gate binary lives at `projects/jet/parity-gate/` and ships as the
+The gate binary lives at `apps/jet/parity-gate/` and ships as the
 `jet-parity-gate` crate.
 
 ## Manifest schema
@@ -92,7 +92,7 @@ green so the gate can land before the oracle is wired into CI
 
 ```
 cargo run -p jet-parity-gate -- init \
-    --target-dir projects/jet/parity \
+    --target-dir apps/jet/parity \
     [--force]
 ```
 
@@ -145,9 +145,9 @@ and accepts the resulting `77`.
 
 ## Pointers
 
-- Gate crate:           `projects/jet/parity-gate/`
-- Manifest:             `projects/jet/data/parity/parity-gating.toml`
-- Waivers:              `projects/jet/data/parity/waivers.toml`
-- Oracle (R1/R2 schema): `projects/jet/parity-oracle/`
-- Corpus:               `projects/jet/parity-corpus/`
+- Gate crate:           `apps/jet/parity-gate/`
+- Manifest:             `apps/jet/data/parity/parity-gating.toml`
+- Waivers:              `apps/jet/data/parity/waivers.toml`
+- Oracle (R1/R2 schema): `apps/jet/parity-oracle/`
+- Corpus:               `apps/jet/parity-corpus/`
 - CI workflow:          `.github/workflows/parity.yml`

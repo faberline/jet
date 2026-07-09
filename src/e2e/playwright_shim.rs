@@ -13,7 +13,7 @@
 //!
 //! `--playwright` is deprecated in the minor release that ships this module.
 //! It will be **removed** in the second subsequent minor release.
-//! See `projects/jet/docs/migration-from-playwright.md` for the migration guide.
+//! See `apps/jet/docs/migration-from-playwright.md` for the migration guide.
 
 use anyhow::Result;
 use std::env::VarError;
@@ -21,7 +21,7 @@ use std::path::PathBuf;
 
 /// URL shown in the deprecation warning. Points to the migration guide.
 const MIGRATION_GUIDE_URL: &str =
-    "https://github.com/cclab/jet/blob/main/projects/jet/docs/migration-from-playwright.md";
+    "https://github.com/cclab/jet/blob/main/apps/jet/docs/migration-from-playwright.md";
 
 /// Environment variable that suppresses the deprecation warning when set to `"1"`.
 const SUPPRESS_ENV_VAR: &str = "JET_SUPPRESS_PLAYWRIGHT_WARNING";

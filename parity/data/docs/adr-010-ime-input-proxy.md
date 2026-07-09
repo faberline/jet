@@ -290,7 +290,7 @@ R8 and R9 from #2171, encoded as parity gate checks:
   the proxy must converge in lock-step.
 
 Both tests live as a new fixture
-`projects/jet/data/parity/fixtures/ime-proxy/` consumed by the existing
+`apps/jet/data/parity/fixtures/ime-proxy/` consumed by the existing
 parity gate (#2144) under a `diff_kind: dom_attribute_diff` channel.
 
 ## Consequences

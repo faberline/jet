@@ -144,4 +144,4 @@ step of the test.
 ## Seeking Help
 
 - Open an issue: <https://github.com/cclab/jet/issues>
-- Migration guide updates: <https://github.com/cclab/jet/blob/main/projects/jet/docs/migration-from-playwright.md>
+- Migration guide updates: <https://github.com/cclab/jet/blob/main/apps/jet/docs/migration-from-playwright.md>

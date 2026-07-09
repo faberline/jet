@@ -33,7 +33,7 @@ pr:
 2. **Perf gate** — if the issue touches a hot path (runtime, parity oracle, renderer), run the relevant bench/parity-gate and confirm no regression vs `project-jet` HEAD before the change. If the issue is pure refactor/docs/UI-state with no hot-path impact, document why perf check is N/A in the PR body — don't silently skip.
 
 ## What "perf verified" means for jet
-- Runtime changes: parity-gate `cargo run -p cclab-jet-parity-gate -- <fixture>` or the runtime benches under `projects/jet/data/runtime/benches/`.
+- Runtime changes: parity-gate `cargo run -p cclab-jet-parity-gate -- <fixture>` or the runtime benches under `apps/jet/data/runtime/benches/`.
 - Renderer / TUI changes: visual smoke (snapshot or `conductor-playwright-test` skill if e2e).
 - Build/CLI changes: not applicable — note it in PR.
 

@@ -283,7 +283,7 @@ auto`. With this ADR:
 ### Parity gate
 
 A WPT-shaped fixture under
-`projects/jet/data/parity/fixtures/nested-scroll/` declares:
+`apps/jet/data/parity/fixtures/nested-scroll/` declares:
 
 - A Drawer-in-Dialog scenario with `overscroll-behavior` permutations
   (`auto`, `contain`, `none`) on the Drawer.

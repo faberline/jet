@@ -1350,7 +1350,7 @@ fn emit_use_state_binding(
     // - Anything else → `i64` (legacy default; covers parenthesized
     //   expressions, arithmetic, etc.).
     //
-    // @spec projects/jet/docs/wasm-transpiler-boolean-usestate-literals.md#interface
+    // @spec apps/jet/docs/wasm-transpiler-boolean-usestate-literals.md#interface
     // @issue #1404
     let rust_ty = match arg.kind() {
         "identifier" => {

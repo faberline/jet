@@ -47,7 +47,7 @@ per-DPR override. The other three tiers also hold across DPR — see
 
 Each pixel-parity fixture ships a **region map** sidecar
 `<fixture>.regions.json` (schema in
-`projects/jet/data/parity/schemas/fixture-regions.schema.json`) that tags
+`apps/jet/data/parity/schemas/fixture-regions.schema.json`) that tags
 rectangles of the rendered surface with one of four tolerance tiers. The
 comparator routes each region to the matching code path; pixels not covered
 by any region default to tier-b *and* emit a comparator warning so authors

@@ -1,12 +1,12 @@
 ---
 id: semantic-jet-tests-browser-bridge
-summary: Semantic coverage for "projects/jet/tests/browser-bridge"
+summary: Semantic coverage for "apps/jet/tests/browser-bridge"
 capability_refs:
   - id: "rust-native-frontend-toolchain"
     role: primary
     claim: "production-replacement-readiness"
     coverage: partial
-    rationale: "Semantic takeover coverage for existing source group `projects/jet/tests/browser-bridge`."
+    rationale: "Semantic takeover coverage for existing source group `apps/jet/tests/browser-bridge`."
 fill_sections: [schema, unit-test, changes]
 ---
 
@@ -18,11 +18,11 @@ fill_sections: [schema, unit-test, changes]
 ```yaml
 semantic_domain:
   key: "jet/tests/browser-bridge"
-  source_group: "projects/jet/tests/browser-bridge"
+  source_group: "apps/jet/tests/browser-bridge"
   coverage_kind: semantic
   evidence:
     source_units:
-      - path: "projects/jet/tests/browser-bridge/bb_semantic_surface.rs"
+      - path: "apps/jet/tests/browser-bridge/bb_semantic_surface.rs"
         language: "rust"
         ownership_state: "handwrite"
         generator_primitives: ["config_surface", "service_method", "test_case"]
@@ -44,8 +44,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "test"
           section_type: "unit-test"
-          domain: "projects/jet/tests/browser-bridge"
-      - path: "projects/jet/tests/browser-bridge/pm_report_acceptance.rs"
+          domain: "apps/jet/tests/browser-bridge"
+      - path: "apps/jet/tests/browser-bridge/pm_report_acceptance.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["service_method", "test_case"]
@@ -73,8 +73,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "test"
           section_type: "unit-test"
-          domain: "projects/jet/tests/browser-bridge"
-      - path: "projects/jet/tests/browser-bridge/browser_cli_smoke.rs"
+          domain: "apps/jet/tests/browser-bridge"
+      - path: "apps/jet/tests/browser-bridge/browser_cli_smoke.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["service_method", "test_case"]
@@ -96,8 +96,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "test"
           section_type: "unit-test"
-          domain: "projects/jet/tests/browser-bridge"
-      - path: "projects/jet/tests/browser-bridge/storage_state_tests.rs"
+          domain: "apps/jet/tests/browser-bridge"
+      - path: "apps/jet/tests/browser-bridge/storage_state_tests.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["service_method", "test_case"]
@@ -137,8 +137,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "test"
           section_type: "unit-test"
-          domain: "projects/jet/tests/browser-bridge"
-      - path: "projects/jet/tests/browser-bridge/page_api_parity.rs"
+          domain: "apps/jet/tests/browser-bridge"
+      - path: "apps/jet/tests/browser-bridge/page_api_parity.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["service_method", "test_case"]
@@ -268,8 +268,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "test"
           section_type: "unit-test"
-          domain: "projects/jet/tests/browser-bridge"
-      - path: "projects/jet/tests/browser-bridge/trace_viewer.rs"
+          domain: "apps/jet/tests/browser-bridge"
+      - path: "apps/jet/tests/browser-bridge/trace_viewer.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["service_method", "test_case"]
@@ -294,8 +294,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "test"
           section_type: "unit-test"
-          domain: "projects/jet/tests/browser-bridge"
-      - path: "projects/jet/tests/browser-bridge/locator_js_api.rs"
+          domain: "apps/jet/tests/browser-bridge"
+      - path: "apps/jet/tests/browser-bridge/locator_js_api.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["service_method", "test_case"]
@@ -347,8 +347,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "test"
           section_type: "unit-test"
-          domain: "projects/jet/tests/browser-bridge"
-      - path: "projects/jet/tests/browser-bridge/trace_capture.rs"
+          domain: "apps/jet/tests/browser-bridge"
+      - path: "apps/jet/tests/browser-bridge/trace_capture.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["service_method", "test_case"]
@@ -382,8 +382,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "test"
           section_type: "unit-test"
-          domain: "projects/jet/tests/browser-bridge"
-      - path: "projects/jet/tests/browser-bridge/matchers_state_value_a11y.rs"
+          domain: "apps/jet/tests/browser-bridge"
+      - path: "apps/jet/tests/browser-bridge/matchers_state_value_a11y.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["service_method", "test_case"]
@@ -429,8 +429,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "test"
           section_type: "unit-test"
-          domain: "projects/jet/tests/browser-bridge"
-      - path: "projects/jet/tests/browser-bridge/to_have_screenshot_tests.rs"
+          domain: "apps/jet/tests/browser-bridge"
+      - path: "apps/jet/tests/browser-bridge/to_have_screenshot_tests.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["service_method", "test_case"]
@@ -461,8 +461,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "test"
           section_type: "unit-test"
-          domain: "projects/jet/tests/browser-bridge"
-      - path: "projects/jet/tests/browser-bridge/playwright_compat_tests.rs"
+          domain: "apps/jet/tests/browser-bridge"
+      - path: "apps/jet/tests/browser-bridge/playwright_compat_tests.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["test_case"]
@@ -520,8 +520,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "test"
           section_type: "unit-test"
-          domain: "projects/jet/tests/browser-bridge"
-      - path: "projects/jet/tests/browser-bridge/bb_mcp_server.rs"
+          domain: "apps/jet/tests/browser-bridge"
+      - path: "apps/jet/tests/browser-bridge/bb_mcp_server.rs"
         language: "rust"
         ownership_state: "handwrite"
         generator_primitives: ["data_model", "service_method", "test_case"]
@@ -558,8 +558,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "test"
           section_type: "unit-test"
-          domain: "projects/jet/tests/browser-bridge"
-      - path: "projects/jet/tests/browser-bridge/e2e_playwright_residue.rs"
+          domain: "apps/jet/tests/browser-bridge"
+      - path: "apps/jet/tests/browser-bridge/e2e_playwright_residue.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["service_method", "test_case"]
@@ -575,8 +575,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "test"
           section_type: "unit-test"
-          domain: "projects/jet/tests/browser-bridge"
-      - path: "projects/jet/tests/browser-bridge/auto_artifacts_tests.rs"
+          domain: "apps/jet/tests/browser-bridge"
+      - path: "apps/jet/tests/browser-bridge/auto_artifacts_tests.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["config_surface", "service_method", "test_case"]
@@ -613,8 +613,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "test"
           section_type: "unit-test"
-          domain: "projects/jet/tests/browser-bridge"
-      - path: "projects/jet/tests/browser-bridge/route_intercept_tests.rs"
+          domain: "apps/jet/tests/browser-bridge"
+      - path: "apps/jet/tests/browser-bridge/route_intercept_tests.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["service_method", "test_case"]
@@ -660,8 +660,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "test"
           section_type: "unit-test"
-          domain: "projects/jet/tests/browser-bridge"
-      - path: "projects/jet/tests/browser-bridge/browser_install.rs"
+          domain: "apps/jet/tests/browser-bridge"
+      - path: "apps/jet/tests/browser-bridge/browser_install.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["service_method", "test_case"]
@@ -680,8 +680,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "test"
           section_type: "unit-test"
-          domain: "projects/jet/tests/browser-bridge"
-      - path: "projects/jet/tests/browser-bridge/page_fixture_auto_inject.rs"
+          domain: "apps/jet/tests/browser-bridge"
+      - path: "apps/jet/tests/browser-bridge/page_fixture_auto_inject.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["service_method", "test_case"]
@@ -733,8 +733,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "test"
           section_type: "unit-test"
-          domain: "projects/jet/tests/browser-bridge"
-      - path: "projects/jet/tests/browser-bridge/product_step_timeline.rs"
+          domain: "apps/jet/tests/browser-bridge"
+      - path: "apps/jet/tests/browser-bridge/product_step_timeline.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["service_method", "test_case"]
@@ -765,8 +765,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "test"
           section_type: "unit-test"
-          domain: "projects/jet/tests/browser-bridge"
-      - path: "projects/jet/tests/browser-bridge/pm_report_static_smoke.rs"
+          domain: "apps/jet/tests/browser-bridge"
+      - path: "apps/jet/tests/browser-bridge/pm_report_static_smoke.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["service_method", "test_case"]
@@ -794,8 +794,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "test"
           section_type: "unit-test"
-          domain: "projects/jet/tests/browser-bridge"
-      - path: "projects/jet/tests/browser-bridge/cue_artifact_studio_dogfood.rs"
+          domain: "apps/jet/tests/browser-bridge"
+      - path: "apps/jet/tests/browser-bridge/cue_artifact_studio_dogfood.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["service_method", "test_case"]
@@ -832,8 +832,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "test"
           section_type: "unit-test"
-          domain: "projects/jet/tests/browser-bridge"
-      - path: "projects/jet/tests/browser-bridge/playwright_compat_shim_tests.rs"
+          domain: "apps/jet/tests/browser-bridge"
+      - path: "apps/jet/tests/browser-bridge/playwright_compat_shim_tests.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["service_method", "test_case"]
@@ -861,8 +861,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "test"
           section_type: "unit-test"
-          domain: "projects/jet/tests/browser-bridge"
-      - path: "projects/jet/tests/browser-bridge/browser_context.rs"
+          domain: "apps/jet/tests/browser-bridge"
+      - path: "apps/jet/tests/browser-bridge/browser_context.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["service_method", "test_case"]
@@ -902,7 +902,7 @@ semantic_domain:
           ecosystem: "rust"
           role: "test"
           section_type: "unit-test"
-          domain: "projects/jet/tests/browser-bridge"
+          domain: "apps/jet/tests/browser-bridge"
 ```
 
 ## Unit Test
@@ -915,28 +915,28 @@ coverage_kind: semantic
 strategy: preserve observed source behavior while semantic coverage is promoted toward generator primitives
 evidence:
   source_tests:
-    - path: "projects/jet/tests/browser-bridge/bb_semantic_surface.rs"
-    - path: "projects/jet/tests/browser-bridge/pm_report_acceptance.rs"
-    - path: "projects/jet/tests/browser-bridge/browser_cli_smoke.rs"
-    - path: "projects/jet/tests/browser-bridge/storage_state_tests.rs"
-    - path: "projects/jet/tests/browser-bridge/page_api_parity.rs"
-    - path: "projects/jet/tests/browser-bridge/trace_viewer.rs"
-    - path: "projects/jet/tests/browser-bridge/locator_js_api.rs"
-    - path: "projects/jet/tests/browser-bridge/trace_capture.rs"
-    - path: "projects/jet/tests/browser-bridge/matchers_state_value_a11y.rs"
-    - path: "projects/jet/tests/browser-bridge/to_have_screenshot_tests.rs"
-    - path: "projects/jet/tests/browser-bridge/playwright_compat_tests.rs"
-    - path: "projects/jet/tests/browser-bridge/bb_mcp_server.rs"
-    - path: "projects/jet/tests/browser-bridge/e2e_playwright_residue.rs"
-    - path: "projects/jet/tests/browser-bridge/auto_artifacts_tests.rs"
-    - path: "projects/jet/tests/browser-bridge/route_intercept_tests.rs"
-    - path: "projects/jet/tests/browser-bridge/browser_install.rs"
-    - path: "projects/jet/tests/browser-bridge/page_fixture_auto_inject.rs"
-    - path: "projects/jet/tests/browser-bridge/product_step_timeline.rs"
-    - path: "projects/jet/tests/browser-bridge/pm_report_static_smoke.rs"
-    - path: "projects/jet/tests/browser-bridge/cue_artifact_studio_dogfood.rs"
-    - path: "projects/jet/tests/browser-bridge/playwright_compat_shim_tests.rs"
-    - path: "projects/jet/tests/browser-bridge/browser_context.rs"
+    - path: "apps/jet/tests/browser-bridge/bb_semantic_surface.rs"
+    - path: "apps/jet/tests/browser-bridge/pm_report_acceptance.rs"
+    - path: "apps/jet/tests/browser-bridge/browser_cli_smoke.rs"
+    - path: "apps/jet/tests/browser-bridge/storage_state_tests.rs"
+    - path: "apps/jet/tests/browser-bridge/page_api_parity.rs"
+    - path: "apps/jet/tests/browser-bridge/trace_viewer.rs"
+    - path: "apps/jet/tests/browser-bridge/locator_js_api.rs"
+    - path: "apps/jet/tests/browser-bridge/trace_capture.rs"
+    - path: "apps/jet/tests/browser-bridge/matchers_state_value_a11y.rs"
+    - path: "apps/jet/tests/browser-bridge/to_have_screenshot_tests.rs"
+    - path: "apps/jet/tests/browser-bridge/playwright_compat_tests.rs"
+    - path: "apps/jet/tests/browser-bridge/bb_mcp_server.rs"
+    - path: "apps/jet/tests/browser-bridge/e2e_playwright_residue.rs"
+    - path: "apps/jet/tests/browser-bridge/auto_artifacts_tests.rs"
+    - path: "apps/jet/tests/browser-bridge/route_intercept_tests.rs"
+    - path: "apps/jet/tests/browser-bridge/browser_install.rs"
+    - path: "apps/jet/tests/browser-bridge/page_fixture_auto_inject.rs"
+    - path: "apps/jet/tests/browser-bridge/product_step_timeline.rs"
+    - path: "apps/jet/tests/browser-bridge/pm_report_static_smoke.rs"
+    - path: "apps/jet/tests/browser-bridge/cue_artifact_studio_dogfood.rs"
+    - path: "apps/jet/tests/browser-bridge/playwright_compat_shim_tests.rs"
+    - path: "apps/jet/tests/browser-bridge/browser_context.rs"
 ---
 requirementDiagram
 
@@ -951,7 +951,7 @@ element UT_SOURCE_TESTS {
 ```yaml
 coverage_kind: semantic
 changes:
-  - path: "projects/jet/tests/browser-bridge/bb_semantic_surface.rs"
+  - path: "apps/jet/tests/browser-bridge/bb_semantic_surface.rs"
     action: modify
     section: schema
     description: |
@@ -959,67 +959,67 @@ changes:
     impl_mode: hand-written
     replaces:
       - "<handwrite-tracker:jet-bb-semantic-surface>"
-  - path: "projects/jet/tests/browser-bridge/pm_report_acceptance.rs"
+  - path: "apps/jet/tests/browser-bridge/pm_report_acceptance.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/tests/browser-bridge/browser_cli_smoke.rs"
+  - path: "apps/jet/tests/browser-bridge/browser_cli_smoke.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/tests/browser-bridge/storage_state_tests.rs"
+  - path: "apps/jet/tests/browser-bridge/storage_state_tests.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/tests/browser-bridge/page_api_parity.rs"
+  - path: "apps/jet/tests/browser-bridge/page_api_parity.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/tests/browser-bridge/trace_viewer.rs"
+  - path: "apps/jet/tests/browser-bridge/trace_viewer.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/tests/browser-bridge/locator_js_api.rs"
+  - path: "apps/jet/tests/browser-bridge/locator_js_api.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/tests/browser-bridge/trace_capture.rs"
+  - path: "apps/jet/tests/browser-bridge/trace_capture.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/tests/browser-bridge/matchers_state_value_a11y.rs"
+  - path: "apps/jet/tests/browser-bridge/matchers_state_value_a11y.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/tests/browser-bridge/to_have_screenshot_tests.rs"
+  - path: "apps/jet/tests/browser-bridge/to_have_screenshot_tests.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/tests/browser-bridge/playwright_compat_tests.rs"
+  - path: "apps/jet/tests/browser-bridge/playwright_compat_tests.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/tests/browser-bridge/bb_mcp_server.rs"
+  - path: "apps/jet/tests/browser-bridge/bb_mcp_server.rs"
     action: modify
     section: schema
     description: |
@@ -1027,67 +1027,67 @@ changes:
     impl_mode: hand-written
     replaces:
       - "<handwrite-tracker:jet-bb-mcp-server>"
-  - path: "projects/jet/tests/browser-bridge/e2e_playwright_residue.rs"
+  - path: "apps/jet/tests/browser-bridge/e2e_playwright_residue.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/tests/browser-bridge/auto_artifacts_tests.rs"
+  - path: "apps/jet/tests/browser-bridge/auto_artifacts_tests.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/tests/browser-bridge/route_intercept_tests.rs"
+  - path: "apps/jet/tests/browser-bridge/route_intercept_tests.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/tests/browser-bridge/browser_install.rs"
+  - path: "apps/jet/tests/browser-bridge/browser_install.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/tests/browser-bridge/page_fixture_auto_inject.rs"
+  - path: "apps/jet/tests/browser-bridge/page_fixture_auto_inject.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/tests/browser-bridge/product_step_timeline.rs"
+  - path: "apps/jet/tests/browser-bridge/product_step_timeline.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/tests/browser-bridge/pm_report_static_smoke.rs"
+  - path: "apps/jet/tests/browser-bridge/pm_report_static_smoke.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/tests/browser-bridge/cue_artifact_studio_dogfood.rs"
+  - path: "apps/jet/tests/browser-bridge/cue_artifact_studio_dogfood.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/tests/browser-bridge/playwright_compat_shim_tests.rs"
+  - path: "apps/jet/tests/browser-bridge/playwright_compat_shim_tests.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/tests/browser-bridge/browser_context.rs"
+  - path: "apps/jet/tests/browser-bridge/browser_context.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/tests/browser-bridge/auto_artifacts_tests.rs"
+  - path: "apps/jet/tests/browser-bridge/auto_artifacts_tests.rs"
     action: verify
     section: unit-test
     description: |

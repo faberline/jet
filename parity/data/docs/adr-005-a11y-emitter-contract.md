@@ -79,7 +79,7 @@ independently.
 ## SemanticsEmitter trait
 
 Every jet widget that participates in the AX-tree implements a single
-trait, defined in `projects/jet/data/parity/crates/jet-a11y/src/emitter.rs`:
+trait, defined in `apps/jet/data/parity/crates/jet-a11y/src/emitter.rs`:
 
 ```rust
 /// Contract every jet widget honours when producing its ARIA proxy.

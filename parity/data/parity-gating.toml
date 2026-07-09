@@ -1,4 +1,4 @@
-# projects/jet/parity/data/parity-gating.toml
+# apps/jet/parity/data/parity-gating.toml
 #
 # Single source of truth for the jet parity CI gate.
 #
@@ -12,9 +12,9 @@
 # The gate CLI lives at `jet-parity-gate` and exposes:
 #
 #     cargo run -p jet-parity-gate -- gate \
-#         --manifest projects/jet/parity/data/parity-gating.toml \
+#         --manifest apps/jet/parity/data/parity-gating.toml \
 #         --results-dir <oracle-out>/results \
-#         --waivers   projects/jet/parity/data/waivers.toml
+#         --waivers   apps/jet/parity/data/waivers.toml
 #
 # Exit codes (R3):
 #   0   — all pass (or every fail is covered by an unexpired waiver)

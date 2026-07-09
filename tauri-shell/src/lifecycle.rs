@@ -2,7 +2,7 @@
 // CODEGEN-BEGIN
 //! OS-window and process lifecycle pulses for the desktop target.
 //!
-//! @spec `.score/tech_design/projects/jet/logic/multi-target/desktop-runtime.md`
+//! @spec `.score/tech_design/apps/jet/logic/multi-target/desktop-runtime.md`
 //!     §"Public surface" — "Window lifecycle (created, focused,
 //!     minimized, suspended, resumed, closed)" is the desktop-only
 //!     surface the web profile cannot express.

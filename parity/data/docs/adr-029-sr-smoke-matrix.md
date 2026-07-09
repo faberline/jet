@@ -6,7 +6,7 @@
 | Parent epic | #2136 |
 | Status | accepted |
 | Date | 2026-05-16 |
-| Decision | Run a manual, human-checklist screen-reader (SR) smoke matrix once per release-candidate (RC) across six SR × OS × browser combinations: NVDA × Windows 11 × Chrome, NVDA × Windows 11 × Firefox, JAWS × Windows 11 × Chrome (org-floating commercial license), VoiceOver × macOS Sonoma × Safari, VoiceOver × iOS 17+ × Safari (touch SR pattern), TalkBack × Android 14 × Chrome. Per cell, a single channel maintainer (rotating per release) executes a versioned walk-through script that lives at `projects/jet/data/parity/manual-tests/sr/<sr>-<os>.md`. Each script covers a fixed 10-fixture smoke corpus — Button, TextField, Checkbox, Radio, Dialog, Menu, Tabs, DataGrid, live-region, Disclosure — with ~12 numbered actions per fixture and the expected SR announcement string (or speech-buffer prefix) per action. Reviewer marks Pass / Fail per row, optionally captures local audio of the SR announcement for confused outcomes (audio is *not* committed; privacy + binary bloat). Outputs are checked-in human-readable markdown checklists under `projects/jet/data/parity/manual-tests/sr/runs/<rc>/<sr>-<os>.md`; a `scorecard.md` aggregates pass-rate per cell per RC. Release gating: zero fails on the two flagship cells — NVDA × Chrome and VoiceOver × Safari — blocks the RC; the other four cells are advisory and tracked across RCs for regression trend. Coverage budget: 10 fixtures × ~12 actions × 6 cells ≈ 720 manual checks per RC. Linux SR (Orca) and braille-display output are out of scope at v1. |
+| Decision | Run a manual, human-checklist screen-reader (SR) smoke matrix once per release-candidate (RC) across six SR × OS × browser combinations: NVDA × Windows 11 × Chrome, NVDA × Windows 11 × Firefox, JAWS × Windows 11 × Chrome (org-floating commercial license), VoiceOver × macOS Sonoma × Safari, VoiceOver × iOS 17+ × Safari (touch SR pattern), TalkBack × Android 14 × Chrome. Per cell, a single channel maintainer (rotating per release) executes a versioned walk-through script that lives at `apps/jet/data/parity/manual-tests/sr/<sr>-<os>.md`. Each script covers a fixed 10-fixture smoke corpus — Button, TextField, Checkbox, Radio, Dialog, Menu, Tabs, DataGrid, live-region, Disclosure — with ~12 numbered actions per fixture and the expected SR announcement string (or speech-buffer prefix) per action. Reviewer marks Pass / Fail per row, optionally captures local audio of the SR announcement for confused outcomes (audio is *not* committed; privacy + binary bloat). Outputs are checked-in human-readable markdown checklists under `apps/jet/data/parity/manual-tests/sr/runs/<rc>/<sr>-<os>.md`; a `scorecard.md` aggregates pass-rate per cell per RC. Release gating: zero fails on the two flagship cells — NVDA × Chrome and VoiceOver × Safari — blocks the RC; the other four cells are advisory and tracked across RCs for regression trend. Coverage budget: 10 fixtures × ~12 actions × 6 cells ≈ 720 manual checks per RC. Linux SR (Orca) and braille-display output are out of scope at v1. |
 
 ## Context
 
@@ -152,7 +152,7 @@ with a comment noting the wording variant.
 ### Walk-through script format
 
 Each cell's script lives at
-`projects/jet/data/parity/manual-tests/sr/<sr>-<os>.md` and follows a
+`apps/jet/data/parity/manual-tests/sr/<sr>-<os>.md` and follows a
 fixed template:
 
 ```markdown
@@ -179,13 +179,13 @@ fixed template:
 ```
 
 Run results live at
-`projects/jet/data/parity/manual-tests/sr/runs/<rc>/<sr>-<os>.md`,
+`apps/jet/data/parity/manual-tests/sr/runs/<rc>/<sr>-<os>.md`,
 copied from the template and filled with checkboxes + notes.
 
 ### Aggregation: `scorecard.md`
 
 After all six cells are run, the channel maintainer aggregates
-into `projects/jet/data/parity/manual-tests/sr/runs/<rc>/scorecard.md`:
+into `apps/jet/data/parity/manual-tests/sr/runs/<rc>/scorecard.md`:
 
 ```markdown
 # RC <rc> SR smoke scorecard
@@ -213,7 +213,7 @@ into `projects/jet/data/parity/manual-tests/sr/runs/<rc>/scorecard.md`:
 
 Once per release-candidate (typically every 2–3 weeks).
 A single channel maintainer per RC takes the matrix end-to-end.
-Rotation pinned in `projects/jet/data/parity/manual-tests/sr/ROTATION.md`.
+Rotation pinned in `apps/jet/data/parity/manual-tests/sr/ROTATION.md`.
 
 Solo execution by design — splitting the matrix across
 reviewers introduces per-reviewer variance in SR
@@ -347,7 +347,7 @@ with comparable fidelity.
 Orca is the GNOME SR; Linux desktop browser share is
 single-digit percent and Orca user share within that is
 smaller still. Tracked as a *separate* matrix
-(`projects/jet/data/parity/manual-tests/sr/orca-*.md`), not part
+(`apps/jet/data/parity/manual-tests/sr/orca-*.md`), not part
 of the RC gate. Reviewer rotation will run Orca opportunistically
 when a Linux-equipped maintainer is on rotation.
 

@@ -58,7 +58,7 @@ What this ADR does **not** do:
 
 ## Fixture shape
 
-`projects/jet/data/parity/fixtures/parity-grid/index.tsx` lays out **9
+`apps/jet/data/parity/fixtures/parity-grid/index.tsx` lays out **9
 visually distinct elements** (one root container plus 8 hit-test
 challenges, with one nested child inside the transform host) inside a
 fixed 1280 × 720 viewport. Each element carries a stable
@@ -110,7 +110,7 @@ The 1000 coordinates are **fully deterministic** from the fixture id:
 The Rust contract is the source of truth; the Python generator in this
 ADR's commit history was a one-shot scaffold for producing
 `click-coords.json`. The Rust verify path lives in
-`projects/jet/parity-corpus/src/fixture.rs` (already
+`apps/jet/parity-corpus/src/fixture.rs` (already
 shipped in #2140) and re-derives the coordinates from the fixture id
 at corpus load. If the on-disk `click-coords.json` does not match the
 re-derivation byte-for-byte, the corpus refuses to load.

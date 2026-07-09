@@ -28,19 +28,19 @@ const evidencePath = path.resolve(
   repoRoot,
   args.get("--evidence") ?? path.join(outputRoot, "basic-build-corpus.json"),
 );
-const comparator = path.join(repoRoot, "projects/jet/scripts/compare-basic-builds.mjs");
+const comparator = path.join(repoRoot, "apps/jet/scripts/compare-basic-builds.mjs");
 const runtimeSmoke = args.get("--runtime-smoke") ?? "required";
 const buildSamples = args.get("--build-samples") ?? "3";
 const jetBin = args.get("--jet-bin") ?? null;
 const commandTimeoutMs = args.get("--command-timeout-ms") ?? null;
 const runtimeTimeoutMs = args.get("--runtime-timeout-ms") ?? null;
-const defaultToolRoot = "projects/jet/tests/fixtures/dom-production-build/react-bench";
+const defaultToolRoot = "apps/jet/tests/fixtures/dom-production-build/react-bench";
 
 const cases = [
   {
     name: "react-bench",
-    fixture: "projects/jet/tests/fixtures/dom-production-build/react-bench",
-    dependencyRoot: "projects/jet/tests/fixtures/dom-production-build/react-bench",
+    fixture: "apps/jet/tests/fixtures/dom-production-build/react-bench",
+    dependencyRoot: "apps/jet/tests/fixtures/dom-production-build/react-bench",
     toolRoot: defaultToolRoot,
     tools: ["jet", "vite", "webpack"],
     runtimeCase: "react-bench",
@@ -50,8 +50,8 @@ const cases = [
   },
   {
     name: "dom-production-assets",
-    fixture: "projects/jet/tests/fixtures/dom-production-build/dom-production-assets",
-    dependencyRoot: "projects/jet/tests/fixtures/dom-production-build/react-bench",
+    fixture: "apps/jet/tests/fixtures/dom-production-build/dom-production-assets",
+    dependencyRoot: "apps/jet/tests/fixtures/dom-production-build/react-bench",
     toolRoot: defaultToolRoot,
     tools: ["jet", "vite", "webpack"],
     runtimeCase: "dom-production-assets",
@@ -68,8 +68,8 @@ const cases = [
   },
   {
     name: "mui-visual-demo",
-    fixture: "projects/jet/tests/fixtures/dom-production-build/mui-visual",
-    dependencyRoot: "projects/jet/tests/fixtures/dom-production-build/mui-visual",
+    fixture: "apps/jet/tests/fixtures/dom-production-build/mui-visual",
+    dependencyRoot: "apps/jet/tests/fixtures/dom-production-build/mui-visual",
     toolRoot: defaultToolRoot,
     tools: ["jet", "vite"],
     runtimeCase: "visual-library",
@@ -85,8 +85,8 @@ const cases = [
   },
   {
     name: "antd-visual-demo",
-    fixture: "projects/jet/tests/fixtures/dom-production-build/antd-visual",
-    dependencyRoot: "projects/jet/tests/fixtures/dom-production-build/antd-visual",
+    fixture: "apps/jet/tests/fixtures/dom-production-build/antd-visual",
+    dependencyRoot: "apps/jet/tests/fixtures/dom-production-build/antd-visual",
     toolRoot: defaultToolRoot,
     tools: ["jet", "vite"],
     runtimeCase: "visual-library",
@@ -102,8 +102,8 @@ const cases = [
   },
   {
     name: "tailwind-visual-demo",
-    fixture: "projects/jet/tests/fixtures/dom-production-build/tailwind-visual",
-    dependencyRoot: "projects/jet/tests/fixtures/dom-production-build/tailwind-visual",
+    fixture: "apps/jet/tests/fixtures/dom-production-build/tailwind-visual",
+    dependencyRoot: "apps/jet/tests/fixtures/dom-production-build/tailwind-visual",
     toolRoot: defaultToolRoot,
     tools: ["jet", "vite"],
     runtimeCase: "visual-library",
@@ -119,8 +119,8 @@ const cases = [
   },
   {
     name: "styled-components-visual-demo",
-    fixture: "projects/jet/tests/fixtures/dom-production-build/styled-components-visual",
-    dependencyRoot: "projects/jet/tests/fixtures/dom-production-build/styled-components-visual",
+    fixture: "apps/jet/tests/fixtures/dom-production-build/styled-components-visual",
+    dependencyRoot: "apps/jet/tests/fixtures/dom-production-build/styled-components-visual",
     toolRoot: defaultToolRoot,
     tools: ["jet", "vite"],
     runtimeCase: "visual-library",

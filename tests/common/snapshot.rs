@@ -7,7 +7,7 @@
 //! produces a diff instead of a one-off `assert_eq!` failure.
 //!
 //! Snapshots live at
-//! `projects/jet/tests/__snapshots__/<name>.json` (relative to this
+//! `apps/jet/tests/__snapshots__/<name>.json` (relative to this
 //! file). First run: writes the snapshot. Subsequent runs: reads
 //! and compares. Set `JET_SNAPSHOT_UPDATE=1` before running to
 //! overwrite.

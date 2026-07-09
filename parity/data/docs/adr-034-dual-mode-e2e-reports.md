@@ -235,7 +235,7 @@ free-form. The rules table:
 `{delta_locator_clause}` is itself a closed enum of phrases keyed
 off the pixel-diff sub-region histogram (anti-aliasing band,
 solid-fill region, hairline edge, etc.); the catalogue lives in
-the sibling doc `projects/jet/data/parity/docs/agent-triage-hints.md`
+the sibling doc `apps/jet/data/parity/docs/agent-triage-hints.md`
 (referenced as future work — **not** shipped in this slice). When
 an unknown rule input lands, the generator emits a placeholder
 `"triage_hint": "[unrecognised diff shape; see diff payload]"`
@@ -411,7 +411,7 @@ than reading the typed payload directly. Pinned rules win.
   follow-up to validate `schemars` output matches the hand-written
   reference we shipped in this slice.
 - **Triage-hint catalogue ownership.** The
-  `projects/jet/data/parity/docs/agent-triage-hints.md` sibling doc
+  `apps/jet/data/parity/docs/agent-triage-hints.md` sibling doc
   (future-work hook) needs an owner who curates the
   `{delta_locator_clause}` enum and the per-channel rule
   templates. Proposed: same owner as the gating-manifest, since
@@ -441,4 +441,4 @@ than reading the typed payload directly. Pinned rules win.
 - Spec `jet-e2e-human-review-report` — `.aw/tech-design/crates/jet/logic/e2e-human-review-report.md` (HTML renderer)
 - Spec `jet-test-runner-report-mode` — `.aw/tech-design/crates/jet/logic/test-runner.md` (CLI flag wiring)
 - Spec `jet-trace-format` — `.aw/tech-design/crates/jet/interfaces/trace/format.md` (existing trace assets referenced from evidence)
-- Future doc `projects/jet/data/parity/docs/agent-triage-hints.md` — pinned-rule catalogue (not shipped in this slice)
+- Future doc `apps/jet/data/parity/docs/agent-triage-hints.md` — pinned-rule catalogue (not shipped in this slice)

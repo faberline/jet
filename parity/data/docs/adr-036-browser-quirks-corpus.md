@@ -6,7 +6,7 @@
 | Parent epic | #2138 |
 | Status | accepted |
 | Date | 2026-05-16 |
-| Decision | Jet maintains a structured, on-disk corpus of known browser IME quirks under `projects/jet/data/parity/quirks/<browser>/<short-id>.md` — one markdown file per quirk, with a stable id (e.g. `JET-IME-Q-001`), a YAML frontmatter block declaring browser-and-version range plus disposition (`waiver` / `emulate` / `ignore`), a minimal DOM-event-sequence reproducer in JSON, the divergence from ADR-013's (#2172) normalized protocol stated as a diff, and per-browser expected output. A generated `projects/jet/data/parity/quirks/CATALOG.md` enumerates the corpus with one-line summaries and a per-browser status column (workaround applied / not applicable / fixed upstream in v N). Each `emulate`-disposition entry adds a normalization rule to #2172's spec and a regression test that replays the reproducer through the protocol and asserts the canonical `ImeEvent` stream; each `waiver`-disposition entry adds a pinning test that asserts the quirk's *current* shape stays unchanged so a silent upstream fix surfaces in CI rather than as a user-visible regression. The corpus is seeded with five entries on first ship — Safari `beforeinput` over-firing with `inputType: "insertCompositionText"` for non-composition typing, Firefox `compositionupdate`-after-`input` ordering on macOS, Chromium vs Safari `compositionend.data` divergence on Escape-cancel, WebKit double-`beforeinput` on Korean hangul commit, iOS Safari kana autocorrect bypassing `input` events — covering the three majors and the iOS mobile path. Discovery is dual-cadence: *passive* (regressions surfaced by ADR-014's (#2173) CJK matrix during release-candidate testing are promoted into the corpus via `aw wi create --type bug --project jet --priority p3` with title `parity/ime/quirk — <one-liner>`) and *active* (a quarterly manual sweep of crbug.com, bugzilla.mozilla.org, and bugs.webkit.org for IME-tagged entries against jet's supported browser floor). A CI workflow runs each quirk's Playwright fixture against the corresponding browser channel on every commit touching `projects/jet/data/parity/` or `crates/cclab-jet/`; quirks whose upstream-fixed-in version is reached cause the pinning test to fail with a "promote to ignore or retire entry" instruction, never an unattended pass. |
+| Decision | Jet maintains a structured, on-disk corpus of known browser IME quirks under `apps/jet/data/parity/quirks/<browser>/<short-id>.md` — one markdown file per quirk, with a stable id (e.g. `JET-IME-Q-001`), a YAML frontmatter block declaring browser-and-version range plus disposition (`waiver` / `emulate` / `ignore`), a minimal DOM-event-sequence reproducer in JSON, the divergence from ADR-013's (#2172) normalized protocol stated as a diff, and per-browser expected output. A generated `apps/jet/data/parity/quirks/CATALOG.md` enumerates the corpus with one-line summaries and a per-browser status column (workaround applied / not applicable / fixed upstream in v N). Each `emulate`-disposition entry adds a normalization rule to #2172's spec and a regression test that replays the reproducer through the protocol and asserts the canonical `ImeEvent` stream; each `waiver`-disposition entry adds a pinning test that asserts the quirk's *current* shape stays unchanged so a silent upstream fix surfaces in CI rather than as a user-visible regression. The corpus is seeded with five entries on first ship — Safari `beforeinput` over-firing with `inputType: "insertCompositionText"` for non-composition typing, Firefox `compositionupdate`-after-`input` ordering on macOS, Chromium vs Safari `compositionend.data` divergence on Escape-cancel, WebKit double-`beforeinput` on Korean hangul commit, iOS Safari kana autocorrect bypassing `input` events — covering the three majors and the iOS mobile path. Discovery is dual-cadence: *passive* (regressions surfaced by ADR-014's (#2173) CJK matrix during release-candidate testing are promoted into the corpus via `aw wi create --type bug --project jet --priority p3` with title `parity/ime/quirk — <one-liner>`) and *active* (a quarterly manual sweep of crbug.com, bugzilla.mozilla.org, and bugs.webkit.org for IME-tagged entries against jet's supported browser floor). A CI workflow runs each quirk's Playwright fixture against the corresponding browser channel on every commit touching `apps/jet/data/parity/` or `crates/cclab-jet/`; quirks whose upstream-fixed-in version is reached cause the pinning test to fail with a "promote to ignore or retire entry" instruction, never an unattended pass. |
 
 ## Context
 
@@ -77,7 +77,7 @@ ADR-013's protocol cares about.
 ### 1. On-disk layout
 
 ```
-projects/jet/data/parity/quirks/
+apps/jet/data/parity/quirks/
 ├── CATALOG.md                 # generated index
 ├── chromium/
 │   ├── JET-IME-Q-003.md       # compositionend empty-data on Escape
@@ -159,7 +159,7 @@ is `false`, before the canvas widget sees the event.
 ## Jet-side handling
 Rule lives in `crates/cclab-jet/src/ime/normalize.rs:rule_q001`
 keyed by `JET-IME-Q-001`. Replayed-event test at
-`projects/jet/data/parity/quirks/tests/q-001.spec.ts`.
+`apps/jet/data/parity/quirks/tests/q-001.spec.ts`.
 
 ## Upstream status
 Tracked at WebKit Bugzilla #NNNNNN, last triaged 2026-04.
@@ -199,7 +199,7 @@ requires a fresh ADR.
 Each seed entry's file lands with the ADR; each emulate
 entry's normalization rule lands in the next #2172 revise
 cycle; each test lands in the Playwright suite under
-`projects/jet/data/parity/quirks/tests/`.
+`apps/jet/data/parity/quirks/tests/`.
 
 ### 5. CATALOG.md format
 
@@ -221,8 +221,8 @@ with the per-quirk frontmatter.
 
 ### 6. CI
 
-Every commit that touches `projects/jet/data/parity/quirks/**`,
-`projects/jet/data/parity/docs/adr-013-*`, `projects/jet/data/parity/docs/adr-014-*`,
+Every commit that touches `apps/jet/data/parity/quirks/**`,
+`apps/jet/data/parity/docs/adr-013-*`, `apps/jet/data/parity/docs/adr-014-*`,
 or `crates/cclab-jet/src/ime/**` triggers the quirk replay
 suite against three browser channels (Chrome stable, Firefox
 stable, WebKit/Safari Technology Preview). The iOS Safari

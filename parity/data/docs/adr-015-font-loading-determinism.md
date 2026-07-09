@@ -69,7 +69,7 @@ stylesheet has been parsed (so `document.fonts` is populated with every
 declared `FontFace`) and **before** the harness signals "ready-for-capture":
 
 ```js
-// projects/jet/data/parity/harness/preface/await-fonts.js
+// apps/jet/data/parity/harness/preface/await-fonts.js
 async function awaitFontsReady() {
   // (1) Standard browser-level readiness — resolves when the FontFaceSet
   //     finishes every in-progress load. Necessary but not sufficient: a
@@ -106,7 +106,7 @@ the rAF tick is the smallest sufficient gate we've found.
 ### Part 2 — Self-hosted subset WOFF2 only
 
 Fixtures **MUST** bundle their fonts under
-`projects/jet/data/parity/fixtures/<fixture>/fonts/` as subset WOFF2 files.
+`apps/jet/data/parity/fixtures/<fixture>/fonts/` as subset WOFF2 files.
 **No Google Fonts CDN, no Adobe Fonts CDN, no third-party font hosting of
 any kind.** Three reasons:
 
@@ -132,7 +132,7 @@ per-fixture codepoint range declared in the fixture's
 `fonts/manifest.toml`:
 
 ```toml
-# projects/jet/data/parity/fixtures/mui-button/fonts/manifest.toml
+# apps/jet/data/parity/fixtures/mui-button/fonts/manifest.toml
 [font.roboto-regular]
 source       = "third_party/google-fonts/roboto/Roboto-Regular.ttf"
 codepoints   = "U+0020-007E,U+00A0-00FF,U+2010-2027"  # Basic Latin + Latin-1 + a few punct

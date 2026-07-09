@@ -29,4 +29,4 @@ echo "[jet advanced wasm gate] AntD visual DOM/WASM parity via jet bb capture/sc
 cargo test -p jet --test mui_visual_regression antd_visual_fixture_renders_on_react_dom_and_jet_wasm -- --nocapture
 
 echo "[jet advanced wasm gate] DOM oracle parity skeleton"
-projects/jet/scripts/verify-parity-oracle-gate.sh
+apps/jet/scripts/verify-parity-oracle-gate.sh

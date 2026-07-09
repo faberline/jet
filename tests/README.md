@@ -1,7 +1,7 @@
 # Jet integration tests — verification blocks
 
 Each folder is one verification block tied to a replacement claim from the
-capability map in `projects/jet/README.md`. Cargo target names stay flat
+capability map in `apps/jet/README.md`. Cargo target names stay flat
 (`cargo test -p jet --test <name>` keeps working); the grouping lives in the
 folder layout and the `[[test]]` entries in `Cargo.toml`.
 
@@ -20,7 +20,7 @@ Shared infrastructure stays at the tests root:
   snapshot assertions). Tests in block folders import it via
   `#[path = "../common/mod.rs"] mod common;`.
 - `fixtures/` — fixture apps and corpora. Paths are referenced by gate scripts
-  (`projects/jet/scripts/*.mjs|sh`) and must not move without updating them.
+  (`apps/jet/scripts/*.mjs|sh`) and must not move without updating them.
 - `__snapshots__/` — JSON snapshots resolved from `CARGO_MANIFEST_DIR`.
 
 Run one block locally by folder:
@@ -31,5 +31,5 @@ cargo test -p jet --test workspace_protocol
 ```
 
 The cross-tool comparison gates (npm/pnpm benchmarks, Playwright baseline,
-Vite/Webpack corpus) live in `projects/jet/scripts/` and are documented per
+Vite/Webpack corpus) live in `apps/jet/scripts/` and are documented per
 block.

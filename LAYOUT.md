@@ -1,6 +1,6 @@
-# `projects/jet/` Layout
+# `apps/jet/` Layout
 
-This file maps every top-level entry under `projects/jet/` to its role so
+This file maps every top-level entry under `apps/jet/` to its role so
 new readers can navigate the tree without grepping `Cargo.toml`s.
 
 Naming conventions:
@@ -17,7 +17,7 @@ Naming conventions:
 There are nine entries. Everything else is two-deep.
 
 ```
-projects/jet/
+apps/jet/
 ├── src/        — jet root crate (TSX → Rust transpiler + driver)
 ├── wasm/       — jet-wasm crate (browser-side runtime, wasm32 target)
 ├── parity/     — parity workspace (corpus, gate, oracle, data)

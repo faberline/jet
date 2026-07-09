@@ -4,7 +4,7 @@
 # Releases and drops it on your PATH.
 #
 # Usage:
-#   curl -fsSL https://raw.githubusercontent.com/chrischeng-c4/axiom/main/projects/jet/install.sh | sh
+#   curl -fsSL https://raw.githubusercontent.com/chrischeng-c4/axiom/main/apps/jet/install.sh | sh
 #
 # Env overrides:
 #   JET_VERSION   tag to install (default: latest jet@* release, e.g. jet@0.1.0)

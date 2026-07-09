@@ -72,7 +72,7 @@ ADR scopes the axe gate only.
 ### Pinned version
 
 `axe-core@^4.10.0` and `@axe-core/playwright@^4.10.0`, pinned in
-`projects/jet/data/parity/package.json` with an exact-minor range. The
+`apps/jet/data/parity/package.json` with an exact-minor range. The
 4.10 line is the active LTS at the time of this ADR; the 4.x major
 has been stable since 2020 and is what MUI / Lighthouse / Chrome
 DevTools all consume today. Upgrade cadence: once per quarter, on
@@ -165,7 +165,7 @@ rules. These cannot be globally disabled because the same rules
 Allowlist source: each fixture's `parity.toml`:
 
 ```toml
-# projects/jet/data/parity/fixtures/mui-button-contained/parity.toml
+# apps/jet/data/parity/fixtures/mui-button-contained/parity.toml
 [axe]
 disabled-rules = [
   { id = "landmark-one-main",

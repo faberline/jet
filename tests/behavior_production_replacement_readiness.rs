@@ -7,13 +7,13 @@
 // @contract production-replacement-readiness
 // @category behavior
 // @required_for_production true
-// @command projects/jet/scripts/verify-basic-dom-gates.sh --all
+// @command apps/jet/scripts/verify-basic-dom-gates.sh --all
 // AW-EC-END
 
 #[test]
 #[ignore = "AW EC gate: run via `aw health --verify-ec` or `cargo test -- --ignored`"]
 fn production_replacement_readiness() {
-    let command = "projects/jet/scripts/verify-basic-dom-gates.sh --all";
+    let command = "apps/jet/scripts/verify-basic-dom-gates.sh --all";
     let id = "production-replacement-readiness";
     let mut root = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"));
     while !root.join(".aw").is_dir() {

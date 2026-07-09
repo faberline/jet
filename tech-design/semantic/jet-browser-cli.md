@@ -1,12 +1,12 @@
 ---
 id: semantic-jet-browser-cli
-summary: Semantic coverage for "projects/jet/src/browser_cli"
+summary: Semantic coverage for "apps/jet/src/browser_cli"
 capability_refs:
   - id: "rust-native-frontend-toolchain"
     role: primary
     claim: "production-replacement-readiness"
     coverage: partial
-    rationale: "Semantic takeover coverage for existing source group `projects/jet/src/browser_cli`."
+    rationale: "Semantic takeover coverage for existing source group `apps/jet/src/browser_cli`."
 fill_sections: [schema, changes]
 ---
 
@@ -18,11 +18,11 @@ fill_sections: [schema, changes]
 ```yaml
 semantic_domain:
   key: "jet/browser_cli"
-  source_group: "projects/jet/src/browser_cli"
+  source_group: "apps/jet/src/browser_cli"
   coverage_kind: semantic
   evidence:
     source_units:
-      - path: "projects/jet/src/browser_cli/session.rs"
+      - path: "apps/jet/src/browser_cli/session.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["config_surface", "data_model", "service_method"]
@@ -89,8 +89,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src/browser_cli"
-      - path: "projects/jet/src/browser_cli/interact.rs"
+          domain: "apps/jet/src/browser_cli"
+      - path: "apps/jet/src/browser_cli/interact.rs"
         language: "rust"
         ownership_state: "handwrite"
         generator_primitives: ["config_surface", "enum_model", "service_method"]
@@ -184,8 +184,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src/browser_cli"
-      - path: "projects/jet/src/browser_cli/mod.rs"
+          domain: "apps/jet/src/browser_cli"
+      - path: "apps/jet/src/browser_cli/mod.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["service_method"]
@@ -315,8 +315,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src/browser_cli"
-      - path: "projects/jet/src/browser_cli/pretty.rs"
+          domain: "apps/jet/src/browser_cli"
+      - path: "apps/jet/src/browser_cli/pretty.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["service_method"]
@@ -350,8 +350,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src/browser_cli"
-      - path: "projects/jet/src/browser_cli/mcp.rs"
+          domain: "apps/jet/src/browser_cli"
+      - path: "apps/jet/src/browser_cli/mcp.rs"
         language: "rust"
         ownership_state: "handwrite"
         generator_primitives: ["config_surface", "service_method"]
@@ -397,7 +397,7 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src/browser_cli"
+          domain: "apps/jet/src/browser_cli"
 ```
 
 ## Changes
@@ -406,13 +406,13 @@ semantic_domain:
 ```yaml
 coverage_kind: semantic
 changes:
-  - path: "projects/jet/src/browser_cli/session.rs"
+  - path: "apps/jet/src/browser_cli/session.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/src/browser_cli/interact.rs"
+  - path: "apps/jet/src/browser_cli/interact.rs"
     action: modify
     section: schema
     description: |
@@ -420,19 +420,19 @@ changes:
     impl_mode: hand-written
     replaces:
       - "<handwrite-tracker:jet-bb-semantic-surface>"
-  - path: "projects/jet/src/browser_cli/mod.rs"
+  - path: "apps/jet/src/browser_cli/mod.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/src/browser_cli/pretty.rs"
+  - path: "apps/jet/src/browser_cli/pretty.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/src/browser_cli/mcp.rs"
+  - path: "apps/jet/src/browser_cli/mcp.rs"
     action: modify
     section: schema
     description: |

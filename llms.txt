@@ -24,7 +24,7 @@
 - Build debug: `./build.sh debug`.
 - Build release: `./build.sh release`.
 - Install: repo root `install.sh --project=jet` dispatches to `./install.sh`.
-- Test: `projects/jet/scripts/verify-basic-dom-gates.sh --all`.
+- Test: `apps/jet/scripts/verify-basic-dom-gates.sh --all`.
 
 ## Root Artifacts
 

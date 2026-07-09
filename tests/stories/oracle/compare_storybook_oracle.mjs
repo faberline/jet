@@ -16,7 +16,7 @@
  *   WEBPACK_STORYBOOK_URL=http://127.0.0.1:6107 \
  *   JET_STORIES_URL=http://127.0.0.1:6131 \
  *   STORY_IDS=breadcrumblist--default,calendar--without-drag-and-drop \
- *   node projects/jet/tests/stories/oracle/compare_storybook_oracle.mjs
+ *   node apps/jet/tests/stories/oracle/compare_storybook_oracle.mjs
  */
 
 import crypto from "node:crypto";

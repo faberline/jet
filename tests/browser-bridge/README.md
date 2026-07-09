@@ -15,8 +15,8 @@ the comparison target, never the executor.
 |---|---|---|
 | Browser lib suite | `cargo test -p jet --lib browser -- --nocapture` | CDP driver, launcher, context |
 | CLI smoke | `cargo test -p jet --test browser_cli_smoke` | `jet browser` end-to-end debugging commands |
-| Playwright baseline phase | `JET_BASIC_DOM_BROWSER_BASELINES=playwright JET_BASIC_DOM_REQUIRE_BROWSER_BASELINES=1 projects/jet/scripts/verify-basic-dom-gates.sh --phase browser` | replacement evidence vs a Playwright baseline |
-| Replacement report | `node projects/jet/scripts/verify-browser-bridge-replacement.mjs` | command-surface replacement checks |
+| Playwright baseline phase | `JET_BASIC_DOM_BROWSER_BASELINES=playwright JET_BASIC_DOM_REQUIRE_BROWSER_BASELINES=1 apps/jet/scripts/verify-basic-dom-gates.sh --phase browser` | replacement evidence vs a Playwright baseline |
+| Replacement report | `node apps/jet/scripts/verify-browser-bridge-replacement.mjs` | command-surface replacement checks |
 
 ## In this folder
 

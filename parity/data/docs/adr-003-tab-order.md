@@ -263,7 +263,7 @@ choice rather than a silent global setting.
 
 The conformance gate for this ADR is checked in alongside it:
 
-- File: `projects/jet/data/parity/wpt/focus-sequential.manifest.toml`
+- File: `apps/jet/data/parity/wpt/focus-sequential.manifest.toml`
 - Path subset gated: `html/interaction/focus/sequential-focus-navigation`
 - Tests gated (whitelist):
   - `sequential-focus-navigation.html` — baseline source-order traversal.

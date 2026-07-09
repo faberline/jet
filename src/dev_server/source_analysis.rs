@@ -78,7 +78,7 @@ pub fn extract_imports_from_source(code: &str) -> Vec<String> {
 /// anyway, and the suffix still contains every byte that could
 /// possibly start the `import` keyword on the next character.
 ///
-/// @spec projects/jet/docs/dev-server-source-analysis-utf8-safety.md#interface
+/// @spec apps/jet/docs/dev-server-source-analysis-utf8-safety.md#interface
 /// @issue #1485
 fn trim_buf_to_tail_chars(buf: &mut String, tail_bytes: usize) {
     let mut split = buf.len().saturating_sub(tail_bytes);

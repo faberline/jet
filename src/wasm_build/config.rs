@@ -185,7 +185,7 @@ impl std::fmt::Display for RootPropValue {
 /// raw `toml::Value` so projects can keep a single config file for
 /// both pipelines.
 ///
-/// @spec projects/jet/docs/wasm-config-accept-shared-jet-sections.md#interface
+/// @spec apps/jet/docs/wasm-config-accept-shared-jet-sections.md#interface
 /// @issue #1403
 #[derive(Debug, Clone, Deserialize)]
 #[serde(deny_unknown_fields)]

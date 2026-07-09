@@ -6,7 +6,7 @@
 | Parent epic  | #2138 |
 | Status       | accepted |
 | Date         | 2026-05-16 |
-| Decision     | Ship a human-driven 12-phrase × 4-IME recording matrix under `projects/jet/data/parity/manual-tests/ime/<lang>.md`, with per-cell JSON recordings under `projects/jet/conformance/ime-cjk/<family>/<ime>/<phrase-id>.json` re-validated headlessly against the #2172 normalization rules on every PR that touches the IME channel. |
+| Decision     | Ship a human-driven 12-phrase × 4-IME recording matrix under `apps/jet/data/parity/manual-tests/ime/<lang>.md`, with per-cell JSON recordings under `apps/jet/conformance/ime-cjk/<family>/<ime>/<phrase-id>.json` re-validated headlessly against the #2172 normalization rules on every PR that touches the IME channel. |
 
 ## Context
 
@@ -107,7 +107,7 @@ Per R2, exactly one IME per family is the bar everything else extends:
 
 Extensibility (R2): adding Boshiamy, Microsoft Pinyin, Apple Hiragana,
 or Microsoft Korean 3-set is a documented additive change — drop a new
-`<ime>` directory under `projects/jet/conformance/ime-cjk/<family>/`
+`<ime>` directory under `apps/jet/conformance/ime-cjk/<family>/`
 and the replay harness picks it up by glob.
 
 ### 3. The 12-phrase fixture corpus (R1)
@@ -137,7 +137,7 @@ Each (phrase, IME, browser, jet|reference) cell produces one JSON file
 at:
 
 ```
-projects/jet/conformance/ime-cjk/<family>/<ime>/<phrase-id>.json
+apps/jet/conformance/ime-cjk/<family>/<ime>/<phrase-id>.json
 ```
 
 Schema:
@@ -183,7 +183,7 @@ frontmatter — the replay harness asserts that.
 ### 5. Per-cell acceptance (release-candidate gate)
 
 Each cell passes only if **all six** boxes tick. The
-`projects/jet/data/parity/manual-tests/ime/<lang>.md` checklist enumerates
+`apps/jet/data/parity/manual-tests/ime/<lang>.md` checklist enumerates
 these per row (see §7):
 
 1. **Candidate window pinned to caret.** Bounding box of OS IME
@@ -214,7 +214,7 @@ Boxes 1, 2, 3, 4, 5 are human-judged at recording time. Box 6 is the
 
 ### 6. Headless replay harness (R5)
 
-The replay harness lives at `projects/jet/conformance/ime-cjk/replay/`
+The replay harness lives at `apps/jet/conformance/ime-cjk/replay/`
 and runs on every PR via the existing parity workflow. For each
 recording it:
 
@@ -232,7 +232,7 @@ of truth because the human signed off on it at recording time.
 ### 7. Operator-facing checklist (R6, R8)
 
 One markdown file per family under
-`projects/jet/data/parity/manual-tests/ime/`:
+`apps/jet/data/parity/manual-tests/ime/`:
 
 - `traditional-chinese.md`
 - `simplified-chinese.md`

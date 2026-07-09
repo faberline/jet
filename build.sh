@@ -4,7 +4,7 @@ set -euo pipefail
 
 usage() {
   cat <<'EOF'
-Usage: projects/jet/build.sh <debug|release>
+Usage: apps/jet/build.sh <debug|release>
 
 debug    Build jet and install target/debug/jet to ~/.cargo/bin/jet.
 release  Build/install jet, create a release commit, and print the tag to push after git:land.
@@ -19,7 +19,7 @@ fail_hint() {
   local mode="$1"
   echo ""
   echo "Build failed."
-  echo "Retry with: projects/jet/build.sh ${mode}"
+  echo "Retry with: apps/jet/build.sh ${mode}"
   echo "Verify with: ~/.cargo/bin/jet --version"
 }
 
@@ -65,8 +65,8 @@ install_jet() {
 }
 
 if [[ "$MODE" == "debug" ]]; then
-  VERSION_FILES=(projects/jet/Cargo.toml)
-  CURRENT_VERSION="$(project_build_read_version projects/jet/Cargo.toml)"
+  VERSION_FILES=(apps/jet/Cargo.toml)
+  CURRENT_VERSION="$(project_build_read_version apps/jet/Cargo.toml)"
   project_build_prepare_debug_version jet "$CURRENT_VERSION" "${VERSION_FILES[@]}"
   cargo build -p jet --bin jet
   install_jet debug
@@ -76,8 +76,8 @@ if [[ "$MODE" == "debug" ]]; then
   exit 0
 fi
 
-VERSION_FILES=(projects/jet/Cargo.toml)
-CURRENT_VERSION="$(project_build_read_version projects/jet/Cargo.toml)"
+VERSION_FILES=(apps/jet/Cargo.toml)
+CURRENT_VERSION="$(project_build_read_version apps/jet/Cargo.toml)"
 export PROJECT_BUILD_REQUIRE_REMOTE_TAG_CHECK=1
 project_build_prepare_release_version jet "$CURRENT_VERSION" "${VERSION_FILES[@]}"
 
@@ -86,7 +86,7 @@ cargo build --release -p jet --bin jet
 install_jet release
 
 TAG="${PROJECT_BUILD_RELEASE_TAG}"
-git add Cargo.lock README.md libs/cli-std projects/jet
+git add Cargo.lock README.md libs/cli-std apps/jet
 git commit --allow-empty -m "release(jet): ${TAG}"
 
 project_build_print_release_next_steps jet "$TAG"

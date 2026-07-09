@@ -38,7 +38,7 @@ fn jet_pkg_management_replaces_npm_pnpm_with_bounded_baseline_performance() {
     let evidence = harness::evidence_path(GATE);
     let run = harness::run_evidence_script(
         &root,
-        "projects/jet/scripts/compare-pkg-management.mjs",
+        "apps/jet/scripts/compare-pkg-management.mjs",
         &[
             "--require-baselines",
             "--evidence",

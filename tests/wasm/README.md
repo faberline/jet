@@ -23,7 +23,7 @@ renderer, lowering, and the MUI/AntD DOM-vs-WASM visual parity gates below.
 | Parity oracle link | `cargo test -p jet --test parity_oracle_reexport` | `jet_parity_oracle::run_fixture` resolves |
 | Dev smoke | `cargo test -p jet --test wasm_dev_smoke` | `jet dev --wasm` serves the counter demo |
 
-Aggregate script: `projects/jet/scripts/verify-advanced-wasm-gates.sh`.
+Aggregate script: `apps/jet/scripts/verify-advanced-wasm-gates.sh`.
 
 ## In this folder
 
@@ -40,4 +40,4 @@ Aggregate script: `projects/jet/scripts/verify-advanced-wasm-gates.sh`.
 
 - Replayable DOM-vs-WASM traces for layout, text, selection, clipboard,
   scroll, context menu, a11y, and post-load performance budgets (see the
-  Advanced contract-family table in `projects/jet/README.md`).
+  Advanced contract-family table in `apps/jet/README.md`).

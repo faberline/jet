@@ -6,7 +6,7 @@
 //! without caring whether the response came from `fetch()` or
 //! `tauri::ipc::invoke`.
 //!
-//! @spec `.score/tech_design/projects/jet/logic/multi-target/desktop-runtime.md`
+//! @spec `.score/tech_design/apps/jet/logic/multi-target/desktop-runtime.md`
 //!     §"Slice 3 — local backend bridge"
 //! @issue #1242 — Slice 2 (trait + error enum); Slice 3 wires the
 //!     `tauri::ipc::Invoke` adapter behind the `tauri` feature.

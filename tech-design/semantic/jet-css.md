@@ -1,12 +1,12 @@
 ---
 id: semantic-jet-css
-summary: Semantic coverage for "projects/jet/src/css"
+summary: Semantic coverage for "apps/jet/src/css"
 capability_refs:
   - id: "rust-native-frontend-toolchain"
     role: primary
     claim: "production-replacement-readiness"
     coverage: partial
-    rationale: "Semantic takeover coverage for existing source group `projects/jet/src/css`."
+    rationale: "Semantic takeover coverage for existing source group `apps/jet/src/css`."
 fill_sections: [schema, changes]
 ---
 
@@ -18,11 +18,11 @@ fill_sections: [schema, changes]
 ```yaml
 semantic_domain:
   key: "jet/css"
-  source_group: "projects/jet/src/css"
+  source_group: "apps/jet/src/css"
   coverage_kind: semantic
   evidence:
     source_units:
-      - path: "projects/jet/src/css/import_resolver.rs"
+      - path: "apps/jet/src/css/import_resolver.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["service_method"]
@@ -59,8 +59,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src/css"
-      - path: "projects/jet/src/css/mod.rs"
+          domain: "apps/jet/src/css"
+      - path: "apps/jet/src/css/mod.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["data_model", "service_method"]
@@ -106,8 +106,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src/css"
-      - path: "projects/jet/src/css/output.rs"
+          domain: "apps/jet/src/css"
+      - path: "apps/jet/src/css/output.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["data_model", "service_method"]
@@ -129,8 +129,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src/css"
-      - path: "projects/jet/src/css/scss.rs"
+          domain: "apps/jet/src/css"
+      - path: "apps/jet/src/css/scss.rs"
         language: "rust"
         ownership_state: "handwrite"
         generator_primitives: ["service_method"]
@@ -158,8 +158,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src/css"
-      - path: "projects/jet/src/css/directives.rs"
+          domain: "apps/jet/src/css"
+      - path: "apps/jet/src/css/directives.rs"
         language: "rust"
         ownership_state: "codegen"
         generator_primitives: ["data_model", "service_method"]
@@ -196,7 +196,7 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet/src/css"
+          domain: "apps/jet/src/css"
 ```
 
 ## Changes
@@ -205,25 +205,25 @@ semantic_domain:
 ```yaml
 coverage_kind: semantic
 changes:
-  - path: "projects/jet/src/css/import_resolver.rs"
+  - path: "apps/jet/src/css/import_resolver.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/src/css/mod.rs"
+  - path: "apps/jet/src/css/mod.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/src/css/output.rs"
+  - path: "apps/jet/src/css/output.rs"
     action: modify
     section: schema
     description: |
       Existing source behavior is covered by this feature/domain semantic TD.
     impl_mode: hand-written
-  - path: "projects/jet/src/css/scss.rs"
+  - path: "apps/jet/src/css/scss.rs"
     action: modify
     section: schema
     description: |
@@ -231,7 +231,7 @@ changes:
     impl_mode: hand-written
     replaces:
       - "<handwrite-tracker:projects-jet-src-css-scss-rs>"
-  - path: "projects/jet/src/css/directives.rs"
+  - path: "apps/jet/src/css/directives.rs"
     action: modify
     section: schema
     description: |

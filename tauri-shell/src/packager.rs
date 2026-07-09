@@ -5,7 +5,7 @@
 //! describes the file copies + `tauri build` invocation Slice 4b
 //! will execute.
 //!
-//! @spec `.score/tech_design/projects/jet/logic/multi-target/desktop-runtime.md`
+//! @spec `.score/tech_design/apps/jet/logic/multi-target/desktop-runtime.md`
 //!     §"Slice 4 — packager + `jet-target.json` consumer".
 //! @issue #1242 — Slice 4a (this commit): planning logic only, no
 //!     filesystem mutation, no `tauri build` exec. The plan is a

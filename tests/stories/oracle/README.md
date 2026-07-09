@@ -18,7 +18,7 @@ Then run:
 STORY_IDS="breadcrumblist--default,calendar--without-drag-and-drop" \
 MANAGER_STORY_ID="breadcrumblist--default" \
 OUT_DIR="/tmp/jet-storybook-oracle" \
-node projects/jet/tests/stories/oracle/compare_storybook_oracle.mjs
+node apps/jet/tests/stories/oracle/compare_storybook_oracle.mjs
 ```
 
 Use `STORY_IDS=all` to compare every story id from the official Vite
@@ -28,7 +28,7 @@ Use `STORY_IDS=all` to compare every story id from the official Vite
 STORY_IDS=all \
 MANAGER_STORY_ID="breadcrumblist--default" \
 OUT_DIR="/tmp/jet-storybook-oracle-all" \
-node projects/jet/tests/stories/oracle/compare_storybook_oracle.mjs
+node apps/jet/tests/stories/oracle/compare_storybook_oracle.mjs
 ```
 
 For long all-story runs, resume or bound a run with:
@@ -38,7 +38,7 @@ STORY_IDS=all \
 STORY_START_AFTER="parsedrafttolexicaleditor--lexicaljs-data" \
 STORY_LIMIT=50 \
 OUT_DIR="/tmp/jet-storybook-oracle-resume" \
-node projects/jet/tests/stories/oracle/compare_storybook_oracle.mjs
+node apps/jet/tests/stories/oracle/compare_storybook_oracle.mjs
 ```
 
 The report checks:

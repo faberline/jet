@@ -1,12 +1,12 @@
 # wasm config rejects dev/build sections used by Cue
 
 > **Issue**: #1403
-> **Crate**: `jet` (`projects/jet/src/wasm_build/config.rs`)
+> **Crate**: `jet` (`apps/jet/src/wasm_build/config.rs`)
 > **Type**: bug
 
 ## Problem
 
-`projects/jet/src/wasm_build/config.rs` declares the strict parse
+`apps/jet/src/wasm_build/config.rs` declares the strict parse
 struct:
 
 ```rust
@@ -18,7 +18,7 @@ struct ConfigFile {
 ```
 
 …and `TOP_LEVEL_KEYS = &["wasm"]`. The non-WASM task-runner config
-in `projects/jet/src/task_runner/config.rs` already accepts a much
+in `apps/jet/src/task_runner/config.rs` already accepts a much
 larger set (`pipeline`, `dev`, `alias`, `build`, `resolve`, `test`,
 `wasm`). When a project authors a single `jet.toml` and runs
 `jet build --wasm` / `jet dev --wasm`, the WASM loader rejects the
@@ -124,11 +124,11 @@ const TOP_LEVEL_KEYS: &[&str] = &[
 
 ## Reference Context
 
-- `projects/jet/src/wasm_build/config.rs:138-143` — `ConfigFile`
+- `apps/jet/src/wasm_build/config.rs:138-143` — `ConfigFile`
   struct.
-- `projects/jet/src/wasm_build/config.rs:38` — `TOP_LEVEL_KEYS`.
-- `projects/jet/src/task_runner/config.rs:208-210` — canonical
+- `apps/jet/src/wasm_build/config.rs:38` — `TOP_LEVEL_KEYS`.
+- `apps/jet/src/task_runner/config.rs:208-210` — canonical
   `JET_TOP_LEVEL_KEYS` set that this aligns with.
-- `projects/jet/src/wasm_build/config.rs:767-786` — the existing
+- `apps/jet/src/wasm_build/config.rs:767-786` — the existing
   `parse_str_with_warnings_surfaces_dev_port_anchor` test that
   flips from "unknown key on dev" to "warning + success".

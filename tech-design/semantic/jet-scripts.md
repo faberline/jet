@@ -1,12 +1,12 @@
 ---
 id: semantic-jet-scripts
-summary: Semantic coverage for "projects/jet/scripts"
+summary: Semantic coverage for "apps/jet/scripts"
 capability_refs:
   - id: "rust-native-frontend-toolchain"
     role: primary
     claim: "production-replacement-readiness"
     coverage: partial
-    rationale: "Semantic takeover coverage for existing source group `projects/jet/scripts`."
+    rationale: "Semantic takeover coverage for existing source group `apps/jet/scripts`."
 fill_sections: [logic, changes]
 ---
 
@@ -25,7 +25,7 @@ nodes:
     label: "Preserve observed frontend source behavior"
   classify_frontend_ast:
     kind: process
-    label: "Map FE ecosystem AST group \"projects/jet/scripts\" to logic emitter primitives"
+    label: "Map FE ecosystem AST group \"apps/jet/scripts\" to logic emitter primitives"
   generator_gap:
     kind: terminal
     label: "Promote from semantic coverage to deterministic frontend codegen"
@@ -38,11 +38,11 @@ flowchart TD
 ```
 
 <!-- frontend_source_evidence
-- projects/jet/scripts/compare-basic-builds.mjs
-- projects/jet/scripts/compare-dom-build-corpus.mjs
-- projects/jet/scripts/compare-prod-static-serve.mjs
-- projects/jet/scripts/compare-pkg-management.mjs
-- projects/jet/scripts/verify-browser-bridge-replacement.mjs
+- apps/jet/scripts/compare-basic-builds.mjs
+- apps/jet/scripts/compare-dom-build-corpus.mjs
+- apps/jet/scripts/compare-prod-static-serve.mjs
+- apps/jet/scripts/compare-pkg-management.mjs
+- apps/jet/scripts/verify-browser-bridge-replacement.mjs
 -->
 
 ## Changes
@@ -51,7 +51,7 @@ flowchart TD
 ```yaml
 coverage_kind: semantic
 changes:
-  - path: "projects/jet/scripts/compare-basic-builds.mjs"
+  - path: "apps/jet/scripts/compare-basic-builds.mjs"
     action: modify
     section: logic
     description: |
@@ -59,7 +59,7 @@ changes:
     impl_mode: hand-written
     replaces:
       - "<handwrite-tracker:projects-jet-scripts-compare-basic-builds-mjs>"
-  - path: "projects/jet/scripts/compare-dom-build-corpus.mjs"
+  - path: "apps/jet/scripts/compare-dom-build-corpus.mjs"
     action: modify
     section: logic
     description: |
@@ -67,7 +67,7 @@ changes:
     impl_mode: hand-written
     replaces:
       - "<handwrite-tracker:projects-jet-scripts-compare-dom-build-corpus-mjs>"
-  - path: "projects/jet/scripts/compare-prod-static-serve.mjs"
+  - path: "apps/jet/scripts/compare-prod-static-serve.mjs"
     action: modify
     section: logic
     description: |
@@ -75,7 +75,7 @@ changes:
     impl_mode: hand-written
     replaces:
       - "<handwrite-tracker:projects-jet-scripts-compare-prod-static-serve-mjs>"
-  - path: "projects/jet/scripts/compare-pkg-management.mjs"
+  - path: "apps/jet/scripts/compare-pkg-management.mjs"
     action: modify
     section: logic
     description: |
@@ -83,7 +83,7 @@ changes:
     impl_mode: hand-written
     replaces:
       - "<handwrite-tracker:projects-jet-scripts-compare-pkg-management-mjs>"
-  - path: "projects/jet/scripts/verify-browser-bridge-replacement.mjs"
+  - path: "apps/jet/scripts/verify-browser-bridge-replacement.mjs"
     action: modify
     section: logic
     description: |

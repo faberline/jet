@@ -8,7 +8,7 @@
 //! the manifest-validation logic specified in subset-rigor.md § Manifest
 //! Validation Logic: load YAML, structural sanity-check, then for each
 //! non-pending entry assert `demo_dir` exists under `examples/` and
-//! `test_file` exists under `projects/jet/tests/`.
+//! `test_file` exists under `apps/jet/tests/`.
 //!
 //! Schema-level validation against `conformance.yaml.schema.json` is
 //! deferred — the schema file is the authoritative spec, and external CI
@@ -72,7 +72,7 @@ impl CliModule for CheckConformanceManifestModule {
             .about(
                 "Validate conformance.yaml structurally and verify that every \
                  non-pending entry's demo_dir exists under examples/ and its \
-                 test_file exists under projects/jet/tests/.",
+                 test_file exists under apps/jet/tests/.",
             )
             .arg(
                 Arg::new("manifest")
@@ -101,7 +101,7 @@ impl CliModule for CheckConformanceManifestModule {
                     .default_value(".")
                     .help(
                         "Workspace root directory. demo_dir resolved under \
-                         <root>/examples/ and test_file under <root>/projects/jet/tests/.",
+                         <root>/examples/ and test_file under <root>/apps/jet/tests/.",
                     ),
             )
             .arg(Arg::new("strict").long("strict").num_args(0).help(
@@ -189,7 +189,7 @@ fn run(manifest_path: &PathBuf, workspace_root: &PathBuf, strict: bool) -> Resul
                 ));
             }
             for tf in entry.test_file.split(',').map(str::trim) {
-                let tp = workspace_root.join("projects/jet/tests").join(tf);
+                let tp = workspace_root.join("apps/jet/tests").join(tf);
                 if !tp.exists() {
                     errors.push(format!(
                         "{where_at}: test_file {tf:?} not found at {}",

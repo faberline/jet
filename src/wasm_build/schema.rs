@@ -71,7 +71,7 @@ pub fn build_schema() -> RootSchema {
     schema.schema.metadata().title = Some("jet.toml".into());
     schema.schema.metadata().description = Some(
         "Schema for the `jet.toml` file. Generated from the Rust \
-         source of truth in `projects/jet/src/task_runner/config.rs`. Run \
+         source of truth in `apps/jet/src/task_runner/config.rs`. Run \
          `jet config schema --write` to regenerate."
             .into(),
     );

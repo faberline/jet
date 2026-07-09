@@ -1,12 +1,12 @@
 ---
 id: semantic-jet-tests-codegen
-summary: Semantic coverage for "projects/jet/tests/codegen"
+summary: Semantic coverage for "apps/jet/tests/codegen"
 capability_refs:
   - id: "rust-native-frontend-toolchain"
     role: primary
     claim: "production-replacement-readiness"
     coverage: partial
-    rationale: "Semantic takeover coverage for existing source group `projects/jet/tests/codegen`."
+    rationale: "Semantic takeover coverage for existing source group `apps/jet/tests/codegen`."
 fill_sections: [schema, unit-test, changes]
 ---
 
@@ -18,11 +18,11 @@ fill_sections: [schema, unit-test, changes]
 ```yaml
 semantic_domain:
   key: "jet/tests/codegen"
-  source_group: "projects/jet/tests/codegen"
+  source_group: "apps/jet/tests/codegen"
   coverage_kind: semantic
   evidence:
     source_units:
-      - path: "projects/jet/tests/codegen/openapi_golden.rs"
+      - path: "apps/jet/tests/codegen/openapi_golden.rs"
         language: "rust"
         ownership_state: "handwrite"
         generator_primitives: ["service_method", "test_case"]
@@ -59,7 +59,7 @@ semantic_domain:
           ecosystem: "rust"
           role: "test"
           section_type: "unit-test"
-          domain: "projects/jet/tests/codegen"
+          domain: "apps/jet/tests/codegen"
 ```
 
 ## Unit Test
@@ -72,7 +72,7 @@ coverage_kind: semantic
 strategy: preserve observed source behavior while semantic coverage is promoted toward generator primitives
 evidence:
   source_tests:
-    - path: "projects/jet/tests/codegen/openapi_golden.rs"
+    - path: "apps/jet/tests/codegen/openapi_golden.rs"
 ---
 requirementDiagram
 
@@ -87,7 +87,7 @@ element UT_SOURCE_TESTS {
 ```yaml
 coverage_kind: semantic
 changes:
-  - path: "projects/jet/tests/codegen/openapi_golden.rs"
+  - path: "apps/jet/tests/codegen/openapi_golden.rs"
     action: modify
     section: schema
     description: |
@@ -95,7 +95,7 @@ changes:
     impl_mode: hand-written
     replaces:
       - "<handwrite-tracker:projects-jet-tests-codegen-openapi-golden-rs>"
-  - path: "projects/jet/tests/codegen/openapi_golden.rs"
+  - path: "apps/jet/tests/codegen/openapi_golden.rs"
     action: verify
     section: unit-test
     description: |

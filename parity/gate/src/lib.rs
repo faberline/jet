@@ -2,7 +2,7 @@
 // CODEGEN-BEGIN
 //! Jet parity gate — library entrypoints.
 //!
-//! See `projects/jet/parity/data/docs/gating-manifest.md` for the v1
+//! See `apps/jet/parity/data/docs/gating-manifest.md` for the v1
 //! contract and exit-code semantics.
 //!
 //! Tracking: <https://github.com/chrischeng-c4/cclab/issues/2144>

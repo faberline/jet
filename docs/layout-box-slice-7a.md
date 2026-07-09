@@ -111,7 +111,7 @@ Out:
 /// renderer's existing pixel-space convention; subpixel positions
 /// are real.
 ///
-/// @spec projects/jet/docs/layout-box-slice-7a.md#interface
+/// @spec apps/jet/docs/layout-box-slice-7a.md#interface
 /// @issue #1798
 #[repr(C)]
 #[derive(Debug, Clone, Copy, PartialEq, Default)]
@@ -127,7 +127,7 @@ pub struct Rect {
 /// resolved rects (vs per-side insets) and pinning the `#[repr(C)]`
 /// layout via `offset_of!` tests.
 ///
-/// @spec projects/jet/docs/layout-box-slice-7a.md#interface
+/// @spec apps/jet/docs/layout-box-slice-7a.md#interface
 /// @issue #1798
 #[repr(C)]
 #[derive(Debug, Clone, Copy, PartialEq, Default)]

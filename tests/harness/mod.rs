@@ -4,7 +4,7 @@
 //!
 //! Gates verify replacement claims against real incumbents (npm/pnpm,
 //! Playwright, Vite/Webpack) by driving the evidence scripts in
-//! `projects/jet/scripts/` and asserting on their machine-readable
+//! `apps/jet/scripts/` and asserting on their machine-readable
 //! reports. This module owns the shared mechanics so each gate stays a
 //! short, readable statement of its claim:
 //!
@@ -25,7 +25,7 @@ pub fn repo_root() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR"))
         .ancestors()
         .nth(2)
-        .expect("projects/jet is two levels under the repo root")
+        .expect("apps/jet is two levels under the repo root")
         .to_path_buf()
 }
 

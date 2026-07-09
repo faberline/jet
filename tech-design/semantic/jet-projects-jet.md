@@ -1,28 +1,28 @@
 ---
 id: semantic-jet-projects-jet
-summary: Semantic coverage for "projects/jet"
+summary: Semantic coverage for "apps/jet"
 capability_refs:
   - id: "rust-native-frontend-toolchain"
     role: primary
     claim: "production-replacement-readiness"
     coverage: partial
-    rationale: "Semantic takeover coverage for existing source group `projects/jet`."
+    rationale: "Semantic takeover coverage for existing source group `apps/jet`."
 fill_sections: [schema, changes]
 ---
 
-# Semantic TD: jet/projects/jet
+# Semantic TD: jet/apps/jet
 
 ## Schema
 <!-- type: schema lang: yaml -->
 
 ```yaml
 semantic_domain:
-  key: "jet/projects/jet"
-  source_group: "projects/jet"
+  key: "jet/apps/jet"
+  source_group: "apps/jet"
   coverage_kind: semantic
   evidence:
     source_units:
-      - path: "projects/jet/build.rs"
+      - path: "apps/jet/build.rs"
         language: "rust"
         ownership_state: "handwrite"
         generator_primitives: ["service_method"]
@@ -38,8 +38,8 @@ semantic_domain:
           ecosystem: "rust"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet"
-      - path: "projects/jet/build.sh"
+          domain: "apps/jet"
+      - path: "apps/jet/build.sh"
         language: "shell"
         ownership_state: "handwrite"
         generator_primitives: ["source_unit"]
@@ -48,8 +48,8 @@ semantic_domain:
           ecosystem: "shell"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet"
-      - path: "projects/jet/install.sh"
+          domain: "apps/jet"
+      - path: "apps/jet/install.sh"
         language: "shell"
         ownership_state: "handwrite"
         generator_primitives: ["source_unit"]
@@ -58,8 +58,8 @@ semantic_domain:
           ecosystem: "shell"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet"
-      - path: "projects/jet/llms.txt"
+          domain: "apps/jet"
+      - path: "apps/jet/llms.txt"
         language: "llms"
         ownership_state: "codegen"
         generator_primitives: ["source_unit"]
@@ -68,7 +68,7 @@ semantic_domain:
           ecosystem: "llms"
           role: "source"
           section_type: "schema"
-          domain: "projects/jet"
+          domain: "apps/jet"
 ```
 
 ## Changes
@@ -77,7 +77,7 @@ semantic_domain:
 ```yaml
 coverage_kind: semantic
 changes:
-  - path: "projects/jet/build.rs"
+  - path: "apps/jet/build.rs"
     action: modify
     section: schema
     description: |
@@ -85,7 +85,7 @@ changes:
     impl_mode: hand-written
     replaces:
       - "<handwrite-tracker:projects-jet-build-rs>"
-  - path: "projects/jet/build.sh"
+  - path: "apps/jet/build.sh"
     action: modify
     section: schema
     description: |
@@ -93,7 +93,7 @@ changes:
     impl_mode: hand-written
     replaces:
       - "<handwrite-tracker:projects-jet-build-sh>"
-  - path: "projects/jet/install.sh"
+  - path: "apps/jet/install.sh"
     action: modify
     section: schema
     description: |
@@ -101,7 +101,7 @@ changes:
     impl_mode: hand-written
     replaces:
       - "<handwrite-tracker:projects-jet-install-sh>"
-  - path: "projects/jet/llms.txt"
+  - path: "apps/jet/llms.txt"
     action: modify
     section: schema
     description: |

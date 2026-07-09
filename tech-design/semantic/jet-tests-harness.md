@@ -1,12 +1,12 @@
 ---
 id: semantic-jet-tests-harness
-summary: Semantic coverage for "projects/jet/tests/harness"
+summary: Semantic coverage for "apps/jet/tests/harness"
 capability_refs:
   - id: "rust-native-frontend-toolchain"
     role: primary
     claim: "production-replacement-readiness"
     coverage: partial
-    rationale: "Semantic takeover coverage for existing source group `projects/jet/tests/harness`."
+    rationale: "Semantic takeover coverage for existing source group `apps/jet/tests/harness`."
 fill_sections: [schema, unit-test, changes]
 ---
 
@@ -18,11 +18,11 @@ fill_sections: [schema, unit-test, changes]
 ```yaml
 semantic_domain:
   key: "jet/tests/harness"
-  source_group: "projects/jet/tests/harness"
+  source_group: "apps/jet/tests/harness"
   coverage_kind: semantic
   evidence:
     source_units:
-      - path: "projects/jet/tests/harness/mod.rs"
+      - path: "apps/jet/tests/harness/mod.rs"
         language: "rust"
         ownership_state: "handwrite"
         generator_primitives: ["data_model", "service_method", "test_case"]
@@ -59,7 +59,7 @@ semantic_domain:
           ecosystem: "rust"
           role: "test"
           section_type: "unit-test"
-          domain: "projects/jet/tests/harness"
+          domain: "apps/jet/tests/harness"
 ```
 
 ## Unit Test
@@ -72,7 +72,7 @@ coverage_kind: semantic
 strategy: preserve observed source behavior while semantic coverage is promoted toward generator primitives
 evidence:
   source_tests:
-    - path: "projects/jet/tests/harness/mod.rs"
+    - path: "apps/jet/tests/harness/mod.rs"
 ---
 requirementDiagram
 
@@ -87,7 +87,7 @@ element UT_SOURCE_TESTS {
 ```yaml
 coverage_kind: semantic
 changes:
-  - path: "projects/jet/tests/harness/mod.rs"
+  - path: "apps/jet/tests/harness/mod.rs"
     action: modify
     section: schema
     description: |
@@ -95,7 +95,7 @@ changes:
     impl_mode: hand-written
     replaces:
       - "<handwrite-tracker:jet-tests-harness>"
-  - path: "projects/jet/tests/harness/mod.rs"
+  - path: "apps/jet/tests/harness/mod.rs"
     action: verify
     section: unit-test
     description: |

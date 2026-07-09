@@ -13,10 +13,10 @@ use crate::manifest::{GateError, GatingManifest};
 use crate::result::ChannelResult;
 use crate::waivers::Waivers;
 
-const DEFAULT_MANIFEST: &str = "projects/jet/parity/data/parity-gating.toml";
-const DEFAULT_WAIVERS: &str = "projects/jet/parity/data/waivers.toml";
-const DEFAULT_RESULTS_DIR: &str = "projects/jet/parity/data/results";
-const DEFAULT_INIT_DIR: &str = "projects/jet/parity/data";
+const DEFAULT_MANIFEST: &str = "apps/jet/parity/data/parity-gating.toml";
+const DEFAULT_WAIVERS: &str = "apps/jet/parity/data/waivers.toml";
+const DEFAULT_RESULTS_DIR: &str = "apps/jet/parity/data/results";
+const DEFAULT_INIT_DIR: &str = "apps/jet/parity/data";
 
 #[derive(Debug, Parser)]
 #[command(

@@ -807,7 +807,7 @@ pub fn command() -> Command {
                              instead of the native runner. \
                              Deprecated in this minor release; removed in the second \
                              subsequent minor release. \
-                             See projects/jet/docs/migration-from-playwright.md for the \
+                             See apps/jet/docs/migration-from-playwright.md for the \
                              migration guide. \
                              Incompatible with --reporter, --trace, --workers, --shard, \
                              --report-dir.",
@@ -4903,7 +4903,7 @@ fn build_minify_enabled_from_matches(m: &ArgMatches) -> bool {
 /// type checking actually lands. Extracted so the diagnostic message
 /// is unit-testable without spawning the binary.
 ///
-/// @spec projects/jet/docs/check-exits-non-zero-while-unimplemented.md#interface
+/// @spec apps/jet/docs/check-exits-non-zero-while-unimplemented.md#interface
 /// @issue #1316
 fn check_not_implemented_error() -> anyhow::Error {
     anyhow::anyhow!(
@@ -5119,7 +5119,7 @@ mod check_handler_tests {
     //! "not yet implemented" diagnostic instead of printing
     //! "under development" and exiting 0.
     //!
-    //! Spec: projects/jet/docs/check-exits-non-zero-while-unimplemented.md
+    //! Spec: apps/jet/docs/check-exits-non-zero-while-unimplemented.md
     use super::*;
 
     #[test]

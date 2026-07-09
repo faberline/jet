@@ -7,13 +7,13 @@
 // @contract phase-3-build-gate
 // @category behavior
 // @required_for_production true
-// @command projects/jet/scripts/verify-basic-dom-gates.sh --phase build
+// @command apps/jet/scripts/verify-basic-dom-gates.sh --phase build
 // AW-EC-END
 
 #[test]
 #[ignore = "AW EC gate: run via `aw health --verify-ec` or `cargo test -- --ignored`"]
 fn phase_3_build_gate() {
-    let command = "projects/jet/scripts/verify-basic-dom-gates.sh --phase build";
+    let command = "apps/jet/scripts/verify-basic-dom-gates.sh --phase build";
     let id = "phase-3-build-gate";
     let mut root = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"));
     while !root.join(".aw").is_dir() {

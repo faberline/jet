@@ -57,9 +57,9 @@ jet trace
 Primary verification:
 
 ```bash
-projects/jet/scripts/verify-basic-dom-gates.sh
-JET_BASIC_DOM_BUILD_SAMPLES=3 JET_BASIC_DOM_RUNTIME_SMOKE=required projects/jet/scripts/verify-basic-dom-gates.sh --all
-projects/jet/scripts/verify-advanced-wasm-gates.sh
+apps/jet/scripts/verify-basic-dom-gates.sh
+JET_BASIC_DOM_BUILD_SAMPLES=3 JET_BASIC_DOM_RUNTIME_SMOKE=required apps/jet/scripts/verify-basic-dom-gates.sh --all
+apps/jet/scripts/verify-advanced-wasm-gates.sh
 aw capability check --project jet --pretty
 aw health --project jet
 ```
@@ -68,15 +68,15 @@ Source map:
 
 | Path | Read when |
 |---|---|
-| `projects/jet/LAYOUT.md` | You need the repo map before editing. |
-| `projects/jet/src/pkg_manager/` | Package manager behavior, lockfile, registry, store, workspace, audit/publish flows. |
-| `projects/jet/src/bundler/` | Dependency graph, tree shaking, CSS bundle, minification, splitting, sourcemaps. |
-| `projects/jet/src/dev_server/` | Dev server, HMR, proxy, prod static serving, watcher, prebundle/import map behavior. |
-| `projects/jet/src/browser/` and `projects/jet/src/browser_cli/` | Browser Bridge driver and CLI surfaces. |
-| `projects/jet/src/test_runner/`, `projects/jet/src/e2e/`, `projects/jet/src/trace/` | Native test runtime, product-flow e2e, trace artifacts. |
-| `projects/jet/src/wasm_build/` and `projects/jet/wasm/` | FE-on-WASM build path and runtime crate. |
-| `projects/jet/parity/` | DOM/WASM parity corpus, oracle, gates, fixtures, schemas, ADRs. |
-| `projects/jet/tests/` | Product and subsystem gates. |
+| `apps/jet/LAYOUT.md` | You need the repo map before editing. |
+| `apps/jet/src/pkg_manager/` | Package manager behavior, lockfile, registry, store, workspace, audit/publish flows. |
+| `apps/jet/src/bundler/` | Dependency graph, tree shaking, CSS bundle, minification, splitting, sourcemaps. |
+| `apps/jet/src/dev_server/` | Dev server, HMR, proxy, prod static serving, watcher, prebundle/import map behavior. |
+| `apps/jet/src/browser/` and `apps/jet/src/browser_cli/` | Browser Bridge driver and CLI surfaces. |
+| `apps/jet/src/test_runner/`, `apps/jet/src/e2e/`, `apps/jet/src/trace/` | Native test runtime, product-flow e2e, trace artifacts. |
+| `apps/jet/src/wasm_build/` and `apps/jet/wasm/` | FE-on-WASM build path and runtime crate. |
+| `apps/jet/parity/` | DOM/WASM parity corpus, oracle, gates, fixtures, schemas, ADRs. |
+| `apps/jet/tests/` | Product and subsystem gates. |
 | `.aw/tech-design/projects/jet/specs/3779.md` | Package-manager capability/spec entrypoint. |
 | `.aw/tech-design/projects/jet/logic/pkg-manager.md` | Package-manager semantic/logic entrypoint. |
 
@@ -117,18 +117,18 @@ fetch/axios runtime selection match the project tech stack. See
 and injecting a pre-configured `AxiosInstance`. The current
 production-readiness gate is green.
 Gate Inventory:
-- `projects/jet/scripts/verify-basic-dom-gates.sh --all`
-- projects/jet/tests/fixtures/dom-production-build
+- `apps/jet/scripts/verify-basic-dom-gates.sh --all`
+- apps/jet/tests/fixtures/dom-production-build
 - `cargo test -p jet --test openapi_golden`
 Surfaces:
 - CLI: `jet install` + `jet build` + `jet dev` + `jet test` - Aggregate frontend toolchain entrypoints for package, build, dev, and test workflows.
 EC Dimensions:
-- behavior: `projects/jet/scripts/verify-basic-dom-gates.sh --all` - Basic frontend replacement flow across package, build, dev, serve, workspace, test, e2e, and trace gates.
+- behavior: `apps/jet/scripts/verify-basic-dom-gates.sh --all` - Basic frontend replacement flow across package, build, dev, serve, workspace, test, e2e, and trace gates.
 
 | Work Root | Kind | WI | Impl | Verification | Maturity | Gate / Evidence |
 |---|---|---:|---|---|---|---|
-| Production replacement readiness | epic | #3778 | implemented | verified | corpus | package manager -> Browser Bridge -> build -> serve/workspace/test/e2e/trace are green in `projects/jet/scripts/verify-basic-dom-gates.sh --all` |
-| Full Toolchain Dogfood Flow | epic | #3778 | implemented | verified | dogfood | `projects/jet/scripts/verify-basic-dom-gates.sh --all`<br>projects/jet/tests/fixtures/dom-production-build |
+| Production replacement readiness | epic | #3778 | implemented | verified | corpus | package manager -> Browser Bridge -> build -> serve/workspace/test/e2e/trace are green in `apps/jet/scripts/verify-basic-dom-gates.sh --all` |
+| Full Toolchain Dogfood Flow | epic | #3778 | implemented | verified | dogfood | `apps/jet/scripts/verify-basic-dom-gates.sh --all`<br>apps/jet/tests/fixtures/dom-production-build |
 | Stack-Aware OpenAPI Codegen | change | #3778 | implemented | verified | conformance | `cargo test -p jet --test openapi_golden` — jet codegen openapi resolves stack/http/hooks from CLI flags, jet.toml, and package.json |
 
 ### Package Manager
@@ -143,7 +143,7 @@ Jet owns fixture hydration, mutation, workspace, and frozen-lockfile checks;
 isolated npm/pnpm benchmark evidence is green for the current Basic corpus.
 Gate Inventory:
 - `cargo test -p jet --lib pkg_manager -- --nocapture`
-- `node projects/jet/scripts/compare-pkg-management.mjs --baseline-tools npm,pnpm --require-baselines`
+- `node apps/jet/scripts/compare-pkg-management.mjs --baseline-tools npm,pnpm --require-baselines`
 Surfaces:
 - CLI: `jet install` + `jet add` + `jet remove` + `jet update` - Package lifecycle commands that own dependency and lockfile behavior.
 EC Dimensions:
@@ -151,7 +151,7 @@ EC Dimensions:
 
 | Work Root | Kind | WI | Impl | Verification | Maturity | Gate / Evidence |
 |---|---|---:|---|---|---|---|
-| Package manager readiness | epic | #3779 | implemented | verified | corpus | `node projects/jet/scripts/compare-pkg-management.mjs` |
+| Package manager readiness | epic | #3779 | implemented | verified | corpus | `node apps/jet/scripts/compare-pkg-management.mjs` |
 | Package Manager Lockfile Parity | epic | #3779 | implemented | verified | conformance | `cargo test -p jet --lib pkg_manager::lockfile -- --nocapture` |
 | Package Manager Workspace Parity | epic | #3779 | implemented | verified | conformance | `cargo test -p jet --lib pkg_manager::workspace -- --nocapture` |
 | Package Manager Registry Integrity | epic | #3779 | implemented | verified | negative | `cargo test -p jet --lib pkg_manager -- --nocapture` |
@@ -168,17 +168,17 @@ Jet production build replacement is green after package manager and Browser
 Bridge gates. The expanded DOM production build corpus has green static checks,
 runtime smoke, and performance/size comparisons for the current fixture set.
 Gate Inventory:
-- `node projects/jet/scripts/compare-dom-build-corpus.mjs --runtime-smoke required --build-samples 3`
-- projects/jet/tests/fixtures/dom-production-build
+- `node apps/jet/scripts/compare-dom-build-corpus.mjs --runtime-smoke required --build-samples 3`
+- apps/jet/tests/fixtures/dom-production-build
 Surfaces:
 - CLI: `jet build` + `jet build --wasm` - Production and WASM build command surface.
 EC Dimensions:
-- behavior: `projects/jet/scripts/compare-dom-build-corpus.mjs --runtime-smoke required --build-samples 3` - DOM production build corpus, runtime smoke, and Vite/Webpack comparison behavior.
+- behavior: `apps/jet/scripts/compare-dom-build-corpus.mjs --runtime-smoke required --build-samples 3` - DOM production build corpus, runtime smoke, and Vite/Webpack comparison behavior.
 
 | Work Root | Kind | WI | Impl | Verification | Maturity | Gate / Evidence |
 |---|---|---:|---|---|---|---|
-| Bundler production readiness | epic | #3782 | implemented | verified | corpus | `node projects/jet/scripts/compare-dom-build-corpus.mjs --runtime-smoke required --build-samples 3` |
-| Production Bundle Output Parity | epic | #3782 | implemented | verified | conformance | `cargo test -p jet --lib bundler -- --nocapture`<br>projects/jet/tests/fixtures/dom-production-build |
+| Bundler production readiness | epic | #3782 | implemented | verified | corpus | `node apps/jet/scripts/compare-dom-build-corpus.mjs --runtime-smoke required --build-samples 3` |
+| Production Bundle Output Parity | epic | #3782 | implemented | verified | conformance | `cargo test -p jet --lib bundler -- --nocapture`<br>apps/jet/tests/fixtures/dom-production-build |
 | Transform Resolver Parity | epic | #3782 | implemented | verified | corpus | `cargo test -p jet --lib transform -- --nocapture` |
 | Asset Sourcemap Negative Paths | epic | #3782 | implemented | verified | negative | `cargo test -p jet --lib asset -- --nocapture` |
 | SCSS / Sass Compilation | change | #204 | implemented | verified | conformance | `cargo test -p jet --lib css::scss` — grass-based (pure-Rust, no C deps) SCSS/Sass to CSS: nesting, variables, use/import partials, mixins; fed into the CSS pipeline before minify |
@@ -205,7 +205,7 @@ Gate Inventory:
 - `cargo test -p jet --lib dev_server -- --nocapture`
 - `cargo test -p jet --lib dev_server::proxy -- --nocapture`
 - `cargo test -p jet --lib cli::e2e_command_contract_tests -- --nocapture`
-- `projects/jet/scripts/compare-prod-static-serve.mjs --jet-bin target/release/jet`
+- `apps/jet/scripts/compare-prod-static-serve.mjs --jet-bin target/release/jet`
 Surfaces:
 - CLI: `jet dev` + `jet dev --proxy PATH=URL` + `jet serve` - Dev server control plane, proxy/HMR entrypoints, and production static serving surface.
 - UI: `http://localhost:<port>` - Connected browser client for HMR, browser log intake, and local app inspection.
@@ -214,7 +214,7 @@ EC Dimensions:
 
 | Work Root | Kind | WI | Impl | Verification | Maturity | Gate / Evidence |
 |---|---|---:|---|---|---|---|
-| Dev server replacement readiness | epic | #3780 | implemented | verified | dogfood | `projects/jet/scripts/verify-basic-dom-gates.sh --phase serve` |
+| Dev server replacement readiness | epic | #3780 | implemented | verified | dogfood | `apps/jet/scripts/verify-basic-dom-gates.sh --phase serve` |
 | Dev Server Local Serving Hmr | epic | #3780 | implemented | verified | conformance | `cargo test -p jet --lib dev_server -- --nocapture` |
 | Dev Server Proxy Contract | epic | #3780 | implemented | verified | conformance | `cargo test -p jet --lib dev_server::proxy -- --nocapture` |
 | Dev Server Cli Contract | epic | #3780 | implemented | verified | conformance | `cargo test -p jet --lib cli::e2e_command_contract_tests -- --nocapture` |
@@ -274,9 +274,9 @@ EC Dimensions:
 | Native test runner readiness | epic | #3785 | implemented | verified | none | - |
 | Product flow e2e readiness | epic | #3784 | implemented | verified | dogfood | Browser Bridge replacement gate plus `cargo test -p jet --lib e2e -- --nocapture` |
 | Native Test Runner Core | epic | #3785 | implemented | verified | conformance | `cargo test -p jet --lib test_runner -- --nocapture` |
-| Built In Ts Test Runtime | epic | #3785 | implemented | verified | conformance | `cargo test -p jet --lib test_runner -- --nocapture`<br>projects/jet/tests/fixtures/jet-test-api-compat |
+| Built In Ts Test Runtime | epic | #3785 | implemented | verified | conformance | `cargo test -p jet --lib test_runner -- --nocapture`<br>apps/jet/tests/fixtures/jet-test-api-compat |
 | Reporter Artifacts | epic | #3785 | implemented | verified | negative | `cargo test -p jet --lib reporter -- --nocapture` |
-| Product Flow E2e Review | epic | #3785 | implemented | verified | dogfood | `cargo test -p jet --lib e2e -- --nocapture`<br>projects/jet/examples/jet-test-dogfood |
+| Product Flow E2e Review | epic | #3785 | implemented | verified | dogfood | `cargo test -p jet --lib e2e -- --nocapture`<br>apps/jet/examples/jet-test-dogfood |
 | Trace Replay Evidence | epic | #3785 | implemented | verified | conformance | `cargo test -p jet --lib trace -- --nocapture` |
 
 ### WASM And Multi-Target Execution
@@ -291,24 +291,24 @@ Jet can sink the frontend app model into WASM only after Basic package
 management, Browser Bridge, and DOM production build contracts are stable enough
 to reuse.
 Gate Inventory:
-- `projects/jet/scripts/verify-advanced-wasm-gates.sh`
+- `apps/jet/scripts/verify-advanced-wasm-gates.sh`
 Surfaces:
 - CLI: `jet build --wasm` - WASM build target surface.
 EC Dimensions:
-- behavior: `projects/jet/scripts/verify-advanced-wasm-gates.sh` - WASM build, runtime subset, renderer target, and DOM/WASM parity behavior gates.
+- behavior: `apps/jet/scripts/verify-advanced-wasm-gates.sh` - WASM build, runtime subset, renderer target, and DOM/WASM parity behavior gates.
 
 | Work Root | Kind | WI | Impl | Verification | Maturity | Gate / Evidence |
 |---|---|---:|---|---|---|---|
 | Wasm multi target readiness | epic | #818 | implemented | planned | none | Basic phase 1 -> phase 2 -> phase 3 |
 | Wasm Build Dev Core | epic | #818 | implemented | verified | conformance | `cargo test -p jet --lib wasm_build:: -- --nocapture` |
-| Wasm Runtime Subset | epic | #818 | implemented | verified | corpus | `cargo test -p jet-wasm -- --nocapture`<br>projects/jet/wasm |
-| Renderer Target Output | epic | #818 | implemented | verified | conformance | `cargo test -p jet-wasm renderer -- --nocapture`<br>projects/jet/wasm |
+| Wasm Runtime Subset | epic | #818 | implemented | verified | corpus | `cargo test -p jet-wasm -- --nocapture`<br>apps/jet/wasm |
+| Renderer Target Output | epic | #818 | implemented | verified | conformance | `cargo test -p jet-wasm renderer -- --nocapture`<br>apps/jet/wasm |
 | WebGPU WASM Build Default | change | #818 | implemented | verified | conformance | `cargo test -p jet --test wasm_build_end_to_end wasm_build_selects_webgpu_scaffold_by_default -- --nocapture` |
 | WebGPU Large Table Smoke | change | #818 | implemented | verified | conformance | `cargo test -p jet --test wasm_build_end_to_end webgpu_renderer_reports_runtime_status_and_visual_probe_when_available -- --nocapture` |
 | DOM Renderer Controlled Input Parity | change | #818 | implemented | verified | conformance | `cargo test -p jet --test react_dom_oracle_conformance dom_renderer_controlled_input_parity -- --nocapture` |
 | DOM Renderer Controlled Textarea Parity | change | #818 | implemented | verified | conformance | `cargo test -p jet --test react_dom_oracle_conformance dom_renderer_controlled_textarea_parity -- --nocapture` |
-| Library WASM Lowering Fixtures | change | #818 | implemented | verified | conformance | `cargo test -p jet --test tsx_to_rust_imports -- --nocapture`<br>projects/jet/parity/data/fixtures/libraries |
-| Library DOM/WASM Parity Fixtures | change | #818 | implemented | verified | conformance | `cargo test -p jet --test react_dom_oracle_conformance library_dom_wasm_parity -- --nocapture`<br>projects/jet/parity/data/fixtures/libraries |
+| Library WASM Lowering Fixtures | change | #818 | implemented | verified | conformance | `cargo test -p jet --test tsx_to_rust_imports -- --nocapture`<br>apps/jet/parity/data/fixtures/libraries |
+| Library DOM/WASM Parity Fixtures | change | #818 | implemented | verified | conformance | `cargo test -p jet --test react_dom_oracle_conformance library_dom_wasm_parity -- --nocapture`<br>apps/jet/parity/data/fixtures/libraries |
 | MUI Visual Table DOM/WASM Parity | change | #818 | implemented | verified | conformance | `cargo test -p jet --test mui_visual_regression mui_visual_fixture_renders_on_react_dom_and_jet_wasm -- --nocapture`<br>Browser Bridge CLI capture/screenshot evidence<br>examples/mui-visual-demo |
 | AntD Visual Table DOM/WASM Parity | change | #818 | implemented | verified | conformance | `cargo test -p jet --test mui_visual_regression antd_visual_fixture_renders_on_react_dom_and_jet_wasm -- --nocapture`<br>Browser Bridge CLI capture/screenshot evidence<br>examples/antd-visual-demo |
 
@@ -323,25 +323,25 @@ Promise:
 Jet Browser Bridge, trace, and parity diagnostics are the second Basic
 replacement gate and the evidence substrate for later DOM/WASM parity.
 Gate Inventory:
-- `node projects/jet/scripts/verify-browser-bridge-replacement.mjs --jet-bin target/release/jet`
-- projects/jet/parity/**
+- `node apps/jet/scripts/verify-browser-bridge-replacement.mjs --jet-bin target/release/jet`
+- apps/jet/parity/**
 Surfaces:
 - CLI: `jet bb` + `jet trace` - Browser Bridge and trace diagnostic surface.
 EC Dimensions:
-- behavior: `projects/jet/scripts/verify-browser-bridge-replacement.mjs` - Browser Bridge automation, trace evidence, and DOM/WASM parity corpus behavior.
+- behavior: `apps/jet/scripts/verify-browser-bridge-replacement.mjs` - Browser Bridge automation, trace evidence, and DOM/WASM parity corpus behavior.
 
 | Work Root | Kind | WI | Impl | Verification | Maturity | Gate / Evidence |
 |---|---|---:|---|---|---|---|
-| Browser trace parity readiness | epic | #3786 | implemented | passing | corpus | `node projects/jet/scripts/verify-browser-bridge-replacement.mjs` |
+| Browser trace parity readiness | epic | #3786 | implemented | passing | corpus | `node apps/jet/scripts/verify-browser-bridge-replacement.mjs` |
 | Trace Evidence Artifacts | epic | #3786 | implemented | verified | conformance | `cargo test -p jet --lib trace -- --nocapture` |
 | Browser Automation Diagnostics | epic | #3786 | implemented | verified | negative | `cargo test -p jet --lib browser -- --nocapture` |
-| Parity Corpus Gates | epic | #3786 | implemented | verified | corpus | `projects/jet/scripts/verify-parity-oracle-gate.sh`<br>projects/jet/parity/** |
+| Parity Corpus Gates | epic | #3786 | implemented | verified | corpus | `apps/jet/scripts/verify-parity-oracle-gate.sh`<br>apps/jet/parity/** |
 | WebGPU WASM Build Default | change | #818 | implemented | verified | conformance | `cargo test -p jet --test wasm_build_end_to_end wasm_build_selects_webgpu_scaffold_by_default -- --nocapture` |
 | WebGPU Large Table Smoke | change | #818 | implemented | verified | conformance | `cargo test -p jet --test wasm_build_end_to_end webgpu_renderer_reports_runtime_status_and_visual_probe_when_available -- --nocapture` |
 | DOM Renderer Controlled Input Parity | change | #818 | implemented | verified | conformance | `cargo test -p jet --test react_dom_oracle_conformance dom_renderer_controlled_input_parity -- --nocapture` |
 | DOM Renderer Controlled Textarea Parity | change | #818 | implemented | verified | conformance | `cargo test -p jet --test react_dom_oracle_conformance dom_renderer_controlled_textarea_parity -- --nocapture` |
-| Library WASM Lowering Fixtures | change | #818 | implemented | verified | conformance | `cargo test -p jet --test tsx_to_rust_imports -- --nocapture`<br>projects/jet/parity/data/fixtures/libraries |
-| Library DOM/WASM Parity Fixtures | change | #818 | implemented | verified | conformance | `cargo test -p jet --test react_dom_oracle_conformance library_dom_wasm_parity -- --nocapture`<br>projects/jet/parity/data/fixtures/libraries |
+| Library WASM Lowering Fixtures | change | #818 | implemented | verified | conformance | `cargo test -p jet --test tsx_to_rust_imports -- --nocapture`<br>apps/jet/parity/data/fixtures/libraries |
+| Library DOM/WASM Parity Fixtures | change | #818 | implemented | verified | conformance | `cargo test -p jet --test react_dom_oracle_conformance library_dom_wasm_parity -- --nocapture`<br>apps/jet/parity/data/fixtures/libraries |
 | MUI Visual Table DOM/WASM Parity | change | #818 | implemented | verified | conformance | `cargo test -p jet --test mui_visual_regression mui_visual_fixture_renders_on_react_dom_and_jet_wasm -- --nocapture`<br>Browser Bridge CLI capture/screenshot evidence<br>examples/mui-visual-demo |
 | AntD Visual Table DOM/WASM Parity | change | #818 | implemented | verified | conformance | `cargo test -p jet --test mui_visual_regression antd_visual_fixture_renders_on_react_dom_and_jet_wasm -- --nocapture`<br>Browser Bridge CLI capture/screenshot evidence<br>examples/antd-visual-demo |
 
