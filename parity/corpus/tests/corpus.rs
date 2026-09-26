@@ -17,17 +17,16 @@ use jet_parity_corpus::{
 };
 
 fn workspace_root() -> PathBuf {
-    // CARGO_MANIFEST_DIR = apps/jet/parity-corpus → parent thrice = workspace root.
+    // CARGO_MANIFEST_DIR = parity/corpus → parent twice = repository root.
     let here = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
     here.parent()
-        .and_then(Path::parent)
         .and_then(Path::parent)
         .expect("workspace root")
         .to_path_buf()
 }
 
 fn corpus_root() -> PathBuf {
-    workspace_root().join("apps/jet/parity/data/fixtures/mui")
+    workspace_root().join("parity/data/fixtures/mui")
 }
 
 fn manifest_path() -> PathBuf {

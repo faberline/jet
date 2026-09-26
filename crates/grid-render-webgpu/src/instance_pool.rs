@@ -38,7 +38,7 @@
 /// GPUs we target. Override via
 /// [`InstanceBufferPool::set_staging_threshold_bytes`] for tuning.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/instance-staging-path-slice-4r.md#interface
+/// @spec crates/grid-render-webgpu/docs/instance-staging-path-slice-4r.md#interface
 /// @issue #1736
 pub const DEFAULT_STAGING_THRESHOLD_BYTES: wgpu::BufferAddress = 64 * 1024 * 32;
 
@@ -48,7 +48,7 @@ pub const DEFAULT_STAGING_THRESHOLD_BYTES: wgpu::BufferAddress = 64 * 1024 * 32;
 /// Returned by the pure [`pick_staging_path`] helper so the policy can
 /// be unit-tested without a GPU device.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/instance-staging-path-slice-4r.md#interface
+/// @spec crates/grid-render-webgpu/docs/instance-staging-path-slice-4r.md#interface
 /// @issue #1736
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum StagingPath {
@@ -67,7 +67,7 @@ pub enum StagingPath {
 /// symmetry. `threshold == 0` forces `Staged` for every non-empty
 /// payload — the escape hatch for tests / debugging.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/instance-staging-path-slice-4r.md#interface
+/// @spec crates/grid-render-webgpu/docs/instance-staging-path-slice-4r.md#interface
 /// @issue #1736
 pub fn pick_staging_path(
     data_len: wgpu::BufferAddress,
@@ -87,7 +87,7 @@ pub fn pick_staging_path(
 /// Each slot's buffer carries `wgpu::BufferUsages::VERTEX | COPY_DST`.
 /// Capacity grows monotonically — never shrinks within a session.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/instance-buffer-pool-slice-4d.md#interface
+/// @spec crates/grid-render-webgpu/docs/instance-buffer-pool-slice-4d.md#interface
 /// @issue #1722
 pub struct InstanceBufferPool {
     slots: Vec<Option<PoolSlot>>,
@@ -115,7 +115,7 @@ impl InstanceBufferPool {
     /// [`Self::with_staging_threshold`] or
     /// [`Self::set_staging_threshold_bytes`] to override.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/instance-buffer-pool-slice-4d.md#interface
+    /// @spec crates/grid-render-webgpu/docs/instance-buffer-pool-slice-4d.md#interface
     /// @issue #1722
     pub fn new() -> Self {
         Self {
@@ -128,7 +128,7 @@ impl InstanceBufferPool {
     /// `bytes == 0` forces the staged path for every non-empty upload —
     /// useful for tests / debugging.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/instance-staging-path-slice-4r.md#interface
+    /// @spec crates/grid-render-webgpu/docs/instance-staging-path-slice-4r.md#interface
     /// @issue #1736
     pub fn with_staging_threshold(bytes: wgpu::BufferAddress) -> Self {
         Self {
@@ -140,7 +140,7 @@ impl InstanceBufferPool {
     /// Current staging-path threshold in bytes. See
     /// [`pick_staging_path`] for the decision rule.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/instance-staging-path-slice-4r.md#interface
+    /// @spec crates/grid-render-webgpu/docs/instance-staging-path-slice-4r.md#interface
     /// @issue #1736
     pub fn staging_threshold_bytes(&self) -> wgpu::BufferAddress {
         self.staging_threshold_bytes
@@ -150,7 +150,7 @@ impl InstanceBufferPool {
     /// [`get_or_grow`](Self::get_or_grow) call; in-flight uploads are
     /// unaffected.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/instance-staging-path-slice-4r.md#interface
+    /// @spec crates/grid-render-webgpu/docs/instance-staging-path-slice-4r.md#interface
     /// @issue #1736
     pub fn set_staging_threshold_bytes(&mut self, bytes: wgpu::BufferAddress) {
         self.staging_threshold_bytes = bytes;
@@ -159,7 +159,7 @@ impl InstanceBufferPool {
     /// Number of slots the pool currently tracks (peak slot index + 1, or
     /// 0 if no slot has been touched).
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/instance-buffer-pool-slice-4d.md#interface
+    /// @spec crates/grid-render-webgpu/docs/instance-buffer-pool-slice-4d.md#interface
     /// @issue #1722
     pub fn len(&self) -> usize {
         self.slots.len()
@@ -167,7 +167,7 @@ impl InstanceBufferPool {
 
     /// `true` iff no slot has ever been touched.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/instance-buffer-pool-slice-4d.md#interface
+    /// @spec crates/grid-render-webgpu/docs/instance-buffer-pool-slice-4d.md#interface
     /// @issue #1722
     pub fn is_empty(&self) -> bool {
         self.slots.is_empty()
@@ -177,7 +177,7 @@ impl InstanceBufferPool {
     /// touched. Mostly useful for tests that want to assert the no-shrink
     /// invariant.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/instance-buffer-pool-slice-4d.md#interface
+    /// @spec crates/grid-render-webgpu/docs/instance-buffer-pool-slice-4d.md#interface
     /// @issue #1722
     pub fn capacity(&self, slot: usize) -> wgpu::BufferAddress {
         self.slots
@@ -205,7 +205,7 @@ impl InstanceBufferPool {
     /// - `data.len() > min_size_bytes` — the caller pinky-promises the
     ///   payload fits in the reservation. Mismatch is a caller bug.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/instance-buffer-pool-slice-4d.md#interface
+    /// @spec crates/grid-render-webgpu/docs/instance-buffer-pool-slice-4d.md#interface
     /// @issue #1722
     pub fn get_or_grow(
         &mut self,
@@ -279,7 +279,7 @@ impl InstanceBufferPool {
 ///
 /// Free-standing so the growth policy can be unit-tested without a GPU.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/instance-buffer-pool-slice-4d.md#scope
+/// @spec crates/grid-render-webgpu/docs/instance-buffer-pool-slice-4d.md#scope
 /// @issue #1722
 fn next_capacity(current: wgpu::BufferAddress, min: wgpu::BufferAddress) -> wgpu::BufferAddress {
     let one_point_five = current.saturating_mul(3) / 2;
@@ -420,7 +420,7 @@ mod tests {
     /// `cargo test -p jet-grid-render-webgpu -- --ignored` on a host
     /// with a GPU.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/instance-buffer-pool-slice-4d.md#acceptance-criteria
+    /// @spec crates/grid-render-webgpu/docs/instance-buffer-pool-slice-4d.md#acceptance-criteria
     #[test]
     #[ignore]
     fn get_or_grow_first_allocation_live() {
@@ -438,7 +438,7 @@ mod tests {
     /// increasing demand, capacity must follow the documented policy
     /// (1.5× current, floored at min, rounded to 16).
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/instance-buffer-pool-slice-4d.md#acceptance-criteria
+    /// @spec crates/grid-render-webgpu/docs/instance-buffer-pool-slice-4d.md#acceptance-criteria
     #[test]
     #[ignore]
     fn get_or_grow_growth_live() {
@@ -455,7 +455,7 @@ mod tests {
     /// Live-GPU no-shrink check. After a large allocation, requesting a
     /// smaller buffer must reuse the existing one without shrinking.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/instance-buffer-pool-slice-4d.md#acceptance-criteria
+    /// @spec crates/grid-render-webgpu/docs/instance-buffer-pool-slice-4d.md#acceptance-criteria
     #[test]
     #[ignore]
     fn get_or_grow_no_shrink_live() {

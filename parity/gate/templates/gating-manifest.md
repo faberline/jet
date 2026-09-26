@@ -1,7 +1,7 @@
 # Jet parity — CI gating manifest
 
-Issue: [#2144](https://github.com/chrischeng-c4/cclab/issues/2144) (parity / foundation).
-Parent epic: [#2133](https://github.com/chrischeng-c4/cclab/issues/2133).
+Issue: [#2144](https://github.com/faberline/axiom/issues/2144) (parity / foundation).
+Parent epic: [#2133](https://github.com/faberline/axiom/issues/2133).
 
 ## What this is
 
@@ -21,7 +21,7 @@ A companion `waivers.toml` carries the time-boxed exceptions.
 ## File layout
 
 ```
-apps/jet/parity/data/
+parity/data/
 ├── parity-gating.toml      # the manifest (this doc)
 ├── waivers.toml            # time-boxed waivers
 ├── docs/
@@ -29,7 +29,7 @@ apps/jet/parity/data/
 └── fixtures/               # parity corpus (#2140)
 ```
 
-The gate binary lives at `apps/jet/parity-gate/` and ships as the
+The gate binary lives at `parity-gate/` and ships as the
 `jet-parity-gate` crate.
 
 ## Manifest schema
@@ -92,7 +92,7 @@ green so the gate can land before the oracle is wired into CI
 
 ```
 cargo run -p jet-parity-gate -- init \
-    --target-dir apps/jet/parity \
+    --target-dir parity \
     [--force]
 ```
 
@@ -145,9 +145,9 @@ and accepts the resulting `77`.
 
 ## Pointers
 
-- Gate crate:           `apps/jet/parity-gate/`
-- Manifest:             `apps/jet/parity/data/parity-gating.toml`
-- Waivers:              `apps/jet/parity/data/waivers.toml`
-- Oracle (R1/R2 schema): `apps/jet/parity-oracle/`
-- Corpus:               `apps/jet/parity-corpus/`
+- Gate crate:           `parity-gate/`
+- Manifest:             `parity/data/parity-gating.toml`
+- Waivers:              `parity/data/waivers.toml`
+- Oracle (R1/R2 schema): `parity-oracle/`
+- Corpus:               `parity-corpus/`
 - CI workflow:          `.github/workflows/parity.yml`

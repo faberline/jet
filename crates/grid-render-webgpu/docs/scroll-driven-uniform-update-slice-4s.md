@@ -132,12 +132,12 @@ UP. Matches conventional UI scroll semantics.
 
 ## Reference Context
 
-- `apps/jet/crates/grid-render-webgpu/src/viewport.rs:27-45` — current
+- `crates/grid-render-webgpu/src/viewport.rs:27-45` — current
   `ViewportUniforms`; this slice converts `_pad` into `scroll_px`.
-- `apps/jet/crates/grid-render-webgpu/src/cell_rect.rs:27-64` —
+- `crates/grid-render-webgpu/src/cell_rect.rs:27-64` —
   `CELL_RECT_WGSL`; this slice extends `Viewport` and subtracts
   `scroll_px` in `vs_main`.
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs:345-354` — current
+- `crates/grid-render-webgpu/src/lib.rs:345-354` — current
   `set_viewport` writes the full 16 bytes; the new `on_scroll` writes
   just the 8 scroll bytes at offset 8.
 - Sibling Slice 4c (#1721) introduced the persistent uniform buffer

@@ -133,14 +133,14 @@ impl<'window> WebGpuRenderer<'window> {
 
 ## Reference Context
 
-- `apps/jet/crates/grid-render-webgpu/src/headless.rs` — Slice 4t. The
+- `crates/grid-render-webgpu/src/headless.rs` — Slice 4t. The
   row-padding strip pattern + `map_async`/`Maintain::Wait` recipe is
   reused here.
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs:781` — `render_frame`.
+- `crates/grid-render-webgpu/src/lib.rs:781` — `render_frame`.
   Screenshot is a sibling, not a replacement.
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs` — `pipeline_for`
+- `crates/grid-render-webgpu/src/lib.rs` — `pipeline_for`
   (Slice 4u) caches the `Rgba8Unorm` pipeline; screenshot reuses it.
-- `apps/jet/crates/grid-render-webgpu/src/dpr.rs` — DPR-aware sizing the
+- `crates/grid-render-webgpu/src/dpr.rs` — DPR-aware sizing the
   surface dims already reflect, so the screenshot inherits DPR
   automatically.
 - Parent epic #1254 — WebGPU-React renderer; Slice 4y closes the

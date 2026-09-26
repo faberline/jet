@@ -36,7 +36,7 @@ use crate::WebGpuRenderer;
 /// All values are bytes; the report is a *snapshot* computed from
 /// the renderer's tracked state, not a hooked-allocator counter.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/gpu-memory-accounting-slice-4bb.md#interface
+/// @spec crates/grid-render-webgpu/docs/gpu-memory-accounting-slice-4bb.md#interface
 /// @issue #1746
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct GpuMemoryReport {
@@ -61,7 +61,7 @@ impl GpuMemoryReport {
     /// Build a report from the three component totals and derive
     /// `total` via saturating addition.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/gpu-memory-accounting-slice-4bb.md#interface
+    /// @spec crates/grid-render-webgpu/docs/gpu-memory-accounting-slice-4bb.md#interface
     /// @issue #1746
     pub fn new(textures: u64, buffers: u64, atlas: u64) -> Self {
         let total = textures.saturating_add(buffers).saturating_add(atlas);
@@ -81,7 +81,7 @@ impl GpuMemoryReport {
 /// `Rgba8Unorm` / `Bgra8Unorm` / `Bgra8UnormSrgb`, all of which
 /// return `4`.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/gpu-memory-accounting-slice-4bb.md#interface
+/// @spec crates/grid-render-webgpu/docs/gpu-memory-accounting-slice-4bb.md#interface
 /// @issue #1746
 pub fn bytes_per_pixel(format: wgpu::TextureFormat) -> u32 {
     format.block_copy_size(None).unwrap_or(0)
@@ -92,7 +92,7 @@ pub fn bytes_per_pixel(format: wgpu::TextureFormat) -> u32 {
 /// the next allocation's footprint without going through the
 /// renderer.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/gpu-memory-accounting-slice-4bb.md#interface
+/// @spec crates/grid-render-webgpu/docs/gpu-memory-accounting-slice-4bb.md#interface
 /// @issue #1746
 pub fn texture_bytes(width: u32, height: u32, format: wgpu::TextureFormat) -> u64 {
     (width as u64)
@@ -110,7 +110,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// buffers. Pipeline state objects + driver staging are excluded
     /// — see the module-level doc for the full exclusion list.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/gpu-memory-accounting-slice-4bb.md#interface
+    /// @spec crates/grid-render-webgpu/docs/gpu-memory-accounting-slice-4bb.md#interface
     /// @issue #1746
     pub fn gpu_memory_estimate(&self) -> GpuMemoryReport {
         let surface_w = self.surface_config.width;

@@ -123,7 +123,7 @@ flowchart TD
 ```yaml
 jet_issue_comment_cli:
   clap_surface:
-    file: projects/jet/src/standard_cli.rs
+    file: src/standard_cli.rs
     fn: issue_command
     parent_command: issue
     parent_flags: [subcommand_required: true, arg_required_else_help: true]
@@ -142,14 +142,14 @@ jet_issue_comment_cli:
         num_args: "0.."
         help: "Follow-up note to add after reopening"
   dispatch_surface:
-    file: projects/jet/src/standard_cli.rs
+    file: src/standard_cli.rs
     fn: run_issue
     match_arm: "Some((\"comment\", m))"
     calls: cli_std::issue::comment(&TOOL, CommentOptions)
   field_mapping:
     number: "m.get_one::<u64>(\"number\").expect(...)"
     message: "m.get_many::<String>(\"message\") joined with a space, filtered to None when blank"
-    repo: "None (jet always targets TOOL.repo = chrischeng-c4/axiom; no --repo override exposed for comment, matching create/search)"
+    repo: "None (jet always targets TOOL.repo = faberline/jet; no --repo override exposed for comment, matching create/search)"
     dry_run: "m.get_flag(\"dry-run\")"
     yes: "true (jet's standard CLI commands run non-interactively; no confirmation prompt surface)"
   shared_logic_ownership:
@@ -170,7 +170,7 @@ jet_issue_comment_cli:
     view: "unchanged - view(&TOOL, number)"
     create: "unchanged - CreateOptions{title,message,url,repo,label:[app:jet],dry_run,yes:true}"
   feature_gating:
-    jet_cargo_toml: "projects/jet/Cargo.toml depends on cli-std with features = [\"online\"] unconditionally (no jet-local [features] table)"
+    jet_cargo_toml: "Cargo.toml depends on cli-std with features = [\"online\"] unconditionally (no jet-local [features] table)"
     cli_std_cargo_toml: "libs/cli-std/Cargo.toml: online = [\"dep:reqwest\"]; comment()'s network-mutating body (reopen PATCH + comment POST) is #[cfg(feature = \"online\")]"
     acceptance_mapping: "'online/release feature build type-checks the comment path' == a standard `cargo build -p jet` (which always compiles cli-std with online enabled) must type-check the new comment dispatch arm and CommentOptions construction"
   verification_commands:
@@ -206,13 +206,13 @@ requirements:
     verify: cargo test -p jet --lib standard_cli::tests::issue_help_lists_comment
   no_duplicated_github_api_logic_in_jet:
     id: R5
-    text: "jet's own CLI dispatch (`projects/jet/src/standard_cli.rs`) contains no GitHub HTTP client construction or REST call logic; all issue state/reopen/comment network behavior stays owned by `libs/cli-std`."
+    text: "jet's own CLI dispatch (`src/standard_cli.rs`) contains no GitHub HTTP client construction or REST call logic; all issue state/reopen/comment network behavior stays owned by `libs/cli-std`."
     kind: regression
     risk: medium
-    verify: ! rg -n "reqwest::|http_client\(|github\.com/repos" projects/jet/src/standard_cli.rs
+    verify: ! rg -n "reqwest::|http_client\(|github\.com/repos" src/standard_cli.rs
   release_build_type_checks_comment_path:
     id: R6
-    text: "A standard release build of jet (which always compiles `cli-std` with the `online` feature per `projects/jet/Cargo.toml`) type-checks the new `comment` dispatch arm and `CommentOptions` construction."
+    text: "A standard release build of jet (which always compiles `cli-std` with the `online` feature per `Cargo.toml`) type-checks the new `comment` dispatch arm and `CommentOptions` construction."
     kind: functional
     risk: medium
     verify: cargo build -p jet --release
@@ -228,7 +228,7 @@ flowchart TD
     r2[R2 comment parses number message dry run] --> cargo_test_p_jet_lib_standard_cli_tests_issue_comment_parses_number_message_and_dry_run[cargo test -p jet --lib standard_cli::tests::issue_comment_parses_number_message_and_dry_run]
     r3[R3 comment dry run wires to shared comment api without network credential] --> cargo_test_p_jet_lib_standard_cli_tests_issue_comment_dry_run_returns_ok_without_network_credential[cargo test -p jet --lib standard_cli::tests::issue_comment_dry_run_returns_ok_without_network_credential]
     r4[R4 search view create regression] --> cargo_test_p_jet_lib_standard_cli_cargo_test_p_cli_std[cargo test -p jet --lib standard_cli && cargo test -p cli-std]
-    r5[R5 no duplicated github api logic in jet] --> rg_n_reqwest_http_client_github_com_repos_projects_jet_src_standard_cli_rs[! rg -n "reqwest::|http_client\(|github\.com/repos" projects/jet/src/standard_cli.rs]
+    r5[R5 no duplicated github api logic in jet] --> rg_n_reqwest_http_client_github_com_repos_projects_jet_src_standard_cli_rs[! rg -n "reqwest::|http_client\(|github\.com/repos" src/standard_cli.rs]
     r6[R6 release build type checks comment path] --> cargo_build_p_jet_release[cargo build -p jet --release]
 ```
 ## Changes
@@ -236,17 +236,17 @@ flowchart TD
 
 ```yaml
 changes:
-  - path: projects/jet/src/standard_cli.rs
+  - path: src/standard_cli.rs
     action: modify
     section: logic
     impl_mode: hand-written
     reason: "Adds the `comment` subcommand to issue_command() (number/dry-run/message args) and the comment dispatch arm in run_issue() that builds cli_std::issue::CommentOptions and calls cli_std::issue::comment(&TOOL, opts); no GitHub API logic is duplicated in jet. Landed ahead of this TD (commit 97b7f320fa) per standard aw-td-writer retroactive-documentation practice for already-shipped code; this TD formalizes and capability-tracks it under WI #928."
-  - path: projects/jet/src/standard_cli.rs
+  - path: src/standard_cli.rs
     action: modify
     section: unit-test
     impl_mode: hand-written
     reason: "Adds a new #[tokio::test] issue_comment_dry_run_returns_ok_without_network_credential to the existing `mod tests`, invoking run_issue on a parsed `issue comment <n> --dry-run` ArgMatches with GITHUB_TOKEN/GH_TOKEN unset and asserting Ok(()); closes R3 (dry-run wiring proof) and helps prove R6 (comment path type-checks in a release build). Not yet applied as of TD authoring; scoped for the handwrite fill step."
-  - path: projects/jet/README.md
+  - path: README.md
     action: update
     section: config
     impl_mode: hand-written

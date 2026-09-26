@@ -807,7 +807,7 @@ pub fn command() -> Command {
                              instead of the native runner. \
                              Deprecated in this minor release; removed in the second \
                              subsequent minor release. \
-                             See apps/jet/docs/migration-from-playwright.md for the \
+                             See docs/migration-from-playwright.md for the \
                              migration guide. \
                              Incompatible with --reporter, --trace, --workers, --shard, \
                              --report-dir.",

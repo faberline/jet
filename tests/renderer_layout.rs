@@ -7,7 +7,7 @@ use std::process::Command;
 
 #[test]
 fn renderer_layout() {
-    // contract: test gate no longer fails on apps/jet/wasm/tests/renderer_layout.rs stale v0 expectations
+    // contract: test gate no longer fails on wasm/tests/renderer_layout.rs stale v0 expectations
     // contract: renderer_layout remains a required test gate with zero ignored cases
     // fill: drive the in-process target and assert the contract above.
     let output = run_renderer_layout_gate();
@@ -38,10 +38,6 @@ fn run_renderer_layout_gate() -> std::process::Output {
 
 fn workspace_root() -> PathBuf {
     PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-        .parent()
-        .and_then(|path| path.parent())
-        .expect("jet package lives under apps/jet")
-        .to_path_buf()
 }
 
 // </HANDWRITE>

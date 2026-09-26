@@ -2,10 +2,10 @@
 // CODEGEN-BEGIN
 //! Jet parity gate — library entrypoints.
 //!
-//! See `apps/jet/parity/data/docs/gating-manifest.md` for the v1
+//! See `parity/data/docs/gating-manifest.md` for the v1
 //! contract and exit-code semantics.
 //!
-//! Tracking: <https://github.com/chrischeng-c4/cclab/issues/2144>
+//! Tracking: <https://github.com/faberline/axiom/issues/2144>
 
 pub mod cli;
 pub mod gate;

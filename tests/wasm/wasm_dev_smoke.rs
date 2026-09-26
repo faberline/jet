@@ -22,12 +22,7 @@ async fn free_port() -> u16 {
 async fn dev_server_serves_wasm_bundle() {
     common::require_wasm_pack_env();
 
-    let workspace = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-        .parent()
-        .unwrap()
-        .parent()
-        .unwrap()
-        .to_path_buf();
+    let workspace = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"));
     let demo = workspace.join("examples").join("counter-demo");
     // Clean prior artifacts so this test exercises the fresh path.
     let _ = fs::remove_dir_all(demo.join("dist"));

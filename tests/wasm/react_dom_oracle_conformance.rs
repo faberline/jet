@@ -29,11 +29,6 @@ fn browser_options() -> LaunchOptions {
 
 fn workspace_root() -> std::path::PathBuf {
     std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-        .parent()
-        .expect("crates/")
-        .parent()
-        .expect("workspace root")
-        .to_path_buf()
 }
 
 struct FixtureInteraction {
@@ -127,8 +122,8 @@ fn fixture_parity_cases() -> Vec<FixtureParityCase> {
     ]
 }
 
-const LIBRARY_FIXTURE_MANIFEST: &str = "apps/jet/parity/data/fixtures/libraries/fixtures.toml";
-const LIBRARY_PACKAGE_MANIFEST: &str = "apps/jet/parity/data/fixtures/libraries/package.json";
+const LIBRARY_FIXTURE_MANIFEST: &str = "parity/data/fixtures/libraries/fixtures.toml";
+const LIBRARY_PACKAGE_MANIFEST: &str = "parity/data/fixtures/libraries/package.json";
 
 struct LibraryParityCase {
     id: &'static str,

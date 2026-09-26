@@ -95,7 +95,7 @@ Out:
 ```rust
 /// WGSL source for the text pass (entry points `vs_main` / `fs_main`).
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/text-pass-wgsl-slice-5g.md#interface
+/// @spec crates/grid-render-webgpu/docs/text-pass-wgsl-slice-5g.md#interface
 /// @issue #1756
 pub const TEXT_PASS_WGSL: &str = /* see source */;
 
@@ -104,7 +104,7 @@ pub const TEXT_PASS_WGSL: &str = /* see source */;
 /// Field order matches the WGSL `GlyphInstance` struct; changing it
 /// requires updating both sides in lockstep.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/text-pass-wgsl-slice-5g.md#interface
+/// @spec crates/grid-render-webgpu/docs/text-pass-wgsl-slice-5g.md#interface
 /// @issue #1756
 #[repr(C)]
 #[derive(Copy, Clone, Debug, Default, PartialEq, Pod, Zeroable)]
@@ -137,7 +137,7 @@ pub struct GlyphInstance {
 
 ## Reference Context
 
-- Parent epic [#1700](https://github.com/chrischeng-c4/cclab/issues/1700) — text pass.
+- Parent epic [#1700](https://github.com/faberline/axiom/issues/1700) — text pass.
 - Slice 4b (#1720) — `cell_rect.wgsl` + `CellInstance`. This module
   intentionally mirrors that one's shape (viewport binding, bit-trick
   vertex expansion, `#[repr(C)]` instance struct + `Pod`).

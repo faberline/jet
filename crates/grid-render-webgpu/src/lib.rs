@@ -107,7 +107,7 @@ use thiserror::Error;
 /// concurrent renderer instances on the same timeline. Slice 4x
 /// (#1742).
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/tracing-instrumentation-per-pass-spans-slice-4x.md#interface
+/// @spec crates/grid-render-webgpu/docs/tracing-instrumentation-per-pass-spans-slice-4x.md#interface
 /// @issue #1742
 static FRAME_ID_COUNTER: AtomicU64 = AtomicU64::new(0);
 
@@ -281,7 +281,7 @@ pub struct WebGpuRenderer<'window> {
     /// [`FrameTimingPool`]. Exposed to callers via
     /// [`Self::last_frame_gpu_ms`].
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/gpu-timeline-queries-slice-4i.md#interface
+    /// @spec crates/grid-render-webgpu/docs/gpu-timeline-queries-slice-4i.md#interface
     /// @issue #1727
     pub(crate) frame_timing: frame_timing::FrameTimingPool,
     /// Snapshot of the adapter's `surface_caps.present_modes` captured
@@ -340,7 +340,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// variant isn't supported, the renderer falls back to the first
     /// listed mode (the same behaviour as the pre-Slice-4aa default).
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/canvas-alpha-mode-slice-4aa.md#interface
+    /// @spec crates/grid-render-webgpu/docs/canvas-alpha-mode-slice-4aa.md#interface
     /// @issue #1745
     pub async fn with_alpha_mode(
         target: impl Into<wgpu::SurfaceTarget<'window>>,
@@ -618,7 +618,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// uniform. Callers use this layout to build the matching `BindGroup`
     /// before issuing a draw against the cell pipeline.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/cell-rect-pipeline-slice-4b.md#interface
+    /// @spec crates/grid-render-webgpu/docs/cell-rect-pipeline-slice-4b.md#interface
     /// @issue #1720
     pub fn cell_bind_group_layout(&self) -> &wgpu::BindGroupLayout {
         &self.cell_bind_group_layout
@@ -633,7 +633,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// component should use [`Self::on_scroll`] (8-byte partial
     /// write) instead.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/viewport-uniform-buffer-slice-4c.md#interface
+    /// @spec crates/grid-render-webgpu/docs/viewport-uniform-buffer-slice-4c.md#interface
     /// @issue #1721
     pub fn set_viewport(&self, uniforms: viewport::ViewportUniforms) {
         self.queue
@@ -651,7 +651,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// into the sheet — content visually moves UP-LEFT. Matches
     /// conventional UI scroll semantics.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/scroll-driven-uniform-update-slice-4s.md#interface
+    /// @spec crates/grid-render-webgpu/docs/scroll-driven-uniform-update-slice-4s.md#interface
     /// @issue #1737
     pub fn on_scroll(&mut self, dx_px: f32, dy_px: f32) {
         self.scroll_px[0] += dx_px;
@@ -661,7 +661,7 @@ impl<'window> WebGpuRenderer<'window> {
 
     /// Current accumulated scroll offset in physical pixels.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/scroll-driven-uniform-update-slice-4s.md#interface
+    /// @spec crates/grid-render-webgpu/docs/scroll-driven-uniform-update-slice-4s.md#interface
     /// @issue #1737
     pub fn scroll_px(&self) -> [f32; 2] {
         self.scroll_px
@@ -671,7 +671,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// to the GPU. Useful for "scroll to top" UX paths and tests that
     /// want a clean baseline.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/scroll-driven-uniform-update-slice-4s.md#interface
+    /// @spec crates/grid-render-webgpu/docs/scroll-driven-uniform-update-slice-4s.md#interface
     /// @issue #1737
     pub fn reset_scroll(&mut self) {
         self.scroll_px = [0.0, 0.0];
@@ -690,7 +690,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// `0.0` per axis (a renderer that doesn't know the sheet size
     /// still works — it just can't pin to the bottom edge).
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/viewport-clamping-helper-integration-slice-4v.md#interface
+    /// @spec crates/grid-render-webgpu/docs/viewport-clamping-helper-integration-slice-4v.md#interface
     /// @issue #1740
     pub fn set_scroll(&mut self, raw_dx: f32, raw_dy: f32) {
         let raw = [self.scroll_px[0] + raw_dx, self.scroll_px[1] + raw_dy];
@@ -710,7 +710,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// `[INFINITY, INFINITY]` (the default) disables the upper bound;
     /// the clamp then floors raw scroll at `0.0` only.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/viewport-clamping-helper-integration-slice-4v.md#interface
+    /// @spec crates/grid-render-webgpu/docs/viewport-clamping-helper-integration-slice-4v.md#interface
     /// @issue #1740
     pub fn set_content_extent_px(&mut self, extent_px: [f32; 2]) {
         self.content_extent_px = extent_px;
@@ -718,7 +718,7 @@ impl<'window> WebGpuRenderer<'window> {
 
     /// Current configured content extent in physical pixels.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/viewport-clamping-helper-integration-slice-4v.md#interface
+    /// @spec crates/grid-render-webgpu/docs/viewport-clamping-helper-integration-slice-4v.md#interface
     /// @issue #1740
     pub fn content_extent_px(&self) -> [f32; 2] {
         self.content_extent_px
@@ -729,7 +729,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// exclusive on max — matches the convention used by
     /// [`viewport_clamp::cell_intersects_rect`].
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/viewport-clamping-helper-integration-slice-4v.md#interface
+    /// @spec crates/grid-render-webgpu/docs/viewport-clamping-helper-integration-slice-4v.md#interface
     /// @issue #1740
     pub fn visible_rect_px(&self) -> ([f32; 2], [f32; 2]) {
         viewport_clamp::visible_rect_px(
@@ -750,7 +750,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// have their own culling (or are working with small scenes) keep
     /// the original behavior.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/viewport-clamping-helper-integration-slice-4v.md#interface
+    /// @spec crates/grid-render-webgpu/docs/viewport-clamping-helper-integration-slice-4v.md#interface
     /// @issue #1740
     pub fn render_frame_clipped(
         &mut self,
@@ -786,7 +786,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// surface config reports a zero dimension — callers must
     /// `on_resize` first.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/take-screenshot-readback-pixels-slice-4y.md#interface
+    /// @spec crates/grid-render-webgpu/docs/take-screenshot-readback-pixels-slice-4y.md#interface
     /// @issue #1743
     pub fn take_screenshot(
         &mut self,
@@ -935,7 +935,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// Current `wgpu::PresentMode` applied to the surface
     /// configuration.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/present-mode-selection-slice-4z.md#interface
+    /// @spec crates/grid-render-webgpu/docs/present-mode-selection-slice-4z.md#interface
     /// @issue #1744
     pub fn present_mode(&self) -> wgpu::PresentMode {
         self.surface_config.present_mode
@@ -946,7 +946,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// the right mode for a given target without re-querying surface
     /// caps.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/present-mode-selection-slice-4z.md#interface
+    /// @spec crates/grid-render-webgpu/docs/present-mode-selection-slice-4z.md#interface
     /// @issue #1744
     pub fn supported_present_modes(&self) -> &[wgpu::PresentMode] {
         &self.supported_present_modes
@@ -961,7 +961,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// is undefined behavior at the wgpu layer (most backends will
     /// silently coerce to `Fifo`).
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/present-mode-selection-slice-4z.md#interface
+    /// @spec crates/grid-render-webgpu/docs/present-mode-selection-slice-4z.md#interface
     /// @issue #1744
     pub fn set_present_mode(&mut self, mode: wgpu::PresentMode) {
         self.surface_config.present_mode = mode;
@@ -975,7 +975,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// [`AlphaMode::Opaque`] — those modes mean "compositor decides"
     /// and the renderer treats them as not-explicitly-blending.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/canvas-alpha-mode-slice-4aa.md#interface
+    /// @spec crates/grid-render-webgpu/docs/canvas-alpha-mode-slice-4aa.md#interface
     /// @issue #1745
     pub fn alpha_mode(&self) -> AlphaMode {
         match self.surface_config.alpha_mode {
@@ -990,7 +990,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// setter is robust to unsupported requests (it falls back through
     /// [`map_alpha_mode`]).
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/canvas-alpha-mode-slice-4aa.md#interface
+    /// @spec crates/grid-render-webgpu/docs/canvas-alpha-mode-slice-4aa.md#interface
     /// @issue #1745
     pub fn supported_alpha_modes(&self) -> &[wgpu::CompositeAlphaMode] {
         &self.supported_alpha_modes
@@ -1001,7 +1001,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// supported list and re-configures the surface. Mirrors the
     /// `set_present_mode` call path.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/canvas-alpha-mode-slice-4aa.md#interface
+    /// @spec crates/grid-render-webgpu/docs/canvas-alpha-mode-slice-4aa.md#interface
     /// @issue #1745
     pub fn set_alpha_mode(&mut self, mode: AlphaMode) {
         self.surface_config.alpha_mode = map_alpha_mode(mode, &self.supported_alpha_modes);
@@ -1023,7 +1023,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// viewport binding. Pass this to `RenderPass::set_bind_group(0, ...)`
     /// before issuing the cell-rect draw.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/viewport-uniform-buffer-slice-4c.md#interface
+    /// @spec crates/grid-render-webgpu/docs/viewport-uniform-buffer-slice-4c.md#interface
     /// @issue #1721
     pub fn viewport_bind_group(&self) -> &wgpu::BindGroup {
         &self.viewport_bind_group
@@ -1033,7 +1033,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// integration tests that want to assert byte-equality after a
     /// `set_viewport` round-trip.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/viewport-uniform-buffer-slice-4c.md#interface
+    /// @spec crates/grid-render-webgpu/docs/viewport-uniform-buffer-slice-4c.md#interface
     /// @issue #1721
     pub fn viewport_buffer(&self) -> &wgpu::Buffer {
         &self.viewport_buffer
@@ -1051,8 +1051,8 @@ impl<'window> WebGpuRenderer<'window> {
     /// the key because `MultisampleState.count` is baked into the
     /// pipeline; toggling MSAA must rebuild.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/cell-rect-pipeline-slice-4b.md#interface
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/msaa-toggle-slice-4p.md#interface
+    /// @spec crates/grid-render-webgpu/docs/cell-rect-pipeline-slice-4b.md#interface
+    /// @spec crates/grid-render-webgpu/docs/msaa-toggle-slice-4p.md#interface
     /// @issue #1720
     /// @issue #1734
     pub fn create_cell_pipeline(
@@ -1116,7 +1116,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// (until the renderer's MSAA setting changes, which clears the
     /// cache).
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/per-surface-pipeline-cache-slice-4u.md#interface
+    /// @spec crates/grid-render-webgpu/docs/per-surface-pipeline-cache-slice-4u.md#interface
     /// @issue #1739
     pub fn pipeline_for(&mut self, format: wgpu::TextureFormat) -> Arc<wgpu::RenderPipeline> {
         let msaa = self.msaa_count;
@@ -1128,7 +1128,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// and devtools overlays; do not rely on this for cache eviction
     /// decisions (the cache is grow-only by design — see Slice 4u).
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/per-surface-pipeline-cache-slice-4u.md#interface
+    /// @spec crates/grid-render-webgpu/docs/per-surface-pipeline-cache-slice-4u.md#interface
     /// @issue #1739
     pub fn pipeline_cache_len(&self) -> usize {
         self.cell_pipelines.len()
@@ -1137,7 +1137,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// Current MSAA sample count for the cell-rect pass. Defaults to
     /// `1` on `wasm32`, `4` on native — see [`MSAA_DEFAULT`].
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/msaa-toggle-slice-4p.md#interface
+    /// @spec crates/grid-render-webgpu/docs/msaa-toggle-slice-4p.md#interface
     /// @issue #1734
     pub fn msaa_count(&self) -> u32 {
         self.msaa_count
@@ -1150,7 +1150,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// of grepping `Device::features()` directly. Slice 4q (#1735) is
     /// the single source of truth for that question.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/adapter-feature-negotiation-slice-4q.md#interface
+    /// @spec crates/grid-render-webgpu/docs/adapter-feature-negotiation-slice-4q.md#interface
     /// @issue #1735
     pub fn negotiated_features(&self) -> &NegotiatedFeatures {
         &self.negotiated
@@ -1167,7 +1167,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// count baked into `MultisampleState`) and the MSAA color texture
     /// is reallocated (or freed, if returning to count == 1).
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/msaa-toggle-slice-4p.md#interface
+    /// @spec crates/grid-render-webgpu/docs/msaa-toggle-slice-4p.md#interface
     /// @issue #1734
     pub fn set_msaa_count(&mut self, count: u32) {
         if count != 1 && count != 4 {
@@ -1188,7 +1188,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// `msaa_count == 1` — callers (the cell-pass encoder) treat that
     /// as the "draw straight into the surface, no resolve" path.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/msaa-toggle-slice-4p.md#interface
+    /// @spec crates/grid-render-webgpu/docs/msaa-toggle-slice-4p.md#interface
     /// @issue #1734
     pub(crate) fn msaa_color_view(&self) -> Option<&wgpu::TextureView> {
         self.msaa_color.as_ref().map(|(_, view)| view)
@@ -1204,7 +1204,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// (`on_resize`, `on_resize_logical`, `set_dpr`), `set_msaa_count`,
     /// and `try_recover` (after the new device replaces the old one).
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/msaa-toggle-slice-4p.md#interface
+    /// @spec crates/grid-render-webgpu/docs/msaa-toggle-slice-4p.md#interface
     /// @issue #1734
     fn reallocate_msaa_resources(&mut self) {
         if self.msaa_count <= 1 {
@@ -1239,7 +1239,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// the public signature away from `wgpu::Color` so the renderer's
     /// GPU type does not leak into the embedding app.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/clear-color-config-slice-4o.md#interface
+    /// @spec crates/grid-render-webgpu/docs/clear-color-config-slice-4o.md#interface
     /// @issue #1733
     pub fn set_clear_color(&mut self, rgba: [f32; 4]) {
         self.clear_color = rgba_to_wgpu_color(rgba);
@@ -1250,7 +1250,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// by [`set_clear_color`]. Slice 4o (#1733) flipped the default from
     /// black so first paint matches the dominant light-mode UI case.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/clear-color-config-slice-4o.md#interface
+    /// @spec crates/grid-render-webgpu/docs/clear-color-config-slice-4o.md#interface
     /// @issue #1733
     pub fn clear_color(&self) -> [f32; 4] {
         wgpu_color_to_rgba(self.clear_color)
@@ -1276,7 +1276,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// short-circuiting before clear) so the surface gets a fresh frame
     /// every call — important for animation drivers that toggle visibility.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/render-pass-orchestration-slice-4e.md#interface
+    /// @spec crates/grid-render-webgpu/docs/render-pass-orchestration-slice-4e.md#interface
     /// @issue #1723
     pub fn render_frame(
         &mut self,
@@ -1315,7 +1315,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// `begin_frame` remains the raw variant for callers that want to
     /// apply their own policy (e.g. the frame-timing bench).
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/surface-acquire-recovery-slice-4n.md#interface
+    /// @spec crates/grid-render-webgpu/docs/surface-acquire-recovery-slice-4n.md#interface
     /// @issue #1732
     pub fn try_acquire_frame(&mut self) -> Result<AcquireOutcome<'_, 'window>, RenderFrameError> {
         if self.lost_status.is_lost() {
@@ -1369,7 +1369,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// Future slices that add a text pass / debug overlay chain onto the
     /// same builder via additional `encode_*_pass` calls before `commit`.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/submit-batching-slice-4j.md#interface
+    /// @spec crates/grid-render-webgpu/docs/submit-batching-slice-4j.md#interface
     /// @issue #1728
     pub fn begin_frame(&mut self) -> Result<FrameBuilder<'_, 'window>, RenderFrameError> {
         // Slice 4h (#1726): short-circuit when the device-lost
@@ -1403,7 +1403,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// receives physical pixels so the WGSL pos → NDC math stays
     /// resolution-correct without per-shader DPR awareness.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/dpr-scaling-slice-4g.md#interface
+    /// @spec crates/grid-render-webgpu/docs/dpr-scaling-slice-4g.md#interface
     /// @issue #1725
     pub fn dpr(&self) -> f32 {
         self.dpr
@@ -1416,7 +1416,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// `dpr <= 0` is silently clamped to `1.0` — see
     /// [`dpr`] module docs.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/dpr-scaling-slice-4g.md#interface
+    /// @spec crates/grid-render-webgpu/docs/dpr-scaling-slice-4g.md#interface
     /// @issue #1725
     pub fn set_dpr(&mut self, dpr: f32) {
         self.dpr = if dpr > 0.0 { dpr } else { 1.0 };
@@ -1435,7 +1435,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// Logical (CSS-pixel) size the renderer is configured for. The
     /// surface texture is `logical_size * dpr` physical pixels.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/dpr-scaling-slice-4g.md#interface
+    /// @spec crates/grid-render-webgpu/docs/dpr-scaling-slice-4g.md#interface
     /// @issue #1725
     pub fn logical_size(&self) -> (u32, u32) {
         self.logical_size
@@ -1449,7 +1449,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// physical-pixel back-compat entry for callers (raw canvas
     /// resize observers) that report physical px directly.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/dpr-scaling-slice-4g.md#interface
+    /// @spec crates/grid-render-webgpu/docs/dpr-scaling-slice-4g.md#interface
     /// @issue #1725
     pub fn on_resize_logical(&mut self, logical: (u32, u32)) {
         self.logical_size = (logical.0.max(1), logical.1.max(1));
@@ -1469,7 +1469,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// Delegates to [`dpr::logical_to_physical_f32`] with the
     /// renderer's current DPR.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/dpr-scaling-slice-4g.md#interface
+    /// @spec crates/grid-render-webgpu/docs/dpr-scaling-slice-4g.md#interface
     /// @issue #1725
     pub fn to_physical(&self, logical: (f32, f32)) -> (f32, f32) {
         dpr::logical_to_physical_f32(logical, self.dpr)
@@ -1483,7 +1483,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// Delegates to [`dpr::physical_to_logical_f32`] with the
     /// renderer's current DPR.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/dpr-scaling-slice-4g.md#interface
+    /// @spec crates/grid-render-webgpu/docs/dpr-scaling-slice-4g.md#interface
     /// @issue #1725
     pub fn to_logical(&self, physical: (f32, f32)) -> (f32, f32) {
         dpr::physical_to_logical_f32(physical, self.dpr)
@@ -1495,7 +1495,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// [`RenderFrameError::DeviceLost`] — callers must call
     /// [`Self::try_recover`] before attempting to render again.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/lost-context-recovery-slice-4h.md#interface
+    /// @spec crates/grid-render-webgpu/docs/lost-context-recovery-slice-4h.md#interface
     /// @issue #1726
     pub fn is_device_lost(&self) -> bool {
         self.lost_status.is_lost()
@@ -1510,7 +1510,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// becomes `true` to display "GPU restarting…" copy that includes
     /// the driver's diagnostic message.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/lost-context-recovery-slice-4h.md#interface
+    /// @spec crates/grid-render-webgpu/docs/lost-context-recovery-slice-4h.md#interface
     /// @issue #1726
     pub fn take_device_lost_event(&self) -> Option<lost_context::DeviceLostEvent> {
         self.lost_status.take_event()
@@ -1527,7 +1527,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// rebuilt against the new device — pipeline cache is cleared so
     /// callers regenerate lazily on the next `create_cell_pipeline`.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/lost-context-recovery-slice-4h.md#interface
+    /// @spec crates/grid-render-webgpu/docs/lost-context-recovery-slice-4h.md#interface
     /// @issue #1726
     pub async fn try_recover(&mut self) -> Result<(), lost_context::RecoveryError> {
         // Drop the dead pipeline cache up front — callers that race
@@ -1694,7 +1694,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// time, not the in-progress one — timestamp queries necessarily
     /// map back one frame later.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/gpu-timeline-queries-slice-4i.md#interface
+    /// @spec crates/grid-render-webgpu/docs/gpu-timeline-queries-slice-4i.md#interface
     /// @issue #1727
     pub fn last_frame_gpu_ms(&self) -> Option<f32> {
         self.frame_timing.last_frame_gpu_ms()
@@ -1705,7 +1705,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// hide the "GPU ms" column when this is `false` instead of
     /// rendering a misleading "—".
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/gpu-timeline-queries-slice-4i.md#interface
+    /// @spec crates/grid-render-webgpu/docs/gpu-timeline-queries-slice-4i.md#interface
     /// @issue #1727
     pub fn gpu_timing_enabled(&self) -> bool {
         self.frame_timing.is_enabled()
@@ -1722,7 +1722,7 @@ impl<'window> WebGpuRenderer<'window> {
     ///
     /// `pub(crate)` — external callers manage their own buffers.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/submit-batching-slice-4j.md#interface
+    /// @spec crates/grid-render-webgpu/docs/submit-batching-slice-4j.md#interface
     /// @issue #1728
     pub(crate) fn upload_instance_buffer(
         &mut self,
@@ -1744,7 +1744,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// Surface lives at the renderer level so devtools / benches can
     /// retune without reaching into the pool directly.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/instance-staging-path-slice-4r.md#interface
+    /// @spec crates/grid-render-webgpu/docs/instance-staging-path-slice-4r.md#interface
     /// @issue #1736
     pub fn set_instance_staging_threshold_bytes(&mut self, bytes: wgpu::BufferAddress) {
         self.instance_pool.set_staging_threshold_bytes(bytes);
@@ -1754,7 +1754,7 @@ impl<'window> WebGpuRenderer<'window> {
     /// Default is `64 * 1024 * 32` (64K cell instances × 32 bytes per
     /// `CellInstance` = 2 MiB).
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/instance-staging-path-slice-4r.md#interface
+    /// @spec crates/grid-render-webgpu/docs/instance-staging-path-slice-4r.md#interface
     /// @issue #1736
     pub fn instance_staging_threshold_bytes(&self) -> wgpu::BufferAddress {
         self.instance_pool.staging_threshold_bytes()
@@ -2090,7 +2090,7 @@ fn build_text_atlas_resources(
 /// the variant catalogue for the construction-time enum so the JS
 /// bridge can map each variant to a user-facing message.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/renderer-error-thiserror-integration-slice-4w.md#interface
+/// @spec crates/grid-render-webgpu/docs/renderer-error-thiserror-integration-slice-4w.md#interface
 /// @issue #1719
 /// @issue #1741
 #[derive(Debug, Error)]
@@ -2100,7 +2100,7 @@ pub enum RendererError {
     /// renderer searched so a developer can tell a WebGPU-only failure
     /// (web) apart from a PRIMARY-trio failure (native).
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/backend-selection-slice-4l.md#interface
+    /// @spec crates/grid-render-webgpu/docs/backend-selection-slice-4l.md#interface
     /// @issue #1730
     #[error(
         "no compatible GPU adapter (tried: {})",
@@ -2120,7 +2120,7 @@ pub enum RendererError {
     /// doesn't support WebGPU's required features" instead of
     /// "the GPU was reset".
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/renderer-error-thiserror-integration-slice-4w.md#interface
+    /// @spec crates/grid-render-webgpu/docs/renderer-error-thiserror-integration-slice-4w.md#interface
     /// @issue #1741
     #[error("device request failed: {0}")]
     NoDevice(String),
@@ -2137,7 +2137,7 @@ pub enum RendererError {
     /// device's max-buffer-size limit, etc.). Mirrors
     /// [`RenderFrameError::OutOfMemory`] for cross-phase parity.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/renderer-error-thiserror-integration-slice-4w.md#interface
+    /// @spec crates/grid-render-webgpu/docs/renderer-error-thiserror-integration-slice-4w.md#interface
     /// @issue #1741
     #[error("out of memory during construction: {0}")]
     OutOfMemory(String),
@@ -2146,7 +2146,7 @@ pub enum RendererError {
     /// pipeline layout, bind-group layout, etc.) at construction
     /// time. Surfaces the wgpu message verbatim.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/renderer-error-thiserror-integration-slice-4w.md#interface
+    /// @spec crates/grid-render-webgpu/docs/renderer-error-thiserror-integration-slice-4w.md#interface
     /// @issue #1741
     #[error("validation failed: {0}")]
     ValidationFailed(String),
@@ -2156,7 +2156,7 @@ pub enum RendererError {
 /// Used by tests and the JS bridge to cross-check the variant
 /// catalogue without resorting to `strum` or proc-macros.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/renderer-error-thiserror-integration-slice-4w.md#interface
+/// @spec crates/grid-render-webgpu/docs/renderer-error-thiserror-integration-slice-4w.md#interface
 /// @issue #1741
 pub fn renderer_error_variant_names() -> &'static [&'static str] {
     &[
@@ -2179,7 +2179,7 @@ pub fn renderer_error_variant_names() -> &'static [&'static str] {
 /// [`renderer_error_variant_names`] exactly — a rename in the
 /// enum that misses an edit here will fail at unit-test time.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/renderer-error-thiserror-integration-slice-4w.md#interface
+/// @spec crates/grid-render-webgpu/docs/renderer-error-thiserror-integration-slice-4w.md#interface
 /// @issue #1741
 pub const ERROR_VARIANTS_BY_METHOD: &[(&str, &[&str])] = &[
     (
@@ -2209,7 +2209,7 @@ pub const ERROR_VARIANTS_BY_METHOD: &[(&str, &[&str])] = &[
 /// standard wgpu remediation idioms (reconfigure on `Outdated`, drop the
 /// renderer on `SurfaceLost`, retry on `Timeout`).
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/render-pass-orchestration-slice-4e.md#interface
+/// @spec crates/grid-render-webgpu/docs/render-pass-orchestration-slice-4e.md#interface
 /// @issue #1723
 #[derive(Debug, Error)]
 pub enum RenderFrameError {
@@ -2235,7 +2235,7 @@ pub enum RenderFrameError {
     /// `reason` is wgpu's classification and `message` is the
     /// driver-supplied diagnostic (may be empty).
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/lost-context-recovery-slice-4h.md#interface
+    /// @spec crates/grid-render-webgpu/docs/lost-context-recovery-slice-4h.md#interface
     /// @issue #1726
     #[error("device lost: {reason:?} — {message}")]
     DeviceLost {
@@ -2270,7 +2270,7 @@ impl From<wgpu::SurfaceError> for RenderFrameError {
 /// always `(width * height * 4) as usize` — the wgpu row-padding (256
 /// byte alignment) is stripped before return.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/take-screenshot-readback-pixels-slice-4y.md#interface
+/// @spec crates/grid-render-webgpu/docs/take-screenshot-readback-pixels-slice-4y.md#interface
 /// @issue #1743
 #[derive(Debug, Clone)]
 pub struct Screenshot {
@@ -2290,7 +2290,7 @@ pub struct Screenshot {
 /// can't occur — keeping a separate enum saves callers from
 /// pattern-matching on impossible cases.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/take-screenshot-readback-pixels-slice-4y.md#interface
+/// @spec crates/grid-render-webgpu/docs/take-screenshot-readback-pixels-slice-4y.md#interface
 /// @issue #1743
 #[derive(Debug, Error)]
 pub enum ScreenshotError {
@@ -2337,7 +2337,7 @@ fn screenshot_align_up(value: u32, align: u32) -> u32 {
 /// optional feature X available?" — checking `Device::features()`
 /// directly is also valid but mixes required and optional bits.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/adapter-feature-negotiation-slice-4q.md#interface
+/// @spec crates/grid-render-webgpu/docs/adapter-feature-negotiation-slice-4q.md#interface
 /// @issue #1735
 #[derive(Debug, Clone, Copy, Default, PartialEq, Eq)]
 pub struct NegotiatedFeatures {
@@ -2362,7 +2362,7 @@ pub struct NegotiatedFeatures {
 /// a subset of the adapter mask — so this function cannot fail. Pure,
 /// no GPU required.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/adapter-feature-negotiation-slice-4q.md#interface
+/// @spec crates/grid-render-webgpu/docs/adapter-feature-negotiation-slice-4q.md#interface
 /// @issue #1735
 fn negotiate_features(adapter: wgpu::Features) -> (wgpu::Features, NegotiatedFeatures) {
     let mut requested = wgpu::Features::empty();
@@ -2395,7 +2395,7 @@ fn negotiate_features(adapter: wgpu::Features) -> (wgpu::Features, NegotiatedFea
 /// add `NativeInteractiveAllowTearing` if user research shows tearing
 /// is preferable to dropped frames in some workflow.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/present-mode-selection-slice-4z.md#interface
+/// @spec crates/grid-render-webgpu/docs/present-mode-selection-slice-4z.md#interface
 /// @issue #1744
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum PresentTarget {
@@ -2424,7 +2424,7 @@ pub enum PresentTarget {
 ///
 /// Pure function, deterministic, no `wgpu::Device` required.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/present-mode-selection-slice-4z.md#interface
+/// @spec crates/grid-render-webgpu/docs/present-mode-selection-slice-4z.md#interface
 /// @issue #1744
 pub fn recommend_present_mode(
     target: PresentTarget,
@@ -2466,7 +2466,7 @@ pub fn recommend_present_mode(
 ///   Opaque) or in overlays rendering fully solid (Opaque when you
 ///   wanted to blend).
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/canvas-alpha-mode-slice-4aa.md#interface
+/// @spec crates/grid-render-webgpu/docs/canvas-alpha-mode-slice-4aa.md#interface
 /// @issue #1745
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum AlphaMode {
@@ -2488,7 +2488,7 @@ pub enum AlphaMode {
 ///
 /// Pure function — deterministic, no `wgpu::Device` required.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/canvas-alpha-mode-slice-4aa.md#interface
+/// @spec crates/grid-render-webgpu/docs/canvas-alpha-mode-slice-4aa.md#interface
 /// @issue #1745
 pub fn map_alpha_mode(
     mode: AlphaMode,
@@ -2562,7 +2562,7 @@ fn wgpu_color_to_rgba(color: wgpu::Color) -> [f32; 4] {
 /// action the caller should take so the frame loop does not have to
 /// re-decode wgpu's error vocabulary.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/surface-acquire-recovery-slice-4n.md#interface
+/// @spec crates/grid-render-webgpu/docs/surface-acquire-recovery-slice-4n.md#interface
 /// @issue #1732
 pub enum AcquireOutcome<'r, 'window> {
     /// Surface texture was acquired (possibly after a single
@@ -2582,7 +2582,7 @@ pub enum AcquireOutcome<'r, 'window> {
 /// `try_acquire_frame` should take. Extracted as a free function so the
 /// policy is unit-testable without spinning up a GPU.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/surface-acquire-recovery-slice-4n.md#interface
+/// @spec crates/grid-render-webgpu/docs/surface-acquire-recovery-slice-4n.md#interface
 /// @issue #1732
 #[derive(Debug)]
 enum AcquireAction {
@@ -2972,7 +2972,7 @@ mod tests {
     /// `AcquireAction` so the caller's frame loop has explicit
     /// labels. Pure function — no GPU needed.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/surface-acquire-recovery-slice-4n.md#acceptance-criteria
+    /// @spec crates/grid-render-webgpu/docs/surface-acquire-recovery-slice-4n.md#acceptance-criteria
     #[test]
     fn classify_acquire_error_covers_every_variant() {
         assert!(matches!(
@@ -3024,7 +3024,7 @@ mod tests {
     /// this test exercises the format axis at fixed `msaa_count = 1`.
     /// The msaa-axis case is unit-covered by `set_msaa_count_clears_pipeline_cache`.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/cell-rect-pipeline-slice-4b.md#acceptance-criteria
+    /// @spec crates/grid-render-webgpu/docs/cell-rect-pipeline-slice-4b.md#acceptance-criteria
     #[test]
     #[ignore]
     fn create_cell_pipeline_caches_per_format_live() {
@@ -3051,7 +3051,7 @@ mod tests {
     /// stays at `1`, and (c) a different-format call grows the
     /// cache to `2`. Skipped by default (requires a real adapter).
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/per-surface-pipeline-cache-slice-4u.md#acceptance-criteria
+    /// @spec crates/grid-render-webgpu/docs/per-surface-pipeline-cache-slice-4u.md#acceptance-criteria
     #[test]
     #[ignore]
     fn pipeline_for_returns_cached_pipeline_for_same_format_live() {
@@ -3098,7 +3098,7 @@ mod tests {
     ///
     /// No GPU required — purely a type-shape check.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/per-surface-pipeline-cache-slice-4u.md#acceptance-criteria
+    /// @spec crates/grid-render-webgpu/docs/per-surface-pipeline-cache-slice-4u.md#acceptance-criteria
     #[test]
     fn pipeline_cache_key_shape_is_format_and_msaa() {
         fn _shape_check(_cache: &HashMap<(wgpu::TextureFormat, u32), Arc<wgpu::RenderPipeline>>) {}
@@ -3113,7 +3113,7 @@ mod tests {
     /// path) so the render-pass load-op runs against the configured
     /// non-default value. Skipped unless run with `--ignored`.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/clear-color-config-slice-4o.md#acceptance-criteria
+    /// @spec crates/grid-render-webgpu/docs/clear-color-config-slice-4o.md#acceptance-criteria
     #[test]
     #[ignore]
     fn render_frame_runs_end_to_end_live() {
@@ -3239,7 +3239,7 @@ mod tests {
     ///    pipeline so the next `create_cell_pipeline` rebuilds with
     ///    the new `MultisampleState.count`.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/msaa-toggle-slice-4p.md#acceptance-criteria
+    /// @spec crates/grid-render-webgpu/docs/msaa-toggle-slice-4p.md#acceptance-criteria
     #[test]
     #[ignore]
     fn set_msaa_count_validates_and_clears_pipeline_cache_live() {

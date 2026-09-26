@@ -131,12 +131,12 @@ Threshold-policy contract:
 
 ## Reference Context
 
-- `apps/jet/crates/grid-render-webgpu/src/instance_pool.rs:108-153` —
+- `crates/grid-render-webgpu/src/instance_pool.rs:108-153` —
   current `get_or_grow`; this slice dispatches its `queue.write_buffer`
   call site by data length.
-- `apps/jet/crates/grid-render-webgpu/src/cell_rect.rs:75-81` —
+- `crates/grid-render-webgpu/src/cell_rect.rs:75-81` —
   `CellInstance` = 32 bytes, the basis for the 64K-instance default.
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs:975-984` —
+- `crates/grid-render-webgpu/src/lib.rs:975-984` —
   `WebGpuRenderer::upload_instance_buffer`; passes the bytes straight
   through to the pool, so per-frame upload size is the trigger.
 - Sibling Slice 4d (#1722) introduced the pool's grow-no-shrink

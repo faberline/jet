@@ -21,7 +21,7 @@
 /// state machine — no `web_sys` dependency so host tests can
 /// exercise the debounce invariant without a browser.
 ///
-/// @spec apps/jet/crates/grid-wasm/docs/canvas-resize-observer-slice-4cc.md#interface
+/// @spec crates/grid-wasm/docs/canvas-resize-observer-slice-4cc.md#interface
 /// @issue #1747
 #[derive(Debug, Default)]
 pub struct ResizeDebouncer {
@@ -34,7 +34,7 @@ pub struct ResizeDebouncer {
 impl ResizeDebouncer {
     /// New, empty debouncer.
     ///
-    /// @spec apps/jet/crates/grid-wasm/docs/canvas-resize-observer-slice-4cc.md#interface
+    /// @spec crates/grid-wasm/docs/canvas-resize-observer-slice-4cc.md#interface
     /// @issue #1747
     pub fn new() -> Self {
         Self { pending: None }
@@ -52,7 +52,7 @@ impl ResizeDebouncer {
     /// `0` or `NaN` for `devicePixelRatio` during mid-resize
     /// transients).
     ///
-    /// @spec apps/jet/crates/grid-wasm/docs/canvas-resize-observer-slice-4cc.md#interface
+    /// @spec crates/grid-wasm/docs/canvas-resize-observer-slice-4cc.md#interface
     /// @issue #1747
     pub fn observe(&mut self, logical_w: u32, logical_h: u32, dpr: f32) {
         let safe_w = logical_w.max(1);
@@ -70,7 +70,7 @@ impl ResizeDebouncer {
     /// state — subsequent calls before a fresh `observe` return
     /// `None`.
     ///
-    /// @spec apps/jet/crates/grid-wasm/docs/canvas-resize-observer-slice-4cc.md#interface
+    /// @spec crates/grid-wasm/docs/canvas-resize-observer-slice-4cc.md#interface
     /// @issue #1747
     pub fn take_pending(&mut self) -> Option<(u32, u32, f32)> {
         self.pending.take()
@@ -82,7 +82,7 @@ impl ResizeDebouncer {
     /// in-flight (which it is whenever `has_pending` was true at
     /// the previous observe), don't schedule another.
     ///
-    /// @spec apps/jet/crates/grid-wasm/docs/canvas-resize-observer-slice-4cc.md#interface
+    /// @spec crates/grid-wasm/docs/canvas-resize-observer-slice-4cc.md#interface
     /// @issue #1747
     pub fn has_pending(&self) -> bool {
         self.pending.is_some()

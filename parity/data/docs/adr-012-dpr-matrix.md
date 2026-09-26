@@ -90,7 +90,7 @@ makes the directory layout from #2146 *fall out automatically* — no
 custom `snapshotPathTemplate` override needed for the DPR axis.
 
 Sketch (illustrative, not normative — the live config is in
-`apps/jet/data/parity/playwright.config.ts`):
+`data/parity/playwright.config.ts`):
 
 ```ts
 const dprs = [1, 2, 3] as const;
@@ -308,7 +308,7 @@ matrix row that confuses tooling more than it saves storage.
 - **Where exactly does the per-DPR region-map override schema live?**
   This ADR describes its shape (§6) but does not write the JSON Schema.
   Follow-up slice should land that under
-  `apps/jet/data/parity/schemas/regions.schema.json` and reference it
+  `data/parity/schemas/regions.schema.json` and reference it
   from ADR-001.
 - **Does the determinism harness (#2148) need a per-project filter
   flag?** The body of this ADR (§4) assumes yes; #2148's CLI surface
@@ -325,7 +325,7 @@ matrix row that confuses tooling more than it saves storage.
 This ADR intentionally does **not**:
 
 - Implement the Playwright config that materializes the matrix. The
-  config is in `apps/jet/data/parity/playwright.config.ts`; this ADR
+  config is in `data/parity/playwright.config.ts`; this ADR
   records the *rule it must satisfy*, not its code.
 - Define the regression-triage flow (which DPR row is "canonical"
   when only one of 18 fails). That belongs to the gating-manifest
@@ -340,8 +340,8 @@ This ADR intentionally does **not**:
 
 ## References
 
-- ADR-001 (#2151) — `apps/jet/data/parity/docs/adr-001-pixel-harness.md`
-- ADR-002 (#2146) — `apps/jet/data/parity/docs/adr-002-per-renderer-baselines.md`
+- ADR-001 (#2151) — `data/parity/docs/adr-001-pixel-harness.md`
+- ADR-002 (#2146) — `data/parity/docs/adr-002-per-renderer-baselines.md`
 - #2147 — per-fixture tolerance ladder
 - #2148 — determinism budget (100 consecutive runs, zero flakes)
 - #2143 — Reg-Suit / S3 cutover (deferred)

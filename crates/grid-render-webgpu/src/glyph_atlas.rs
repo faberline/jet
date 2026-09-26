@@ -59,7 +59,7 @@
 /// be `TextureDescriptor<'static>` and the same builder serves both the
 /// initial allocation and any future resize.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/glyph-atlas-texture-descriptor-slice-5e.md#interface
+/// @spec crates/grid-render-webgpu/docs/glyph-atlas-texture-descriptor-slice-5e.md#interface
 /// @issue #1754
 pub fn glyph_atlas_texture_descriptor(width: u32, height: u32) -> wgpu::TextureDescriptor<'static> {
     wgpu::TextureDescriptor {
@@ -91,7 +91,7 @@ pub fn glyph_atlas_texture_descriptor(width: u32, height: u32) -> wgpu::TextureD
 /// wgpu rev that changes a `Default` doesn't silently shift our
 /// behaviour.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/glyph-atlas-sampler-descriptor-slice-5i.md#interface
+/// @spec crates/grid-render-webgpu/docs/glyph-atlas-sampler-descriptor-slice-5i.md#interface
 /// @issue #1758
 pub fn glyph_atlas_sampler_descriptor() -> wgpu::SamplerDescriptor<'static> {
     wgpu::SamplerDescriptor {

@@ -58,7 +58,7 @@ use crate::font_face::{FontFace, GlyphId};
 /// which the constructor enforces and consumers can destructure
 /// freely.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/rasterize-glyph-bitmap-slice-5c.md#interface
+/// @spec crates/grid-render-webgpu/docs/rasterize-glyph-bitmap-slice-5c.md#interface
 /// @issue #1752
 #[derive(Debug, Clone, PartialEq)]
 pub struct GlyphBitmap {
@@ -80,7 +80,7 @@ pub struct GlyphBitmap {
 
 /// Errors returned by [`rasterize_glyph`].
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/rasterize-glyph-bitmap-slice-5c.md#interface
+/// @spec crates/grid-render-webgpu/docs/rasterize-glyph-bitmap-slice-5c.md#interface
 /// @issue #1752
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum RasterError {
@@ -116,7 +116,7 @@ impl std::error::Error for RasterError {}
 /// Returns a [`GlyphBitmap`] on success or a [`RasterError`] for
 /// the three failure modes documented on the enum.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/rasterize-glyph-bitmap-slice-5c.md#interface
+/// @spec crates/grid-render-webgpu/docs/rasterize-glyph-bitmap-slice-5c.md#interface
 /// @issue #1752
 pub fn rasterize_glyph(
     face: &FontFace,

@@ -1,5 +1,5 @@
 // SPEC-MANAGED: .aw/tech-design/projects/jet/interfaces/cli/named-per-operation-request-response-types-xxxdata-xxxresponse-f.md#logic
-// <HANDWRITE gap="standardize:projects-jet-src-codegen-hooks-emit-rs" tracker="standardize-gap-projects-jet-src-codegen-hooks-emit-rs" reason="Existing hand-written code in apps/jet/src/codegen/hooks_emit.rs requires tracked generator coverage.">
+// <HANDWRITE gap="standardize:projects-jet-src-codegen-hooks-emit-rs" tracker="standardize-gap-projects-jet-src-codegen-hooks-emit-rs" reason="Existing hand-written code in src/codegen/hooks_emit.rs requires tracked generator coverage.">
 //! Emits `hooks.ts` bound to the generated client, using the per-operation
 //! `XxxData` / `XxxResponse` types. Two hook runtimes are supported:
 //!

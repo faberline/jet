@@ -25,7 +25,7 @@ use wasm_bindgen::prelude::*;
 
 /// The lifecycle state of the RAF-driven frame loop.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
+/// @spec crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
 /// @issue #1724
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 pub enum LoopState {
@@ -46,7 +46,7 @@ pub enum LoopState {
 /// its RAF closure, and `should_render()` decides whether to issue the
 /// frame.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
+/// @spec crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
 /// @issue #1724
 #[derive(Debug)]
 pub struct LoopController {
@@ -63,7 +63,7 @@ impl Default for LoopController {
 impl LoopController {
     /// Construct a controller in the [`LoopState::Idle`] state.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
+    /// @spec crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
     /// @issue #1724
     pub fn new() -> Self {
         Self {
@@ -74,7 +74,7 @@ impl LoopController {
 
     /// Current lifecycle state.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
+    /// @spec crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
     /// @issue #1724
     pub fn state(&self) -> LoopState {
         self.state
@@ -84,7 +84,7 @@ impl LoopController {
     /// `stop()` — useful for tests that want to assert "no further
     /// ticks happen after stop".
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
+    /// @spec crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
     /// @issue #1724
     pub fn tick_count(&self) -> u64 {
         self.tick_count
@@ -93,7 +93,7 @@ impl LoopController {
     /// `true` iff the next render-pass call should actually run.
     /// Equivalent to `state == RunningVisible`.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
+    /// @spec crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
     /// @issue #1724
     pub fn should_render(&self) -> bool {
         matches!(self.state, LoopState::RunningVisible)
@@ -105,7 +105,7 @@ impl LoopController {
     /// transitions to `RunningVisible` (the safe default — visibility
     /// is corrected by the first observer callback on the JS side).
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
+    /// @spec crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
     /// @issue #1724
     pub fn start(&mut self) {
         if let LoopState::Idle = self.state {
@@ -115,7 +115,7 @@ impl LoopController {
 
     /// Tear the loop down. Idempotent. `tick_count` is preserved.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
+    /// @spec crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
     /// @issue #1724
     pub fn stop(&mut self) {
         self.state = LoopState::Idle;
@@ -126,7 +126,7 @@ impl LoopController {
     /// unmounted are meaningless); the running states toggle between
     /// `RunningVisible` and `RunningHidden`.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
+    /// @spec crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
     /// @issue #1724
     pub fn set_visible(&mut self, visible: bool) {
         self.state = match (self.state, visible) {
@@ -141,7 +141,7 @@ impl LoopController {
     /// In `Idle` the counter does NOT advance — there is no live RAF
     /// to source ticks in that state.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
+    /// @spec crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
     /// @issue #1724
     pub fn tick(&mut self) -> bool {
         if let LoopState::Idle = self.state {
@@ -165,7 +165,7 @@ impl LoopController {
 /// callers wire IntersectionObserver themselves and invoke
 /// `notify_intersect(bool)` per observer callback.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
+/// @spec crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
 /// @issue #1724
 #[wasm_bindgen]
 pub struct WasmView {
@@ -190,7 +190,7 @@ impl WasmView {
     /// reference is retained so `start()` can resolve the `window` and
     /// schedule the RAF.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
+    /// @spec crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
     /// @issue #1724
     #[cfg(target_arch = "wasm32")]
     #[wasm_bindgen(constructor)]
@@ -215,7 +215,7 @@ impl WasmView {
     /// handler. `true` → resume rendering; `false` → keep the RAF but
     /// skip the render call.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
+    /// @spec crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
     /// @issue #1724
     #[wasm_bindgen(js_name = notifyIntersect)]
     pub fn notify_intersect(&mut self, is_visible: bool) {
@@ -229,7 +229,7 @@ impl WasmView {
     /// On non-wasm32 targets this only mutates the state machine —
     /// scheduling is unavailable without a browser.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
+    /// @spec crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
     /// @issue #1724
     pub fn start(&mut self) {
         let was_idle = matches!(self.controller.state(), LoopState::Idle);
@@ -242,7 +242,7 @@ impl WasmView {
 
     /// Stop the RAF loop and release the closure. Idempotent.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
+    /// @spec crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
     /// @issue #1724
     pub fn stop(&mut self) {
         self.controller.stop();
@@ -273,7 +273,7 @@ impl WasmView {
     /// + drops the closure before the WasmView itself drops, so the
     /// pointer can never outlive the target.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
+    /// @spec crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
     fn schedule_next_frame(&mut self) {
         let Some(window) = web_sys::window() else {
             return;

@@ -115,12 +115,12 @@ fn negotiate_features(
 
 ## Reference Context
 
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs:158-167` — current
+- `crates/grid-render-webgpu/src/lib.rs:158-167` — current
   inline negotiation in `new()` (this slice extracts it).
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs:870-880` —
+- `crates/grid-render-webgpu/src/lib.rs:870-880` —
   `try_recover` re-uses `self.required_features`; this slice
   refreshes `negotiated` from the adapter too.
-- `apps/jet/crates/grid-render-webgpu/src/frame_timing.rs` — Slice 4i
+- `crates/grid-render-webgpu/src/frame_timing.rs` — Slice 4i
   pool that degrades without `TIMESTAMP_QUERY`.
-- `apps/jet/crates/grid-render-webgpu/docs/gpu-timeline-queries-slice-4i.md` —
+- `crates/grid-render-webgpu/docs/gpu-timeline-queries-slice-4i.md` —
   Slice 4i contract for the timing pool's no-op degradation.

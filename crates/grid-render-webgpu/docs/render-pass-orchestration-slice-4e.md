@@ -57,7 +57,7 @@ Out:
 ## Interface
 
 ```rust
-// apps/jet/crates/grid-render-webgpu/src/lib.rs
+// crates/grid-render-webgpu/src/lib.rs
 
 impl<'window> WebGpuRenderer<'window> {
     /// Set the background clear color used by `render_frame`. Idempotent;
@@ -134,13 +134,13 @@ pub enum RenderFrameError {
 
 ## Reference context
 
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs` — Slice 4a `WebGpuRenderer`
+- `crates/grid-render-webgpu/src/lib.rs` — Slice 4a `WebGpuRenderer`
   to extend.
-- `apps/jet/crates/grid-render-webgpu/src/cell_rect.rs` — `CellInstance` byte
+- `crates/grid-render-webgpu/src/cell_rect.rs` — `CellInstance` byte
   layout, pipeline config.
-- `apps/jet/crates/grid-render-webgpu/src/instance_pool.rs` — Slice 4d
+- `crates/grid-render-webgpu/src/instance_pool.rs` — Slice 4d
   `InstanceBufferPool::get_or_grow` for instance-buffer reuse.
-- `apps/jet/crates/grid-render-webgpu/src/viewport.rs` — viewport bind group
+- `crates/grid-render-webgpu/src/viewport.rs` — viewport bind group
   already on the renderer.
 - wgpu 24 docs: `SurfaceError::{Timeout, Outdated, Lost, OutOfMemory,
   Other}` covers the acquire failure space. Map 1:1 in `RenderFrameError`.

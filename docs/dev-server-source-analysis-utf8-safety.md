@@ -1,7 +1,7 @@
 # dev source analysis panics on non-ASCII TSX/i18n strings
 
 > **Issue**: #1485
-> **Crate**: `cclab-jet` (`apps/jet/src/dev_server/source_analysis.rs`)
+> **Crate**: `cclab-jet` (`src/dev_server/source_analysis.rs`)
 > **Type**: bug
 
 ## Problem
@@ -18,7 +18,7 @@ inside a multi-byte UTF-8 codepoint trips an `is_char_boundary`
 assertion and panics the tokio worker thread:
 
 ```text
-thread tokio-rt-worker panicked at apps/jet/src/dev_server/source_analysis.rs:35:21:
+thread tokio-rt-worker panicked at src/dev_server/source_analysis.rs:35:21:
 assertion failed: self.is_char_boundary(end)
 ```
 
@@ -103,6 +103,6 @@ fn trim_buf_to_tail_chars(buf: &mut String, tail_bytes: usize);
 
 ## Reference Context
 
-- `apps/jet/src/dev_server/source_analysis.rs` — file under fix.
+- `src/dev_server/source_analysis.rs` — file under fix.
 - Rust `String::drain` documents the panic: "Panics if the starting
   point or end point do not lie on a char boundary".

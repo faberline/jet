@@ -27,7 +27,7 @@
 /// `dpr` values `<= 0` are silently clamped to `1.0` — see module
 /// docs for the rationale.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/dpr-scaling-slice-4g.md#interface
+/// @spec crates/grid-render-webgpu/docs/dpr-scaling-slice-4g.md#interface
 /// @issue #1725
 pub fn compute_physical_size(logical: (u32, u32), dpr: f32) -> (u32, u32) {
     let dpr = if dpr > 0.0 { dpr } else { 1.0 };
@@ -40,7 +40,7 @@ pub fn compute_physical_size(logical: (u32, u32), dpr: f32) -> (u32, u32) {
 /// Used by callers that need sub-pixel precision (e.g. pointer event
 /// coordinates) instead of the rounded `compute_physical_size` path.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/dpr-scaling-slice-4g.md#interface
+/// @spec crates/grid-render-webgpu/docs/dpr-scaling-slice-4g.md#interface
 /// @issue #1725
 pub fn logical_to_physical_f32(logical: (f32, f32), dpr: f32) -> (f32, f32) {
     let dpr = if dpr > 0.0 { dpr } else { 1.0 };
@@ -53,7 +53,7 @@ pub fn logical_to_physical_f32(logical: (f32, f32), dpr: f32) -> (f32, f32) {
 /// stores logical px, so dividing here lets the tree query work
 /// directly. `dpr <= 0` is treated as `1.0` — see module docs.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/dpr-scaling-slice-4g.md#interface
+/// @spec crates/grid-render-webgpu/docs/dpr-scaling-slice-4g.md#interface
 /// @issue #1725
 pub fn physical_to_logical_f32(physical: (f32, f32), dpr: f32) -> (f32, f32) {
     let dpr = if dpr > 0.0 { dpr } else { 1.0 };

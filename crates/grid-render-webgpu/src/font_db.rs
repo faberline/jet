@@ -54,7 +54,7 @@ use crate::font_face::FontFace;
 /// `Copy + Hash + Eq` so it can be a `HashMap` key in the future
 /// glyph cache.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
+/// @spec crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
 /// @issue #1751
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct FaceId(pub u32);
@@ -62,7 +62,7 @@ pub struct FaceId(pub u32);
 /// CSS-style font style for queries. Wraps `fontdb::Style` so
 /// downstream slices don't see `fontdb` in their public surfaces.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
+/// @spec crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
 /// @issue #1751
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum FontStyle {
@@ -83,7 +83,7 @@ impl From<FontStyle> for fontdb::Style {
 
 /// Errors returned by [`FontDb::load_font_data`].
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
+/// @spec crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
 /// @issue #1751
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum FontDbError {
@@ -113,7 +113,7 @@ impl std::error::Error for FontDbError {}
 /// `(family, weight, style)` triples. See module docs for the WHY
 /// behind the eager-parse + type-wrapping design.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
+/// @spec crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
 /// @issue #1751
 pub struct FontDb {
     inner: fontdb::Database,
@@ -124,7 +124,7 @@ pub struct FontDb {
 impl FontDb {
     /// Empty database — no system fonts loaded.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
+    /// @spec crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
     /// @issue #1751
     pub fn new() -> Self {
         Self {
@@ -140,7 +140,7 @@ impl FontDb {
     /// `tracing::warn!` and skipped. See module docs for the
     /// skip-on-parse-failure invariant.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
+    /// @spec crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
     /// @issue #1751
     pub fn default_with_system_fonts() -> Self {
         let mut db = Self::new();
@@ -163,7 +163,7 @@ impl FontDb {
     ///   `FaceInfo` entries but every face failed
     ///   [`FontFace::from_bytes`].
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
+    /// @spec crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
     /// @issue #1751
     pub fn load_font_data(&mut self, bytes: Vec<u8>) -> Result<Vec<FaceId>, FontDbError> {
         let before: std::collections::HashSet<fontdb::ID> =
@@ -200,7 +200,7 @@ impl FontDb {
     /// [`FaceId`]. Always uses `fontdb::Stretch::Normal` — stretch
     /// is a follow-up slice's concern.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
+    /// @spec crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
     /// @issue #1751
     pub fn query(&self, family: &str, weight: u16, style: FontStyle) -> Option<FaceId> {
         let families = [fontdb::Family::Name(family)];
@@ -217,7 +217,7 @@ impl FontDb {
     /// Look up the parsed face for `id`. Returns `None` if `id`
     /// is out of range — out-of-band IDs are graceful, not a panic.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
+    /// @spec crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
     /// @issue #1751
     pub fn face(&self, id: FaceId) -> Option<&FontFace> {
         self.faces.get(id.0 as usize)
@@ -225,7 +225,7 @@ impl FontDb {
 
     /// Number of successfully parsed and registered faces.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
+    /// @spec crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
     /// @issue #1751
     pub fn len(&self) -> usize {
         self.faces.len()
@@ -234,7 +234,7 @@ impl FontDb {
     /// `true` when no faces have been registered (clippy-required
     /// companion to [`Self::len`]).
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
+    /// @spec crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
     /// @issue #1751
     pub fn is_empty(&self) -> bool {
         self.faces.is_empty()

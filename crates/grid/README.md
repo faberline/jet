@@ -40,9 +40,9 @@ command history.
   sheet/workbook operations, formatting, validation, search/replace, selection,
   clipboard, input/edit/viewport state, and history commands
 - Gate: `cargo test -p jet-grid`
-- Source: `apps/jet/crates/grid/src/core`, `apps/jet/crates/grid/src/history`
-- Evidence: `cargo test -p jet-grid`; apps/jet/crates/grid/src/core;
-  apps/jet/crates/grid/src/history
+- Source: `crates/grid/src/core`, `crates/grid/src/history`
+- Evidence: `cargo test -p jet-grid`; crates/grid/src/core;
+  crates/grid/src/history
 
 ### Formula Evaluation Engine
 
@@ -59,8 +59,8 @@ row/column mutations.
   lookup/logical/math/date/text functions, dependency cycles, and reference
   shifting
 - Gate: `cargo test -p jet-grid`
-- Source: `apps/jet/crates/grid/src/formula`
-- Evidence: `cargo test -p jet-grid`; apps/jet/crates/grid/src/formula
+- Source: `crates/grid/src/formula`
+- Evidence: `cargo test -p jet-grid`; crates/grid/src/formula
 
 ### Grid Persistence And Spatial Query
 
@@ -78,8 +78,8 @@ range/spatial queries, and Yrs update compaction.
   query/delete, range/spatial query builders, and Yrs update/snapshot store
   operations
 - Gate: `cargo test -p jet-grid`
-- Source: `apps/jet/crates/grid/src/db`
-- Evidence: `cargo test -p jet-grid`; apps/jet/crates/grid/src/db
+- Source: `crates/grid/src/db`
+- Evidence: `cargo test -p jet-grid`; crates/grid/src/db
 
 ### Collaboration Server And Workbook API
 
@@ -98,7 +98,7 @@ routes, and a Yrs-backed collaboration WebSocket router.
   compile under default features
 - Gate: smoke coverage only because no HTTP/WebSocket journey test is present
 - Gate: `cargo test -p jet-grid`
-- Source: `apps/jet/crates/grid/src/bin/jet-grid-server.rs`,
-  `apps/jet/crates/grid/src/server`
+- Source: `crates/grid/src/bin/jet-grid-server.rs`,
+  `crates/grid/src/server`
 - Evidence: `cargo test -p jet-grid`;
-  apps/jet/crates/grid/src/bin/jet-grid-server.rs; apps/jet/crates/grid/src/server
+  crates/grid/src/bin/jet-grid-server.rs; crates/grid/src/server

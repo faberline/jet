@@ -1746,10 +1746,6 @@ var x = 1;"#;
     fn test_strip_comments_real_bundle() {
         // Read the actual pre-minified bundle to reproduce the SVG URL corruption
         let bundle_path = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
-            .parent()
-            .unwrap()
-            .parent()
-            .unwrap()
             .join("examples/react-bench/dist/_debug_preminify.js");
         if !bundle_path.exists() {
             eprintln!("Optional bundle fixture absent at {:?}", bundle_path);
@@ -1780,10 +1776,6 @@ var x = 1;"#;
     #[test]
     fn test_minify_js_real_bundle() {
         let bundle_path = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
-            .parent()
-            .unwrap()
-            .parent()
-            .unwrap()
             .join("examples/react-bench/dist/_debug_preminify.js");
         if !bundle_path.exists() {
             eprintln!("Optional bundle fixture absent at {:?}", bundle_path);

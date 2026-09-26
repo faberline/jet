@@ -24,7 +24,7 @@ e2e_tests:
     claim_id: production-replacement-readiness
     contract_id: production-replacement-readiness
     category: behavior
-    command: "apps/jet/scripts/verify-basic-dom-gates.sh --all"
+    command: "scripts/verify-basic-dom-gates.sh --all"
     assertions:
       - "The full production replacement flow passes its required end-to-end gates."
 ```

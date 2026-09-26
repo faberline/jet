@@ -23,7 +23,7 @@
 //! Slice 4t (#1738) — an unreachable adapter is *not* a
 //! regression.
 //!
-//! @spec apps/jet/crates/grid-render-webgpu/docs/lifecycle-docs-slice-4dd.md#interface
+//! @spec crates/grid-render-webgpu/docs/lifecycle-docs-slice-4dd.md#interface
 //! @issue #1748
 
 use jet_grid_render_webgpu::cell_rect::CellInstance;

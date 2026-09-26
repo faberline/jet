@@ -70,12 +70,7 @@ async fn free_port() -> u16 {
 async fn browser_cli_drives_debug_bridge_end_to_end() {
     common::require_env();
 
-    let workspace = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-        .parent()
-        .unwrap()
-        .parent()
-        .unwrap()
-        .to_path_buf();
+    let workspace = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"));
     let demo = workspace.join("examples").join("counter-demo");
     let _ = fs::remove_dir_all(demo.join("dist"));
     // Keep .jet/wasm-build across runs — the incremental cache saves

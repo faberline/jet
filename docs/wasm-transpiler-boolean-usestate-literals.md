@@ -1,7 +1,7 @@
 # wasm transpiler lowers boolean useState literals as i64
 
 > **Issue**: #1404
-> **Crate**: `jet` (`apps/jet/src/tsx_to_rust/emit.rs`)
+> **Crate**: `jet` (`src/tsx_to_rust/emit.rs`)
 > **Type**: bug
 
 ## Problem
@@ -118,10 +118,10 @@ let rust_ty = match arg.kind() {
 
 ## Reference Context
 
-- `apps/jet/src/tsx_to_rust/emit.rs:432` — the inference site.
-- `apps/jet/tests/wasm/tsx_to_rust_toggle.rs` — pins the identifier
+- `src/tsx_to_rust/emit.rs:432` — the inference site.
+- `tests/wasm/tsx_to_rust_toggle.rs` — pins the identifier
   path (`use_state::<bool>(props.initial)`).
-- `apps/jet/tests/wasm/tsx_to_rust_counter.rs` — pins the legacy `i64`
+- `tests/wasm/tsx_to_rust_counter.rs` — pins the legacy `i64`
   default for numeric prop fields.
 - `projects/cue/fe/src/CueWasmApp.tsx` (2026-05-08 dogfood) — the
   caller that surfaced this bug; their workaround can be reverted

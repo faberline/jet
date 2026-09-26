@@ -5,7 +5,7 @@
 //! the WASM build. The fix maps boolean / numeric / string literal
 //! initializers to their matching Rust primitive turbofish.
 //!
-//! Spec: apps/jet/docs/wasm-transpiler-boolean-usestate-literals.md
+//! Spec: docs/wasm-transpiler-boolean-usestate-literals.md
 
 use jet::tsx_to_rust::transpile;
 

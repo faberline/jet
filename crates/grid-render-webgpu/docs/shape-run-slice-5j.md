@@ -106,7 +106,7 @@ Out:
 /// baseline offset from the run's first-line baseline (0.0 for the
 /// first line; line_height for the second, etc.).
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/shape-run-slice-5j.md#interface
+/// @spec crates/grid-render-webgpu/docs/shape-run-slice-5j.md#interface
 /// @issue #1759
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct PositionedGlyph {
@@ -121,7 +121,7 @@ pub struct PositionedGlyph {
 /// `'\n'` resets `x` to 0 and adds `(ascender - descender + line_gap)
 /// * scale` to `y`. Missing-glyph characters are silently dropped.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/shape-run-slice-5j.md#interface
+/// @spec crates/grid-render-webgpu/docs/shape-run-slice-5j.md#interface
 /// @issue #1759
 pub fn shape_run(
     face: &FontFace,
@@ -150,7 +150,7 @@ pub fn shape_run(
 
 ## Reference Context
 
-- Parent epic [#1700](https://github.com/chrischeng-c4/cclab/issues/1700) — text pass.
+- Parent epic [#1700](https://github.com/faberline/axiom/issues/1700) — text pass.
 - Slice 5a (#1750) — `FontFace` API (`glyph_index`, `hor_advance`,
   `ascender`/`descender`/`line_gap`, `units_per_em`) — this slice's
   inputs.

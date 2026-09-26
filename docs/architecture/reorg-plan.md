@@ -31,24 +31,24 @@ higher-scope branch.
 
 ## Goal (scoped)
 
-Reorganize **`apps/jet/src/` and `apps/jet/tests/` internals** following
+Reorganize **`src/` and `tests/` internals** following
 DDD layering and small-and-many-files conventions. **Public APIs and module
 paths visible to external callers stay backward-compatible** via `pub use`
 aliases.
 
 ## Scope decision
 
-`.aw/config.toml` restricts the `project-jet` branch to `apps/jet/**`
+`.aw/config.toml` restricts the `project-jet` branch to `**`
 and `.aw/tech-design/projects/jet/**`. Any change to the workspace root
 `Cargo.toml` (member list) or to `crates/cclab-cli/Cargo.toml` is blocked
 from this branch.
 
 Therefore this pass is limited to:
 
-- `apps/jet/src/**` — module tree reorganization
-- `apps/jet/tests/**` — test file grouping
-- `apps/jet/Cargo.toml` — only fields inside this manifest
-- `apps/jet/docs/**` — this plan
+- `src/**` — module tree reorganization
+- `tests/**` — test file grouping
+- `Cargo.toml` — only fields inside this manifest
+- `docs/**` — this plan
 
 The following ambitions are **deferred** until a higher-scope branch (or
 relaxed path policy) is available:
@@ -67,14 +67,14 @@ items.
 
 - No runtime behavior changes.
 - No public symbol renames; old paths keep working through re-exports.
-- No edits to files outside `apps/jet/**`.
+- No edits to files outside `**`.
 
 ## Success criteria (this pass)
 
 1. `cargo build -p jet` succeeds.
 2. `cargo test -p jet` passes (or fails only on the same tests that fail
    pre-reorg — capture a baseline before starting).
-3. `apps/jet/src/` top level has at most ~10 `.rs` files. The 28 grouped
+3. `src/` top level has at most ~10 `.rs` files. The 28 grouped
    files (`e2e_*`, `pm_report_*`, `evidence_*`, `agent_*`) are folded into
    their respective context subdirectories.
 4. New context directories exist with their own `mod.rs`:
@@ -86,9 +86,9 @@ items.
    pre-reorg path. E.g., `crate::e2e_actionability::*` still resolves
    (via `pub use crate::e2e::actionability as e2e_actionability` in
    `lib.rs`).
-6. `apps/jet/tests/` is grouped by context: `tests/e2e/`, `tests/pm_report/`,
+6. `tests/` is grouped by context: `tests/e2e/`, `tests/pm_report/`,
    `tests/parity/`, `tests/playwright_compat/`, `tests/debug/`,
-   `tests/fixtures_runtime/`, with `[[test]]` entries in `apps/jet/Cargo.toml`
+   `tests/fixtures_runtime/`, with `[[test]]` entries in `Cargo.toml`
    updated to match. Tests still discovered and runnable.
 7. The plan document is updated with completion status when finished.
 
@@ -133,6 +133,6 @@ future work.
 cd /Users/chris.cheng/cclab/project-jet
 cargo build -p jet
 cargo test -p jet --no-run
-ls apps/jet/src/*.rs | wc -l    # should drop from ~44 to ~10
-find apps/jet/src/e2e apps/jet/src/pm_report apps/jet/src/evidence apps/jet/src/agent -name "*.rs" | wc -l   # ~28
+ls src/*.rs | wc -l    # should drop from ~44 to ~10
+find src/e2e src/pm_report src/evidence src/agent -name "*.rs" | wc -l   # ~28
 ```

@@ -7,13 +7,13 @@
 // @contract full-toolchain-dogfood-flow
 // @category behavior
 // @required_for_production true
-// @command apps/jet/scripts/verify-basic-dom-gates.sh --all
+// @command scripts/verify-basic-dom-gates.sh --all
 // AW-EC-END
 
 #[test]
 #[ignore = "AW EC gate: run via `aw health --verify-ec` or `cargo test -- --ignored`"]
 fn full_toolchain_dogfood_flow() {
-    let command = "apps/jet/scripts/verify-basic-dom-gates.sh --all";
+    let command = "scripts/verify-basic-dom-gates.sh --all";
     let id = "full-toolchain-dogfood-flow";
     let mut root = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"));
     while !root.join(".aw").is_dir() {

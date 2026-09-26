@@ -33,7 +33,7 @@ use std::sync::{Arc, Mutex};
 /// `DeviceLostReason` enum with the human-readable diagnostic the
 /// driver supplied.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/lost-context-recovery-slice-4h.md#interface
+/// @spec crates/grid-render-webgpu/docs/lost-context-recovery-slice-4h.md#interface
 /// @issue #1726
 #[derive(Debug, Clone)]
 pub struct DeviceLostEvent {
@@ -51,7 +51,7 @@ pub struct DeviceLostEvent {
 /// and read by the renderer. `Arc`-wrapped because the callback is
 /// `Send + 'static` and outlives the borrow stack that registered it.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/lost-context-recovery-slice-4h.md#interface
+/// @spec crates/grid-render-webgpu/docs/lost-context-recovery-slice-4h.md#interface
 /// @issue #1726
 pub struct LostContextStatus {
     inner: Mutex<Inner>,
@@ -113,7 +113,7 @@ impl LostContextStatus {
 /// clone of `status` so the status cell outlives the borrow stack
 /// that registered it.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/lost-context-recovery-slice-4h.md#interface
+/// @spec crates/grid-render-webgpu/docs/lost-context-recovery-slice-4h.md#interface
 /// @issue #1726
 pub(crate) fn install_callback(device: &wgpu::Device, status: &Arc<LostContextStatus>) {
     let status = Arc::clone(status);
@@ -128,7 +128,7 @@ pub(crate) fn install_callback(device: &wgpu::Device, status: &Arc<LostContextSt
 /// `request_device` vs `surface.configure` failures (driver-permanent
 /// vs surface-target-gone).
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/lost-context-recovery-slice-4h.md#interface
+/// @spec crates/grid-render-webgpu/docs/lost-context-recovery-slice-4h.md#interface
 /// @issue #1726
 #[derive(Debug, thiserror::Error)]
 pub enum RecoveryError {

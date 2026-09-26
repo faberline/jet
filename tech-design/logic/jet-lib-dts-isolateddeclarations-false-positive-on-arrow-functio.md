@@ -64,7 +64,7 @@ flowchart TD
     fallback_object_paths -->|no match either| isolated_decl_error
 ```
 
-Scope for WI #1264 (`projects/jet/src/bundler/dts.rs`): empirically re-verified against the issue's exact minimal repro on the current `app/jet` source tree — `cargo build -p jet --bin jet` then `jet build --lib --format esm --dts` against a standalone `export const funcReturningTypedObject = (a: string, b: number = 1) => { return { fromOutsource: (x: string): Promise<string> => Promise.resolve(x), toOutsource: (y?: string): string => y ?? a, }; };` still fails with `isolatedDeclarations error — exported \`const funcReturningTypedObject\` lacks an explicit type annotation`, so this is a real analyzer gap, not an already-implemented case pinned only by tests (contrast WI #937, which turned out to be already-implemented and closed as tests-only).
+Scope for WI #1264 (`src/bundler/dts.rs`): empirically re-verified against the issue's exact minimal repro on the current `app/jet` source tree — `cargo build -p jet --bin jet` then `jet build --lib --format esm --dts` against a standalone `export const funcReturningTypedObject = (a: string, b: number = 1) => { return { fromOutsource: (x: string): Promise<string> => Promise.resolve(x), toOutsource: (y?: string): string => y ?? a, }; };` still fails with `isolatedDeclarations error — exported \`const funcReturningTypedObject\` lacks an explicit type annotation`, so this is a real analyzer gap, not an already-implemented case pinned only by tests (contrast WI #937, which turned out to be already-implemented and closed as tests-only).
 
 Root cause: `infer_variable_declarator_type` (the entry point for inferring an untyped `const` initializer's declared type) tries, in order, `annotated_expression_type` (the `#937` `as`/`satisfies` path), `infer_arrow_function_type` (requires the arrow to carry its own explicit `return_type` field — the already-fixed #799 case), then `infer_object_literal_type` / `infer_single_arrow_property_object_literal_type` directly on the declarator's `value` node. When `value` is an `arrow_function` whose body is a `statement_block` (i.e. uses `{ return ...; }` rather than a concise `=> expr` body), none of those three fallbacks ever look *inside* the arrow's body — `infer_object_literal_type`/`infer_single_arrow_property_object_literal_type` both early-return `None` because `value.kind() == "arrow_function"`, not `"object"`. The returned object literal's own already-typed members are therefore never reached, and the declarator falls through to the fail-loud isolatedDeclarations diagnostic even though every property inside the returned object literal carries an explicit type (`tsc --isolatedDeclarations` accepts this shape and infers the return type from the returned literal).
 
@@ -112,12 +112,12 @@ flowchart TD
 
 ```yaml
 changes:
-  - path: projects/jet/src/bundler/dts.rs
+  - path: src/bundler/dts.rs
     action: update
     section: logic
     impl_mode: hand-written
     reason: "Empirically re-verified against WI #1264's exact minimal repro (`jet build --lib --format esm --dts` on a standalone `export const funcReturningTypedObject = (a: string, b: number = 1) => { return { fromOutsource: (x: string): Promise<string> => Promise.resolve(x), toOutsource: (y?: string): string => y ?? a, }; };`) still fails on the current source tree, so this is a genuine analyzer gap (not an already-implemented case pinned only by tests, contrast WI #937). Add `infer_arrow_body_return_object_type` and wire it into `infer_variable_declarator_type` immediately after `infer_arrow_function_type`: for an arrow function value with no explicit `return_type` field whose body is a `statement_block` containing exactly one `return_statement` of an `object` node, delegate member typing to the existing `infer_object_literal_type` routine and emit `(params) => { member: Type; ... }`; any other body shape keeps falling through unchanged to the existing fail-loud isolatedDeclarations diagnostic. Scoped to the shape named in the issue only; does not intersect #1263 (nested object literals), #1238 (Object.assign+computed-key), or #1262 (property truncation after Object.assign spread)."
-  - path: projects/jet/src/bundler/dts.rs
+  - path: src/bundler/dts.rs
     action: update
     section: unit-test
     impl_mode: hand-written

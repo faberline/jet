@@ -98,7 +98,7 @@ Out:
 /// Atlas-space origin of a glyph rect. The rect spans
 /// `[x, x + width) × [y, y + height)` in atlas pixel coordinates.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/glyph-atlas-upload-slice-5f.md#interface
+/// @spec crates/grid-render-webgpu/docs/glyph-atlas-upload-slice-5f.md#interface
 /// @issue #1755
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct AtlasPlacement {
@@ -108,7 +108,7 @@ pub struct AtlasPlacement {
 
 /// Failure modes for [`upload_glyph`].
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/glyph-atlas-upload-slice-5f.md#interface
+/// @spec crates/grid-render-webgpu/docs/glyph-atlas-upload-slice-5f.md#interface
 /// @issue #1755
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum AtlasUploadError {
@@ -130,7 +130,7 @@ pub enum AtlasUploadError {
 /// `Ok(())` on success or a typed error if validation fails before
 /// the GPU is touched.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/glyph-atlas-upload-slice-5f.md#interface
+/// @spec crates/grid-render-webgpu/docs/glyph-atlas-upload-slice-5f.md#interface
 /// @issue #1755
 pub fn upload_glyph(
     queue: &wgpu::Queue,
@@ -162,7 +162,7 @@ pub fn upload_glyph(
 
 ## Reference Context
 
-- Parent epic [#1700](https://github.com/chrischeng-c4/cclab/issues/1700) — text pass.
+- Parent epic [#1700](https://github.com/faberline/axiom/issues/1700) — text pass.
 - Slice 5d (#1753) — `GlyphCache` produces the bitmaps + placement
   metrics that drive this upload.
 - Slice 5e (#1754) — `glyph_atlas_texture_descriptor`. The R8Unorm +

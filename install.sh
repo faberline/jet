@@ -4,12 +4,12 @@
 # Releases and drops it on your PATH.
 #
 # Usage:
-#   curl -fsSL https://raw.githubusercontent.com/chrischeng-c4/axiom/main/apps/jet/install.sh | sh
+#   curl -fsSL https://raw.githubusercontent.com/faberline/jet/main/install.sh | sh
 #
 # Env overrides:
 #   JET_VERSION   tag to install (default: latest jet@* release, e.g. jet@0.1.0)
 #   JET_INSTALL   install dir (default: $HOME/.local/bin)
-#   JET_REPO      gh repo (default: chrischeng-c4/axiom)
+#   JET_REPO      gh repo (default: faberline/jet)
 #   GH_TOKEN      GitHub token for private-repo fetch (also: GITHUB_TOKEN).
 #                 axiom is public so this is normally unnecessary; kept for
 #                 forks/mirrors that are private. If unset and `gh` is logged
@@ -22,7 +22,7 @@
 #   3  missing curl / tar
 set -eu
 
-REPO="${JET_REPO:-chrischeng-c4/axiom}"
+REPO="${JET_REPO:-faberline/jet}"
 INSTALL_DIR="${JET_INSTALL:-$HOME/.local/bin}"
 VERSION="${JET_VERSION:-latest}"
 TOKEN="${GH_TOKEN:-${GITHUB_TOKEN:-}}"

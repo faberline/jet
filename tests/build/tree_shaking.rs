@@ -4,7 +4,7 @@
 //! `crate::bundler::tree_shake`. This is the **R1 + R2 foundation
 //! slice** of #1249:
 //!
-//! - **R1** — fixture-based test suite under `projects/jet/tests/`.
+//! - **R1** — fixture-based test suite under `tests/`.
 //! - **R2** — snapshot-based assertions on the analyzer + shaker output.
 //! - **R3** (next slice) — bundle-size baseline regression gate per
 //!   fixture.
@@ -30,7 +30,7 @@
 //! that the bundler chains together.
 //!
 //! Snapshots are written to
-//! `projects/jet/tests/__snapshots__/tree_shaking__<name>.json`. First
+//! `tests/__snapshots__/tree_shaking__<name>.json`. First
 //! run writes the snapshot; subsequent runs diff against it. Set
 //! `JET_SNAPSHOT_UPDATE=1` to overwrite when changes are intentional.
 
@@ -576,8 +576,8 @@ fn dynamic_import_retained_await() {
 /// remove if mangler supports; else document as not supported."
 /// Tree-shaking lives at the export level — `export class Foo {…}`
 /// is one symbol regardless of how many methods it carries. The
-/// current `projects/jet/src/bundler/mangle.rs` and
-/// `projects/jet/src/bundler/dce.rs` do NOT do method-level DCE, so
+/// current `src/bundler/mangle.rs` and
+/// `src/bundler/dce.rs` do NOT do method-level DCE, so
 /// an unused method on an otherwise-used class is preserved
 /// verbatim.
 ///

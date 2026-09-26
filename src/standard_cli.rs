@@ -16,7 +16,7 @@ use clap::{Arg, ArgAction, ArgMatches, Command};
 /// values are stamped by `build.rs`.
 const TOOL: cli_std::ToolInfo = cli_std::ToolInfo {
     project: "jet",
-    repo: "chrischeng-c4/axiom",
+    repo: "faberline/jet",
     target: env!("JET_TARGET"),
     version: env!("CARGO_PKG_VERSION"),
     git_sha: env!("JET_GIT_SHA"),

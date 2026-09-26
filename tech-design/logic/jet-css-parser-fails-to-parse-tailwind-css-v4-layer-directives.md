@@ -3,10 +3,10 @@ id: jet-css-parser-fails-to-parse-tailwind-css-v4-layer-directives
 summary: >
   Tailwind v4 emits the bare cascade-layer order statement `@layer theme,
   base, components, utilities;` at the top of its compiled CSS. jet's
-  `@layer` handling in `projects/jet/src/css/directives.rs` only recognizes
+  `@layer` handling in `src/css/directives.rs` only recognizes
   the block form (`@layer name { ... }`) via a manual scan expecting a
   following `{`; the un-stripped statement form then reaches the final
-  `lightningcss` parse step in `projects/jet/src/css/mod.rs::apply_lightningcss`
+  `lightningcss` parse step in `src/css/mod.rs::apply_lightningcss`
   and raises `CSS parse error: Unexpected token AtKeyword("layer")`. This TD
   extends `process_layer_directives` to recognize and drop the bare
   statement form before it reaches lightningcss, without regressing
@@ -97,7 +97,7 @@ flowchart TD
 
 ```yaml
 css_layer_statement_form_fix:
-  target: "projects/jet/src/css/directives.rs"
+  target: "src/css/directives.rs"
   function: "process_layer_directives"
   problem: "the existing scan loop consumes '@layer ' then unconditionally expects the next non-whitespace token to be '{'; when it is not (the bare 'name, name, ...;' order-statement form), the loop falls into its malformed-input fallback (re-emits the literal '@layer ' and continues scanning from the SAME position), leaving the untouched statement form in the returned css string, which then fails lightningcss's StyleSheet::parse with 'CSS parse error: Unexpected token AtKeyword(\"layer\")'"
   fix_approach: "after locating the layer-name-list token (remaining up to the first '{' or whitespace-delimited stop, matching the existing name_end scan), classify the clause by which terminator appears first: '{' (block form, existing behavior unchanged) or ';' before any '{' (bare statement form). For the statement form, consume through and including the terminating ';' and do NOT copy that consumed span into the css output buffer -- i.e. strip the whole '@layer <name>(, <name>)*;' statement. No layer_name matching against base/components/utilities/unknown is needed for the statement form since it carries no body to route."
@@ -110,7 +110,7 @@ css_layer_statement_form_fix:
     - "the @import \"tailwindcss\" directory-resolution failure tracked separately as #1375"
     - "any lightningcss version change"
 regression_test:
-  target: "projects/jet/src/css/directives.rs"
+  target: "src/css/directives.rs"
   location: "#[cfg(test)] mod tests, alongside the existing '── @layer routing ──' test group"
   test_name: "process_layer_directives_strips_bare_statement_form_alongside_block_form"
   input: "'@layer theme, base, components, utilities;\n@layer base { h1 { margin: 0; } }'"
@@ -119,7 +119,7 @@ regression_test:
     - "result.css does not contain the substring 'AtKeyword' by construction (no unstripped at-rule token reaches the output)"
     - "result.base_additions and result.css both still contain 'h1' (existing block-form '@layer base { ... }' inlining is unaffected, matching the existing process_layer_directives_extracts_base_rules assertion shape)"
   parse_proof_test:
-    location: "projects/jet/src/css/mod.rs, alongside apply_lightningcss's existing test coverage"
+    location: "src/css/mod.rs, alongside apply_lightningcss's existing test coverage"
     test_name: "apply_lightningcss_accepts_stripped_layer_statement_form_output"
     input: "the process_layer_directives output for '@layer theme, base, components, utilities;\n@layer base { h1 { margin: 0; } }'"
     assertion: "apply_lightningcss(...) returns Ok(..), proving AC1: no 'CSS parse error: Unexpected token AtKeyword' is raised"
@@ -177,22 +177,22 @@ flowchart TD
 
 ```yaml
 changes:
-  - path: projects/jet/src/css/directives.rs
+  - path: src/css/directives.rs
     action: update
     section: config
     impl_mode: hand-written
     reason: "Extend process_layer_directives' '@layer ' scan loop to classify each occurrence by whichever terminator ('{' or ';') appears first after the layer-name-list token: keep the existing block-form handling (find_matching_close_brace, base/components/utilities routing) unchanged, and add a new statement-form branch that consumes through the terminating ';' and drops the whole '@layer <name>(, <name>)*;' clause from the returned css without emitting replacement text -- fixing R1/AC1 while leaving AC3's existing block-form tests green."
-  - path: projects/jet/src/css/directives.rs
+  - path: src/css/directives.rs
     action: update
     section: unit-test
     impl_mode: hand-written
     reason: "Add process_layer_directives_strips_bare_statement_form_alongside_block_form to the existing '── @layer routing ──' test group: input combines a leading '@layer theme, base, components, utilities;' statement with a block-form '@layer base { h1 { margin: 0; } }' rule; asserts the statement substring is stripped from result.css while result.base_additions/result.css still contain the block-form h1 rule (AC2, R1)."
-  - path: projects/jet/src/css/mod.rs
+  - path: src/css/mod.rs
     action: update
     section: unit-test
     impl_mode: hand-written
     reason: "Add apply_lightningcss_accepts_stripped_layer_statement_form_output alongside apply_lightningcss's existing test coverage: runs process_layer_directives' output for the combined statement+block-form input through apply_lightningcss and asserts Ok(..), proving the un-stripped-statement 'CSS parse error: Unexpected token AtKeyword(\"layer\")' no longer occurs end-to-end through the real parse step (AC1)."
-  - path: projects/jet/README.md
+  - path: README.md
     action: update
     section: config
     impl_mode: hand-written

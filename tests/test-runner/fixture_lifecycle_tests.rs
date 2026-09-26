@@ -9,7 +9,7 @@
 //! Non-goals (deferred): worker isolation matrix and project-scoped
 //! fixtures. Those land via #2715 + later slices.
 //!
-//! @spec apps/jet/data/runtime/test/CONTRACT.md#fixture-lifecycle-2711
+//! @spec data/runtime/test/CONTRACT.md#fixture-lifecycle-2711
 
 use jet::test_runner::{self, RunnerConfig};
 use std::fs;

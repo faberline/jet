@@ -113,14 +113,14 @@ impl<'window> WebGpuRenderer<'window> {
 
 ## Reference Context
 
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs:74` — the
+- `crates/grid-render-webgpu/src/lib.rs:74` — the
   `cell_pipelines` field (cache).
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs:458-506` — the
+- `crates/grid-render-webgpu/src/lib.rs:458-506` — the
   existing `create_cell_pipeline` that does the actual build /
   insert; `pipeline_for` is a one-liner on top.
-- `apps/jet/crates/grid-render-webgpu/docs/cell-rect-pipeline-slice-4b.md`
+- `crates/grid-render-webgpu/docs/cell-rect-pipeline-slice-4b.md`
   — Slice 4b introduced the cache.
-- `apps/jet/crates/grid-render-webgpu/docs/msaa-toggle-slice-4p.md` —
+- `crates/grid-render-webgpu/docs/msaa-toggle-slice-4p.md` —
   Slice 4p re-keyed the cache on `(format, msaa_count)`; clears it
   from `set_msaa_count`.
 - Parent epic #1254 — WebGPU-React renderer; this slice closes the

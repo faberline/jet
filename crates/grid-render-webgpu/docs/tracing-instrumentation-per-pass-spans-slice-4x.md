@@ -138,10 +138,10 @@ frame{frame_id=N, cells=M}      // info_span! in render_frame
 
 ## Reference Context
 
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs` — `render_frame`.
-- `apps/jet/crates/grid-render-webgpu/src/frame.rs` — `FrameBuilder` +
+- `crates/grid-render-webgpu/src/lib.rs` — `render_frame`.
+- `crates/grid-render-webgpu/src/frame.rs` — `FrameBuilder` +
   `encode_cell_pass`.
-- `apps/jet/crates/grid-render-webgpu/src/validation.rs` — existing
+- `crates/grid-render-webgpu/src/validation.rs` — existing
   log-bridge install (sibling concern; tracing setup parallels it).
 - Parent epic #1254 — WebGPU-React renderer; this slice freezes
   the per-frame tracing schema for the devtools layer.

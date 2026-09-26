@@ -71,7 +71,7 @@ Out:
 /// given `(width, height)`. See module docs for the WHY behind the
 /// `R8Unorm` + `COPY_DST | TEXTURE_BINDING` choices.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/glyph-atlas-texture-descriptor-slice-5e.md#interface
+/// @spec crates/grid-render-webgpu/docs/glyph-atlas-texture-descriptor-slice-5e.md#interface
 /// @issue #1754
 pub fn glyph_atlas_texture_descriptor(
     width: u32,
@@ -93,7 +93,7 @@ pub fn glyph_atlas_texture_descriptor(
 
 ## Reference Context
 
-- Parent epic [#1700](https://github.com/chrischeng-c4/cclab/issues/1700) — text pass
+- Parent epic [#1700](https://github.com/faberline/axiom/issues/1700) — text pass
   (glyph rasterization, shaping, atlas upload, font fallback).
 - Slice 5c (#1752) — `rasterize_glyph` produces the 8-bit alpha
   bitmap whose format matches `R8Unorm`.

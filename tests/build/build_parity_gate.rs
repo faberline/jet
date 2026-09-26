@@ -39,7 +39,7 @@ fn jet_build_matches_vite_webpack_and_is_faster() {
 
     let run = harness::run_stdout_report_script(
         &root,
-        "projects/jet/scripts/compare-dom-build-corpus.mjs",
+        "scripts/compare-dom-build-corpus.mjs",
         &["--runtime-smoke", "required"],
     );
     let report = &run.report;

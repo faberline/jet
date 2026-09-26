@@ -46,7 +46,7 @@ use std::fmt;
 /// `Copy + Hash + Eq` so it can be a `HashMap` key in the future
 /// glyph atlas slice.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md#interface
+/// @spec crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md#interface
 /// @issue #1750
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct GlyphId(pub u16);
@@ -65,7 +65,7 @@ impl From<GlyphId> for ttf_parser::GlyphId {
 
 /// Errors returned by [`FontFace::from_bytes`].
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md#interface
+/// @spec crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md#interface
 /// @issue #1750
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum FontFaceError {
@@ -92,7 +92,7 @@ impl std::error::Error for FontFaceError {}
 /// Owned-bytes wrapper over `ttf_parser::Face`. See module docs for
 /// the WHY behind the owned + lazy-reparse design.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md#interface
+/// @spec crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md#interface
 /// @issue #1750
 #[derive(Debug, Clone)]
 pub struct FontFace {
@@ -112,7 +112,7 @@ impl FontFace {
     /// `Vec<u8>` (not `&[u8]`) per the AC — callers move ownership
     /// in so the wrapper has the only handle to the buffer.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md#interface
+    /// @spec crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md#interface
     /// @issue #1750
     pub fn from_bytes(bytes: Vec<u8>) -> Result<Self, FontFaceError> {
         let face = ttf_parser::Face::parse(&bytes, 0)
@@ -145,7 +145,7 @@ impl FontFace {
 
     /// Cached `units_per_em` from the font header.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md#interface
+    /// @spec crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md#interface
     /// @issue #1750
     pub fn units_per_em(&self) -> u16 {
         self.units_per_em
@@ -153,7 +153,7 @@ impl FontFace {
 
     /// Cached `ascender` in font-design units.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md#interface
+    /// @spec crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md#interface
     /// @issue #1750
     pub fn ascender(&self) -> i16 {
         self.ascender
@@ -163,7 +163,7 @@ impl FontFace {
     /// for fonts whose descender sits below the baseline. See the
     /// module-level sign-convention note.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md#interface
+    /// @spec crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md#interface
     /// @issue #1750
     pub fn descender(&self) -> i16 {
         self.descender
@@ -172,7 +172,7 @@ impl FontFace {
     /// Cached `line_gap` in font-design units. Typically `>= 0`,
     /// but the wrapper returns whatever the font reports.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md#interface
+    /// @spec crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md#interface
     /// @issue #1750
     pub fn line_gap(&self) -> i16 {
         self.line_gap
@@ -182,7 +182,7 @@ impl FontFace {
     /// Returns `None` if the codepoint isn't mapped — the font
     /// fallback chain (sibling slice) will then try the next face.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md#interface
+    /// @spec crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md#interface
     /// @issue #1750
     pub fn glyph_index(&self, c: char) -> Option<GlyphId> {
         // `parse` succeeded once at construction; the bytes haven't
@@ -197,7 +197,7 @@ impl FontFace {
     /// hmtx table. Returns `None` if the glyph index is out of
     /// range (the font's `numGlyphs` boundary).
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md#interface
+    /// @spec crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md#interface
     /// @issue #1750
     pub fn hor_advance(&self, glyph_id: GlyphId) -> Option<u16> {
         let face = ttf_parser::Face::parse(&self.bytes, 0)
@@ -210,7 +210,7 @@ impl FontFace {
     /// (`rustybuzz::Face::from_slice`, etc.) without an extra
     /// allocation.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md#interface
+    /// @spec crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md#interface
     /// @issue #1750
     pub fn bytes(&self) -> &[u8] {
         &self.bytes

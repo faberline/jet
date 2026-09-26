@@ -24,7 +24,7 @@ nodes:
   parser: { kind: process, label: "POSIX sh parses line 2 before installer logic" }
   fail: { kind: terminal, label: "Installer exits with syntax error" }
   fix: { kind: process, label: "Use shell comment marker #" }
-  valid: { kind: terminal, label: "sh -n projects/jet/install.sh passes" }
+  valid: { kind: terminal, label: "sh -n install.sh passes" }
 edges:
   - { from: issue, to: marker }
   - { from: marker, to: parser }
@@ -37,7 +37,7 @@ flowchart TD
     marker --> parser[POSIX sh parses line 2 before installer logic]
     parser --> fail([Installer exits with syntax error])
     marker --> fix[Use shell comment marker #]
-    fix --> valid([sh -n projects/jet/install.sh passes])
+    fix --> valid([sh -n install.sh passes])
 ```
 ## Unit Test
 <!-- type: unit-test lang: mermaid -->
@@ -54,13 +54,13 @@ requirements:
     verify: find . -name install.sh -exec sh -n {} ; -print
   shell_syntax:
     id: R1
-    text: "projects/jet/install.sh uses shell-comment HANDWRITE markers so POSIX sh can parse the installer before executing any bootstrap logic."
+    text: "install.sh uses shell-comment HANDWRITE markers so POSIX sh can parse the installer before executing any bootstrap logic."
     kind: regression
     risk: high
-    verify: sh -n projects/jet/install.sh
+    verify: sh -n install.sh
 ---
 flowchart TD
-    r1[R1 shell syntax] --> sh_n_projects_jet_install_sh[sh -n projects/jet/install.sh]
+    r1[R1 shell syntax] --> sh_n_projects_jet_install_sh[sh -n install.sh]
     r2[R2 repo install scripts] --> find_name_install_sh_exec_sh_n_print[find . -name install.sh -exec sh -n {} ; -print]
 ```
 ## Changes
@@ -69,13 +69,13 @@ flowchart TD
 ```yaml
 coverage_kind: semantic
 changes:
-  - path: "projects/jet/install.sh"
+  - path: "install.sh"
     action: modify
     section: logic
     description: |
       Change the HANDWRITE wrapper lines from JavaScript-style // markers to POSIX shell comments so the published installer parses under sh before executing bootstrap logic.
     impl_mode: hand-written
     verifies:
-      - "sh -n projects/jet/install.sh"
+      - "sh -n install.sh"
       - "find . -name install.sh -exec sh -n {} ; -print"
 ```

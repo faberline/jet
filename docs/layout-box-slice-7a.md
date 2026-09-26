@@ -111,7 +111,7 @@ Out:
 /// renderer's existing pixel-space convention; subpixel positions
 /// are real.
 ///
-/// @spec apps/jet/docs/layout-box-slice-7a.md#interface
+/// @spec docs/layout-box-slice-7a.md#interface
 /// @issue #1798
 #[repr(C)]
 #[derive(Debug, Clone, Copy, PartialEq, Default)]
@@ -127,7 +127,7 @@ pub struct Rect {
 /// resolved rects (vs per-side insets) and pinning the `#[repr(C)]`
 /// layout via `offset_of!` tests.
 ///
-/// @spec apps/jet/docs/layout-box-slice-7a.md#interface
+/// @spec docs/layout-box-slice-7a.md#interface
 /// @issue #1798
 #[repr(C)]
 #[derive(Debug, Clone, Copy, PartialEq, Default)]
@@ -167,7 +167,7 @@ impl Box {
 
 ## Reference Context
 
-- Parent epic [#1702](https://github.com/chrischeng-c4/cclab/issues/1702) —
+- Parent epic [#1702](https://github.com/faberline/axiom/issues/1702) —
   jet WebGPU-React renderer layout pipeline.
 - Slice 5j (#1759) — `jet_grid_render_webgpu::shaper::PositionedGlyph`
   carries `f32` pen positions in pixel space. The layout's `Rect.x/y`

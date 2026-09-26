@@ -24,7 +24,7 @@ e2e_tests:
     claim_id: package-manager-readiness
     contract_id: package-phase-gate
     category: behavior
-    command: "apps/jet/scripts/verify-basic-dom-gates.sh --phase package"
+    command: "scripts/verify-basic-dom-gates.sh --phase package"
     assertions:
       - "The package-manager verification phase passes its complete required gate set."
 ```

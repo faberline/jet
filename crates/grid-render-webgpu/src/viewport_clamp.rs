@@ -38,7 +38,7 @@ use crate::cell_rect::CellInstance;
 /// for NaN, so the final result for a NaN input is the original
 /// NaN. We coerce it to `0.0` at the end as a final guard.).
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/viewport-clamping-helper-integration-slice-4v.md#interface
+/// @spec crates/grid-render-webgpu/docs/viewport-clamping-helper-integration-slice-4v.md#interface
 /// @issue #1740
 pub fn clamp_scroll_px(
     raw_px: [f32; 2],
@@ -66,7 +66,7 @@ pub fn clamp_scroll_px(
 /// AABB of the visible window in virtual-sheet coords:
 /// `min = scroll_px`, `max = scroll_px + viewport_size_px`.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/viewport-clamping-helper-integration-slice-4v.md#interface
+/// @spec crates/grid-render-webgpu/docs/viewport-clamping-helper-integration-slice-4v.md#interface
 /// @issue #1740
 pub fn visible_rect_px(scroll_px: [f32; 2], viewport_size_px: [f32; 2]) -> ([f32; 2], [f32; 2]) {
     let min = scroll_px;
@@ -84,7 +84,7 @@ pub fn visible_rect_px(scroll_px: [f32; 2], viewport_size_px: [f32; 2]) -> ([f32
 ///
 /// A zero-area cell (`size_px = (0, 0)`) is treated as not visible.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/viewport-clamping-helper-integration-slice-4v.md#interface
+/// @spec crates/grid-render-webgpu/docs/viewport-clamping-helper-integration-slice-4v.md#interface
 /// @issue #1740
 pub fn cell_intersects_rect(cell: &CellInstance, min_px: [f32; 2], max_px: [f32; 2]) -> bool {
     let cell_min_x = cell.pos_px[0];

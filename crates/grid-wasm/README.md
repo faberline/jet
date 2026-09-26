@@ -39,10 +39,10 @@ selection/history behavior, JSON serialization, and zero-copy viewport buffers.
   persistence JSON, viewport packing, and bug-fix regressions
 - Gate: browser package/e2e verification is not covered by this gate
 - Gate: `cargo test -p jet-grid-wasm`
-- Source: `apps/jet/crates/grid-wasm/src/api.rs`,
-  `apps/jet/crates/grid-wasm/src/viewport.rs`
-- Evidence: `cargo test -p jet-grid-wasm`; apps/jet/crates/grid-wasm/src/api.rs;
-  apps/jet/crates/grid-wasm/src/viewport.rs
+- Source: `crates/grid-wasm/src/api.rs`,
+  `crates/grid-wasm/src/viewport.rs`
+- Evidence: `cargo test -p jet-grid-wasm`; crates/grid-wasm/src/api.rs;
+  crates/grid-wasm/src/viewport.rs
 
 ### WebGPU Renderer Bridge
 
@@ -60,11 +60,11 @@ and teardown.
   placeholder glyph planning, atlas planning, and resize/render counters
 - Gate: browser WebGPU e2e verification is not covered by this gate
 - Gate: `cargo test -p jet-grid-wasm`
-- Source: `apps/jet/crates/grid-wasm/src/renderer_bridge.rs`,
-  `apps/jet/crates/grid-wasm/docs/renderer-bridge-slice-4m.md`
+- Source: `crates/grid-wasm/src/renderer_bridge.rs`,
+  `crates/grid-wasm/docs/renderer-bridge-slice-4m.md`
 - Evidence: `cargo test -p jet-grid-wasm`;
-  apps/jet/crates/grid-wasm/src/renderer_bridge.rs;
-  apps/jet/crates/grid-wasm/docs/renderer-bridge-slice-4m.md
+  crates/grid-wasm/src/renderer_bridge.rs;
+  crates/grid-wasm/docs/renderer-bridge-slice-4m.md
 
 ### Browser Frame Loop And Resize Bridge
 
@@ -81,10 +81,10 @@ and typed-array viewport data transfer.
   and viewport format packing
 - Gate: browser RAF/ResizeObserver integration is not covered by this host gate
 - Gate: `cargo test -p jet-grid-wasm`
-- Source: `apps/jet/crates/grid-wasm/src/frame_loop.rs`,
-  `apps/jet/crates/grid-wasm/src/resize_debouncer.rs`,
-  `apps/jet/crates/grid-wasm/src/viewport.rs`
+- Source: `crates/grid-wasm/src/frame_loop.rs`,
+  `crates/grid-wasm/src/resize_debouncer.rs`,
+  `crates/grid-wasm/src/viewport.rs`
 - Evidence: `cargo test -p jet-grid-wasm`;
-  apps/jet/crates/grid-wasm/src/frame_loop.rs;
-  apps/jet/crates/grid-wasm/src/resize_debouncer.rs;
-  apps/jet/crates/grid-wasm/src/viewport.rs
+  crates/grid-wasm/src/frame_loop.rs;
+  crates/grid-wasm/src/resize_debouncer.rs;
+  crates/grid-wasm/src/viewport.rs

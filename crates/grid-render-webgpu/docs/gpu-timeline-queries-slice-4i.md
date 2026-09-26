@@ -74,7 +74,7 @@ Out:
 ## Interface
 
 ```rust
-// apps/jet/crates/grid-render-webgpu/src/frame_timing.rs
+// crates/grid-render-webgpu/src/frame_timing.rs
 
 /// Per-frame GPU timestamp ring buffer. Owns N slots, each a 2-query
 /// `QuerySet` + a resolve buffer + a CPU-mappable readback buffer.
@@ -128,13 +128,13 @@ impl<'window> WebGpuRenderer<'window> {
 
 ## Reference context
 
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs` — `WebGpuRenderer::new`
+- `crates/grid-render-webgpu/src/lib.rs` — `WebGpuRenderer::new`
   (where we probe `adapter.features()` for `TIMESTAMP_QUERY` and
   conditionally add it to `required_features`).
-- `apps/jet/crates/grid-render-webgpu/src/frame.rs` — `FrameBuilder`
+- `crates/grid-render-webgpu/src/frame.rs` — `FrameBuilder`
   (where `encode_cell_pass` and `commit` wire timestamp writes /
   resolve / map-back).
-- `apps/jet/crates/grid-render-webgpu/docs/submit-batching-slice-4j.md` —
+- `crates/grid-render-webgpu/docs/submit-batching-slice-4j.md` —
   one-submit-per-frame invariant. Timing queries must NOT add a second
   submit; they ride on the same encoder.
 - wgpu 24 docs:

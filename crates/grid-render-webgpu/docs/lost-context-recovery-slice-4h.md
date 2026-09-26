@@ -82,7 +82,7 @@ Out:
 ## Interface
 
 ```rust
-// apps/jet/crates/grid-render-webgpu/src/lost_context.rs
+// crates/grid-render-webgpu/src/lost_context.rs
 
 /// Snapshot of a single device-lost notification. Built inside the
 /// `Device::set_device_lost_callback` and observed via the renderer's
@@ -156,10 +156,10 @@ DeviceLost { reason: wgpu::DeviceLostReason, message: String },
 
 ## Reference context
 
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs` — `WebGpuRenderer::new`
+- `crates/grid-render-webgpu/src/lib.rs` — `WebGpuRenderer::new`
   (where the device-lost callback is wired) and `begin_frame` (where
   the loss flag becomes `RenderFrameError::DeviceLost`).
-- `apps/jet/crates/grid-render-webgpu/src/frame_timing.rs` — Slice 4i
+- `crates/grid-render-webgpu/src/frame_timing.rs` — Slice 4i
   pool that's rebuilt on recovery.
 - wgpu 24 API:
   - `Device::set_device_lost_callback(impl Fn(DeviceLostReason, String)

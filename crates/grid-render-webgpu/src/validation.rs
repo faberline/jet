@@ -38,7 +38,7 @@
 /// instead of relying on `..Default::default()`'s implicit
 /// `from_build_config()` call.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/wgpu-validation-dev-slice-4k.md#interface
+/// @spec crates/grid-render-webgpu/docs/wgpu-validation-dev-slice-4k.md#interface
 /// @issue #1729
 pub fn instance_flags_for_build() -> wgpu::InstanceFlags {
     if cfg!(debug_assertions) {
@@ -59,7 +59,7 @@ pub fn instance_flags_for_build() -> wgpu::InstanceFlags {
 /// arm and the caller decides whether to treat the duplicate
 /// installation as a hard failure.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/wgpu-validation-dev-slice-4k.md#interface
+/// @spec crates/grid-render-webgpu/docs/wgpu-validation-dev-slice-4k.md#interface
 /// @issue #1729
 pub fn try_install_log_bridge() -> Result<(), tracing_log::log_tracer::SetLoggerError> {
     tracing_log::LogTracer::init()

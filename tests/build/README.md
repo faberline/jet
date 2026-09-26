@@ -21,7 +21,7 @@ tolerance), and build duration strictly faster than the fastest baseline.
 | Gate | Command | Covers |
 |---|---|---|
 | Block owner | `cargo test -p jet --test build_parity_gate -- --nocapture` | correctness + size + speed claim over the whole corpus |
-| Jet/Vite/Webpack corpus | `node projects/jet/scripts/compare-dom-build-corpus.mjs --runtime-smoke required` (also driven by `verify-basic-dom-gates.sh`) | per-fixture build success, runtime smoke via `jet bb`, speed and gzip-size comparison vs Vite and Webpack |
+| Jet/Vite/Webpack corpus | `node scripts/compare-dom-build-corpus.mjs --runtime-smoke required` (also driven by `verify-basic-dom-gates.sh`) | per-fixture build success, runtime smoke via `jet bb`, speed and gzip-size comparison vs Vite and Webpack |
 | Production-build regression | `cargo test -p jet --test production_build_regression` | representative React/MUI fixture stays buildable and runnable |
 | Tree shaking | `cargo test -p jet --test tree_shaking` | snapshot suite incl. `__snapshots__/tree_shaking__mini_react_e2e__bundle_size_baseline.json` size baseline |
 | Monorepo bundling | `cargo test -p jet --test bundler_monorepo` | workspace-internal dependency bundling |

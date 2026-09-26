@@ -102,7 +102,7 @@ Out:
 /// All values are bytes; the report is a *snapshot* computed from
 /// the renderer's tracked state, not a hooked-allocator counter.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/gpu-memory-accounting-slice-4bb.md#interface
+/// @spec crates/grid-render-webgpu/docs/gpu-memory-accounting-slice-4bb.md#interface
 /// @issue #1746
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct GpuMemoryReport {
@@ -164,13 +164,13 @@ impl<'window> WebGpuRenderer<'window> {
 
 ## Reference Context
 
-- `apps/jet/crates/grid-render-webgpu/src/instance_pool.rs` —
+- `crates/grid-render-webgpu/src/instance_pool.rs` —
   `InstanceBufferPool::{len, capacity}` already expose the bytes
   per slot; `gpu_memory_estimate` consumes those directly.
-- `apps/jet/crates/grid-render-webgpu/src/frame_timing.rs` — adds a
+- `crates/grid-render-webgpu/src/frame_timing.rs` — adds a
   `buffer_bytes_estimate()` accessor (matches the existing
   `is_enabled` / `active_query_set` style).
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs` — `surface_config`,
+- `crates/grid-render-webgpu/src/lib.rs` — `surface_config`,
   `msaa_count`, `msaa_color`, `viewport_buffer`, `instance_pool`,
   `frame_timing` are the read-only sources of truth.
 - Parent epic #1254 — WebGPU-React renderer; Slice 4bb closes the

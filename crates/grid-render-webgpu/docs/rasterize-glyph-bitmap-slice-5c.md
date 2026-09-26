@@ -48,7 +48,7 @@ In:
     `Result` (not `Option`) so callers can tell the three failure
     modes apart — `ZeroSize` is a programmer bug, `GlyphOutOfRange`
     is a stale-id check, `FontParseFailed` is genuine font corruption.
-- New dep on `fontdue = "0.9"` in `apps/jet/crates/grid-render-webgpu/Cargo.toml`.
+- New dep on `fontdue = "0.9"` in `crates/grid-render-webgpu/Cargo.toml`.
 - Module-level docs explain the WHY:
   - Why `fontdue` over `swash` / `ab_glyph` for the foundation slice.
   - **`baseline_offset` sign convention**: distance from the
@@ -71,7 +71,7 @@ In:
     a refactor that hides a field fails here, not in production.
   - Error `Display` formats.
 - A tiny fixture: vendor an embedded TTF under
-  `apps/jet/crates/grid-render-webgpu/tests/fixtures/` (a 5–10 KB
+  `crates/grid-render-webgpu/tests/fixtures/` (a 5–10 KB
   permissively licensed font) so the round-trip test doesn't depend
   on system fonts.
 
@@ -93,7 +93,7 @@ Out:
 /// 8-bit grayscale alpha bitmap of a single rasterized glyph, plus
 /// the placement metrics needed to position it on a baseline.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/rasterize-glyph-bitmap-slice-5c.md#interface
+/// @spec crates/grid-render-webgpu/docs/rasterize-glyph-bitmap-slice-5c.md#interface
 /// @issue #1752
 #[derive(Debug, Clone, PartialEq)]
 pub struct GlyphBitmap {
@@ -152,13 +152,13 @@ pub fn rasterize_glyph(
 
 ## Reference Context
 
-- Parent epic [#1700](https://github.com/chrischeng-c4/cclab/issues/1700) —
+- Parent epic [#1700](https://github.com/faberline/axiom/issues/1700) —
   text pass (glyph rasterization, shaping, atlas upload, font fallback).
 - Slice 5a (#1750) — [`FontFace`] handle this slice rasterizes from.
-  Spec at `apps/jet/crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md`.
+  Spec at `crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md`.
 - Slice 5b (#1751) — [`FontDb`] registry that produces the `(face,
   glyph_id)` pairs callers will hand here. Spec at
-  `apps/jet/crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md`.
+  `crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md`.
 - Sibling slices 5d (#1753, glyph cache), 5e (#1754, R8 atlas
   descriptor), 5f (#1755, atlas upload) — downstream consumers of
   the [`GlyphBitmap`] produced here.

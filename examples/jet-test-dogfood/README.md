@@ -18,7 +18,7 @@ The corpus covers three shapes:
 Run from the repo root:
 
 ```bash
-cargo run -p jet -- test apps/jet/examples/jet-test-dogfood/src --reporter=json
+cargo run -p jet -- test examples/jet-test-dogfood/src --reporter=json
 ```
 
 The JSON reporter writes `.jet/test-results.json` carrying

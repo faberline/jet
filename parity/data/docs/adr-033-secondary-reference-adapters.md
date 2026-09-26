@@ -72,7 +72,7 @@ weekend project, not a quarter.
 
 ### The trait
 
-Define `ReferenceAdapter` in `apps/jet/parity-oracle` with
+Define `ReferenceAdapter` in `parity-oracle` with
 exactly two methods:
 
 ```rust
@@ -101,7 +101,7 @@ and a follow-up ADR.
 `FixtureIntent` is a stack-agnostic description of the widget
 under test — component shape, prop shape, ARIA shape,
 interaction shape. The canonical JSON Schema lives at
-`apps/jet/data/parity/fixture-intent.schema.json` and is
+`data/parity/fixture-intent.schema.json` and is
 referenced by every fixture's `parity.toml`.
 
 `AdapterContext` is the opaque per-adapter mount handle (a
@@ -143,11 +143,11 @@ fails the build on a match.
 
 ### Fixture intent and per-stack fixtures
 
-Each fixture under `apps/jet/data/parity/fixtures/<adapter>/<fixture>/`
+Each fixture under `data/parity/fixtures/<adapter>/<fixture>/`
 declares the same `FixtureIntent` in stack-native syntax:
 
 ```
-apps/jet/data/parity/fixtures/
+data/parity/fixtures/
 ├── mui/
 │   ├── button-primary-v1/
 │   │   ├── parity.toml         # fixture_intent = "../../intents/button-primary-v1.json"
@@ -230,7 +230,7 @@ Cross-adapter expectations are *not* byte-equal — Vuetify's
 button paints with a different default elevation shadow than
 MUI's. The tolerance widening per `(channel, tier)` pair for
 adapter-to-adapter comparison is declared in
-`apps/jet/data/parity/adapters.toml`. The primary oracle
+`data/parity/adapters.toml`. The primary oracle
 (`mui`) is the canonical baseline; secondary adapters serve as
 *divergence detectors*, not byte-equal reference targets.
 
@@ -262,7 +262,7 @@ the merge queue.
 
 R2's invariant — trait-routed `mui` produces byte-identical
 output to the pre-refactor #2139 runner — is enforced by
-`apps/jet/parity-oracle/tests/trait_refactor_byte_equiv.rs`:
+`parity-oracle/tests/trait_refactor_byte_equiv.rs`:
 
 ```rust
 #[test]
@@ -275,7 +275,7 @@ fn trait_routed_mui_byte_equiv_to_pre_refactor() {
 
 The pre-refactor runner is preserved as a frozen reference
 implementation under
-`apps/jet/parity-oracle/src/_legacy_pre_refactor.rs` and
+`parity-oracle/src/_legacy_pre_refactor.rs` and
 deleted only after this test has been green for 30 days on
 the main branch.
 
@@ -383,5 +383,5 @@ the main branch.
 - ADR-030 — MUI corpus snapshot protocol (5-channel artifact bundle this trait emits)
 - `.aw/tech-design/projects/jet/specs/jet-parity-secondary-adapters.md` — tech-design spec authorized by this ADR
 - `.aw/tech-design/projects/jet/specs/jet-parity-dom-reference-runner.md` — #2139 runner spec (byte-equivalence anchor for R2)
-- `apps/jet/data/parity/fixture-intent.schema.json` — canonical `FixtureIntent` JSON Schema
-- `apps/jet/data/parity/adapters.toml` — cross-adapter tolerance widening per `(channel, tier)`
+- `data/parity/fixture-intent.schema.json` — canonical `FixtureIntent` JSON Schema
+- `data/parity/adapters.toml` — cross-adapter tolerance widening per `(channel, tier)`

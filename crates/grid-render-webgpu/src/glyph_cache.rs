@@ -39,7 +39,7 @@ use crate::glyph_raster::GlyphBitmap;
 /// glyph by `(face_id, glyph_id, size_px)`. Two glyphs with the same
 /// key are interchangeable from the renderer's perspective.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/glyph-cache-insert-with-bitmap-slice-5d.md#interface
+/// @spec crates/grid-render-webgpu/docs/glyph-cache-insert-with-bitmap-slice-5d.md#interface
 /// @issue #1753
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct GlyphKey {
@@ -53,7 +53,7 @@ pub struct GlyphKey {
 /// reads `width` / `height` to size the texture region; the layout
 /// pass reads `baseline_offset` / `advance` to position the quad.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/glyph-cache-insert-with-bitmap-slice-5d.md#interface
+/// @spec crates/grid-render-webgpu/docs/glyph-cache-insert-with-bitmap-slice-5d.md#interface
 /// @issue #1753
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct Placement {
@@ -66,7 +66,7 @@ pub struct Placement {
 /// One cached glyph: placement metrics + the alpha bitmap the
 /// atlas uploads to the GPU.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/glyph-cache-insert-with-bitmap-slice-5d.md#interface
+/// @spec crates/grid-render-webgpu/docs/glyph-cache-insert-with-bitmap-slice-5d.md#interface
 /// @issue #1753
 #[derive(Debug, Clone, PartialEq)]
 pub struct GlyphEntry {
@@ -78,7 +78,7 @@ pub struct GlyphEntry {
 /// docs for the WHY behind the idempotent-insert + bitmap-in-entry
 /// + unbounded design.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/glyph-cache-insert-with-bitmap-slice-5d.md#interface
+/// @spec crates/grid-render-webgpu/docs/glyph-cache-insert-with-bitmap-slice-5d.md#interface
 /// @issue #1753
 #[derive(Debug, Clone, Default)]
 pub struct GlyphCache {
@@ -88,7 +88,7 @@ pub struct GlyphCache {
 impl GlyphCache {
     /// Empty cache.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/glyph-cache-insert-with-bitmap-slice-5d.md#interface
+    /// @spec crates/grid-render-webgpu/docs/glyph-cache-insert-with-bitmap-slice-5d.md#interface
     /// @issue #1753
     pub fn new() -> Self {
         Self::default()
@@ -100,7 +100,7 @@ impl GlyphCache {
     /// the existing entry — this is the idempotent contract the
     /// upload path relies on.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/glyph-cache-insert-with-bitmap-slice-5d.md#interface
+    /// @spec crates/grid-render-webgpu/docs/glyph-cache-insert-with-bitmap-slice-5d.md#interface
     /// @issue #1753
     pub fn insert_with_bitmap(&mut self, key: GlyphKey, raster: GlyphBitmap) -> &GlyphEntry {
         self.entries.entry(key).or_insert_with(|| GlyphEntry {
@@ -116,7 +116,7 @@ impl GlyphCache {
 
     /// Lookup — returns `None` if `key` was never inserted.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/glyph-cache-insert-with-bitmap-slice-5d.md#interface
+    /// @spec crates/grid-render-webgpu/docs/glyph-cache-insert-with-bitmap-slice-5d.md#interface
     /// @issue #1753
     pub fn get(&self, key: GlyphKey) -> Option<&GlyphEntry> {
         self.entries.get(&key)
@@ -124,7 +124,7 @@ impl GlyphCache {
 
     /// Number of cached entries.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/glyph-cache-insert-with-bitmap-slice-5d.md#interface
+    /// @spec crates/grid-render-webgpu/docs/glyph-cache-insert-with-bitmap-slice-5d.md#interface
     /// @issue #1753
     pub fn len(&self) -> usize {
         self.entries.len()
@@ -132,7 +132,7 @@ impl GlyphCache {
 
     /// `true` when no entries are cached.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/glyph-cache-insert-with-bitmap-slice-5d.md#interface
+    /// @spec crates/grid-render-webgpu/docs/glyph-cache-insert-with-bitmap-slice-5d.md#interface
     /// @issue #1753
     pub fn is_empty(&self) -> bool {
         self.entries.is_empty()

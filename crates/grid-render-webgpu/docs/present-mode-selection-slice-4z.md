@@ -76,7 +76,7 @@ Out:
 /// Target the renderer is running against. Drives present-mode
 /// policy: web is vsync-only; native splits by power profile.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/present-mode-selection-slice-4z.md#interface
+/// @spec crates/grid-render-webgpu/docs/present-mode-selection-slice-4z.md#interface
 /// @issue #1744
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum PresentTarget {
@@ -124,10 +124,10 @@ impl<'window> WebGpuRenderer<'window> {
 
 ## Reference Context
 
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs:227` — current
+- `crates/grid-render-webgpu/src/lib.rs:227` — current
   `surface_config` construction; `present_mode` was hard-coded to
   `AutoVsync`. Slice 4z parameterizes it.
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs` — `on_resize` is the
+- `crates/grid-render-webgpu/src/lib.rs` — `on_resize` is the
   existing path that calls `surface.configure`; `set_present_mode`
   mirrors it.
 - Parent epic #1254 — WebGPU-React renderer; Slice 4z closes the

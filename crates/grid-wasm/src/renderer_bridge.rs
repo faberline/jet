@@ -54,7 +54,7 @@ pub(crate) const CELL_F32_STRIDE: usize = 8;
 /// [`RendererHandle`]. Kept separate so the unpack / resize-state
 /// invariants are unit-testable without a wgpu adapter.
 ///
-/// @spec apps/jet/crates/grid-wasm/docs/renderer-bridge-slice-4m.md#interface
+/// @spec crates/grid-wasm/docs/renderer-bridge-slice-4m.md#interface
 /// @issue #1731
 #[derive(Debug, Clone, PartialEq)]
 #[allow(dead_code)] // wasm32 only — host build sees this via tests
@@ -101,7 +101,7 @@ impl BridgeState {
     /// Update from an `on_resize` call. `dpr <= 0` is clamped to
     /// `1.0` to mirror `WebGpuRenderer::set_dpr`.
     ///
-    /// @spec apps/jet/crates/grid-wasm/docs/renderer-bridge-slice-4m.md#interface
+    /// @spec crates/grid-wasm/docs/renderer-bridge-slice-4m.md#interface
     /// @issue #1731
     pub(crate) fn observe_resize(&mut self, w: u32, h: u32, dpr: f32) {
         self.last_logical = (w.max(1), h.max(1));
@@ -140,7 +140,7 @@ pub(crate) struct TextRunWire {
 /// Returns the cell count on success. Used by both host tests and
 /// the wasm32 unpack path so the contract is identical.
 ///
-/// @spec apps/jet/crates/grid-wasm/docs/renderer-bridge-slice-4m.md#interface
+/// @spec crates/grid-wasm/docs/renderer-bridge-slice-4m.md#interface
 /// @issue #1731
 #[allow(dead_code)] // wasm32 only — host build sees this via tests
 pub(crate) fn validate_cell_buffer_len(len: usize) -> Result<usize, &'static str> {
@@ -376,7 +376,7 @@ mod wasm32_impl {
     /// JS-facing renderer handle. Constructed via [`init_renderer`];
     /// teardown via [`Self::destroy`] or implicit drop.
     ///
-    /// @spec apps/jet/crates/grid-wasm/docs/renderer-bridge-slice-4m.md#interface
+    /// @spec crates/grid-wasm/docs/renderer-bridge-slice-4m.md#interface
     /// @issue #1731
     #[wasm_bindgen]
     pub struct RendererHandle {
@@ -398,7 +398,7 @@ mod wasm32_impl {
     /// wasm-bindgen-generated `Closure`s aren't dropped while the
     /// browser still holds references to them.
     ///
-    /// @spec apps/jet/crates/grid-wasm/docs/canvas-resize-observer-slice-4cc.md#interface
+    /// @spec crates/grid-wasm/docs/canvas-resize-observer-slice-4cc.md#interface
     /// @issue #1747
     struct ResizeObserverGuard {
         _observer: web_sys::ResizeObserver,
@@ -427,7 +427,7 @@ mod wasm32_impl {
         /// of 8 (see module docs for layout); any other length
         /// raises a `JsValue` exception.
         ///
-        /// @spec apps/jet/crates/grid-wasm/docs/renderer-bridge-slice-4m.md#interface
+        /// @spec crates/grid-wasm/docs/renderer-bridge-slice-4m.md#interface
         /// @issue #1731
         #[wasm_bindgen(js_name = renderFrame)]
         pub fn render_frame(&mut self, cells: js_sys::Float32Array) -> Result<(), JsValue> {
@@ -464,7 +464,7 @@ mod wasm32_impl {
         /// the upcoming glyph/text pass can consume the already-validated
         /// runs without changing Jet's app bridge again.
         ///
-        /// @spec apps/jet/crates/grid-wasm/docs/renderer-bridge-slice-4m.md#interface
+        /// @spec crates/grid-wasm/docs/renderer-bridge-slice-4m.md#interface
         #[wasm_bindgen(js_name = renderFrameWithText)]
         pub fn render_frame_with_text(
             &mut self,
@@ -555,7 +555,7 @@ mod wasm32_impl {
         /// at `logical_w * dpr × logical_h * dpr` physical pixels and
         /// re-seeds the viewport uniform.
         ///
-        /// @spec apps/jet/crates/grid-wasm/docs/renderer-bridge-slice-4m.md#interface
+        /// @spec crates/grid-wasm/docs/renderer-bridge-slice-4m.md#interface
         /// @issue #1731
         #[wasm_bindgen(js_name = onResize)]
         pub fn on_resize(&mut self, logical_w: u32, logical_h: u32, dpr: f32) {
@@ -572,7 +572,7 @@ mod wasm32_impl {
         /// predictable teardown point under React strict-mode
         /// double-invoke checks.
         ///
-        /// @spec apps/jet/crates/grid-wasm/docs/renderer-bridge-slice-4m.md#interface
+        /// @spec crates/grid-wasm/docs/renderer-bridge-slice-4m.md#interface
         /// @issue #1731
         pub fn destroy(self) {
             // Empty body; `self` is consumed and dropped.
@@ -589,7 +589,7 @@ mod wasm32_impl {
         /// `&mut self.renderer` across the wasm-bindgen boundary
         /// (the handle is owned by JS, not by Rust).
         ///
-        /// @spec apps/jet/crates/grid-wasm/docs/canvas-resize-observer-slice-4cc.md#interface
+        /// @spec crates/grid-wasm/docs/canvas-resize-observer-slice-4cc.md#interface
         /// @issue #1747
         #[wasm_bindgen(js_name = installResizeObserver)]
         pub fn install_resize_observer(
@@ -695,7 +695,7 @@ mod wasm32_impl {
     /// [`RendererHandle`] on success; rejects with the wgpu error
     /// message on adapter / device failure.
     ///
-    /// @spec apps/jet/crates/grid-wasm/docs/renderer-bridge-slice-4m.md#interface
+    /// @spec crates/grid-wasm/docs/renderer-bridge-slice-4m.md#interface
     /// @issue #1731
     #[wasm_bindgen(js_name = initRenderer)]
     pub fn init_renderer(canvas: web_sys::HtmlCanvasElement, dpr: f32) -> js_sys::Promise {

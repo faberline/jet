@@ -146,12 +146,12 @@ impl<'window> WebGpuRenderer<'window> {
 
 ## Reference Context
 
-- `apps/jet/crates/grid-render-webgpu/src/viewport.rs` — viewport
+- `crates/grid-render-webgpu/src/viewport.rs` — viewport
   uniform; `scroll_px` lives at offset 8 (Slice 4s).
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs:386` — existing
+- `crates/grid-render-webgpu/src/lib.rs:386` — existing
   `on_scroll` (raw accumulator, no clamp). `set_scroll` is the
   clamped counterpart.
-- `apps/jet/crates/grid-render-webgpu/src/cell_rect.rs` — `CellInstance`
+- `crates/grid-render-webgpu/src/cell_rect.rs` — `CellInstance`
   layout; the filter reads `pos_px` and `size_px`.
 - Parent epic #1254 — WebGPU-React renderer; this slice closes the
   scroll-clamping + visible-rect filtering gap.

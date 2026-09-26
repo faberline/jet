@@ -24,7 +24,7 @@ node/npm/pnpm are unavailable.
 | Block owner | `cargo test -p jet --test pkg_replacement_gate -- --nocapture` | full replacement contract + strict cold/warm speed win vs npm/pnpm |
 | Unit/contract suite | `cargo test -p jet --lib pkg_manager -- --nocapture` | resolver, lockfile, mutation, bins, integrity |
 | Workspace protocol | `cargo test -p jet --test workspace_protocol` | pnpm-style `workspace:` protocol linking |
-| Replacement + speed benchmark | `JET_BASIC_DOM_PACKAGE_BASELINES=npm,pnpm JET_BASIC_DOM_REQUIRE_BASELINES=1 apps/jet/scripts/verify-basic-dom-gates.sh --phase package` | same contract via the phase script (`compare-pkg-management.mjs`) |
+| Replacement + speed benchmark | `JET_BASIC_DOM_PACKAGE_BASELINES=npm,pnpm JET_BASIC_DOM_REQUIRE_BASELINES=1 scripts/verify-basic-dom-gates.sh --phase package` | same contract via the phase script (`compare-pkg-management.mjs`) |
 
 Benchmark fixtures live under `../fixtures/dom-production-build/`
 (`react-bench`, `mui-visual`, `antd-visual`, ...).

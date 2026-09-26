@@ -50,7 +50,7 @@ In:
     `rendered minimal frame: 64x64, NNNN bytes` so the user sees a
     concrete signal that the pipeline executed.
   - Annotated with `//! @spec` and `//! @issue` headers.
-- Module-level docs extension in `apps/jet/crates/grid-render-webgpu/src/lib.rs`:
+- Module-level docs extension in `crates/grid-render-webgpu/src/lib.rs`:
   - A `# Lifecycle` section under the existing crate doc, naming the
     four phases and the public entry points for each.
   - A `# Example` section that points readers at
@@ -121,7 +121,7 @@ change behaviour.
 
 ## Reference Context
 
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs` — host of the
+- `crates/grid-render-webgpu/src/lib.rs` — host of the
   Lifecycle docs extension. The four phases map to:
   - **Construct**: `WebGpuRenderer::new` /
     `WebGpuRenderer::with_alpha_mode` (`lib.rs:176` / `lib.rs:196`).
@@ -133,9 +133,9 @@ change behaviour.
     that drive a frame).
   - **Teardown**: implicit `Drop`; on wasm, `RendererHandle::destroy`
     is the JS-observable teardown point.
-- `apps/jet/crates/grid-render-webgpu/src/headless.rs` — the
+- `crates/grid-render-webgpu/src/headless.rs` — the
   headless smoke renderer the example drives.
-- `apps/jet/crates/grid-render-webgpu/tests/headless_smoke.rs` — the
+- `crates/grid-render-webgpu/tests/headless_smoke.rs` — the
   Slice 4t integration test that pioneered the skip-when-no-adapter
   contract the example mirrors.
 - Parent epic #1254 — WebGPU-React renderer. Slice 4dd is the

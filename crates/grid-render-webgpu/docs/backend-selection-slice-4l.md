@@ -69,7 +69,7 @@ Out:
 ## Interface
 
 ```rust
-// apps/jet/crates/grid-render-webgpu/src/backend.rs
+// crates/grid-render-webgpu/src/backend.rs
 
 /// Backend mask the renderer should pass to `wgpu::Instance::new`
 /// for the current build target.
@@ -106,7 +106,7 @@ in shape; only the Display string for `NoAdapter` gains the
 
 ## Reference context
 
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs` — `WebGpuRenderer::new`
+- `crates/grid-render-webgpu/src/lib.rs` — `WebGpuRenderer::new`
   (where the `InstanceDescriptor` is built), `RendererError`.
 - wgpu 24 docs:
   - `wgpu::Backends::BROWSER_WEBGPU` — the Web build's WebGPU-only

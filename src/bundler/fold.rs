@@ -1367,18 +1367,10 @@ mod tests {
     #[test]
     fn test_pipeline_sizes() {
         let bundle_path = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
-            .parent()
-            .unwrap()
-            .parent()
-            .unwrap()
             .join("examples/react-bench/dist/_debug_preminify.js");
         if !bundle_path.exists() {
             // Try the unminified dist-debug bundle
             let alt = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
-                .parent()
-                .unwrap()
-                .parent()
-                .unwrap()
                 .join("examples/react-bench/dist-debug");
             if alt.exists() {
                 if let Some(entry) = std::fs::read_dir(&alt).ok().and_then(|mut d| {

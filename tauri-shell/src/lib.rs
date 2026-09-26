@@ -10,7 +10,7 @@
 //! Public surface only — no hard `tauri` crate dependency yet:
 //!
 //! - [`BundleManifest`] mirrors the JSON shape that
-//!   `apps/jet/src/wasm_build/manifest.rs` emits to
+//!   `src/wasm_build/manifest.rs` emits to
 //!   `dist/jet-target.json`. Adds a strict `validate()` that
 //!   refuses non-desktop / non-tauri / wrong-schema-version
 //!   bundles loud-fast.
@@ -41,7 +41,7 @@ pub mod packager;
 pub const SUPPORTED_SCHEMA_VERSION: u32 = 1;
 
 /// Deserialized `dist/jet-target.json`. The shape mirrors the
-/// emitter at `apps/jet/src/wasm_build/manifest.rs` exactly. We
+/// emitter at `src/wasm_build/manifest.rs` exactly. We
 /// duplicate the struct here (rather than depending on that crate)
 /// because the desktop packager is a downstream consumer — it
 /// MUST be able to parse manifests the user could have produced

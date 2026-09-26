@@ -13,12 +13,12 @@ specs.
 
 | Usage site         | Resolves to                                              |
 |--------------------|----------------------------------------------------------|
-| `jet test` spec    | `apps/jet/data/runtime/test/index.js` (per-worker shim)   |
+| `jet test` spec    | `data/runtime/test/index.js` (per-worker shim)   |
 | `jet e2e` case     | Same module instance — shared runtime per worker         |
 | `@playwright/test` | Compat shim re-exports everything from `@jet/test`       |
 
 `Page` is re-exported from the CDP-backed implementation in
-`apps/jet/data/runtime/test/page.js`. The browser singleton (`browser`) is
+`data/runtime/test/page.js`. The browser singleton (`browser`) is
 constructed lazily on the first `new_page` request.
 
 ## Supported exports

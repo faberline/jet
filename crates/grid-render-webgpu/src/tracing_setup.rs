@@ -33,7 +33,7 @@ use tracing_subscriber::EnvFilter;
 /// as a no-op: the spans they emit will still flow to whichever
 /// subscriber was installed first.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/tracing-instrumentation-per-pass-spans-slice-4x.md#interface
+/// @spec crates/grid-render-webgpu/docs/tracing-instrumentation-per-pass-spans-slice-4x.md#interface
 /// @issue #1742
 #[derive(Debug, Error)]
 pub enum SubscriberInstallError {
@@ -53,7 +53,7 @@ pub enum SubscriberInstallError {
 /// - unset / empty — fmt's silent-by-default behavior takes over (no
 ///   output).
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/tracing-instrumentation-per-pass-spans-slice-4x.md#interface
+/// @spec crates/grid-render-webgpu/docs/tracing-instrumentation-per-pass-spans-slice-4x.md#interface
 /// @issue #1742
 pub fn install_default_subscriber() -> Result<(), SubscriberInstallError> {
     tracing_subscriber::fmt()

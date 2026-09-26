@@ -13,7 +13,7 @@
 //!
 //! `--playwright` is deprecated in the minor release that ships this module.
 //! It will be **removed** in the second subsequent minor release.
-//! See `apps/jet/docs/migration-from-playwright.md` for the migration guide.
+//! See `docs/migration-from-playwright.md` for the migration guide.
 
 use anyhow::Result;
 use std::env::VarError;

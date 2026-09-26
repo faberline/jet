@@ -58,7 +58,7 @@ Smallest foundation slice that closes the AC bullets:
 ## Interface
 
 ```rust
-// apps/jet/crates/grid-render-webgpu/src/instance_pool.rs
+// crates/grid-render-webgpu/src/instance_pool.rs
 
 /// Growable instance-buffer pool, indexed by frame slot.
 ///
@@ -132,9 +132,9 @@ impl InstanceBufferPool {
 
 ## Reference context
 
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs` — Slice 4a wrapper; pattern
+- `crates/grid-render-webgpu/src/lib.rs` — Slice 4a wrapper; pattern
   for owning per-renderer GPU resources, persistent buffer + COPY_DST.
-- `apps/jet/crates/grid-render-webgpu/src/cell_rect.rs` — Slice 4b; defines
+- `crates/grid-render-webgpu/src/cell_rect.rs` — Slice 4b; defines
   the `CellInstance` byte layout the pool will eventually carry.
 - wgpu 24 docs: `Queue::write_buffer` requires the destination buffer to
   have `COPY_DST` usage and the offset+size to be 4-byte-aligned. The

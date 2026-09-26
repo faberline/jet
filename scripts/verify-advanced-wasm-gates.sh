@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$repo_root"
 
 echo "[jet advanced wasm gate] WASM build config and manifest"
@@ -29,4 +29,4 @@ echo "[jet advanced wasm gate] AntD visual DOM/WASM parity via jet bb capture/sc
 cargo test -p jet --test mui_visual_regression antd_visual_fixture_renders_on_react_dom_and_jet_wasm -- --nocapture
 
 echo "[jet advanced wasm gate] DOM oracle parity skeleton"
-apps/jet/scripts/verify-parity-oracle-gate.sh
+scripts/verify-parity-oracle-gate.sh

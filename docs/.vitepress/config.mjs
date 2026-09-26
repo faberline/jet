@@ -50,7 +50,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/chrischeng-c4/cclab' }
+      { icon: 'github', link: 'https://github.com/faberline/jet' }
     ],
 
     search: {

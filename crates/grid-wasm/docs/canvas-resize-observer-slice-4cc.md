@@ -101,7 +101,7 @@ Out:
 /// state machine — no `web_sys` dependency so host tests can
 /// exercise the debounce invariant without a browser.
 ///
-/// @spec apps/jet/crates/grid-wasm/docs/canvas-resize-observer-slice-4cc.md#interface
+/// @spec crates/grid-wasm/docs/canvas-resize-observer-slice-4cc.md#interface
 /// @issue #1747
 pub struct ResizeDebouncer { /* private */ }
 
@@ -168,12 +168,12 @@ impl RendererHandle {
 
 ## Reference Context
 
-- `apps/jet/crates/grid-wasm/src/renderer_bridge.rs:180` — existing
+- `crates/grid-wasm/src/renderer_bridge.rs:180` — existing
   `RendererHandle::on_resize(logical_w, logical_h, dpr)`. Slice 4cc
   drives this entry point from the new observer.
-- `apps/jet/crates/grid-wasm/docs/renderer-bridge-slice-4m.md` — Slice
+- `crates/grid-wasm/docs/renderer-bridge-slice-4m.md` — Slice
   4m wired the initial handle. 4cc adds the auto-resize wiring.
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs` —
+- `crates/grid-render-webgpu/src/lib.rs` —
   `WebGpuRenderer::on_resize_logical` is the surface-reconfigure
   call the observer eventually drives.
 - Parent epic #1254 — WebGPU-React renderer; Slice 4cc closes the

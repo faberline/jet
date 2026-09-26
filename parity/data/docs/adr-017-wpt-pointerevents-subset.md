@@ -6,7 +6,7 @@
 | Parent epic | #2137 |
 | Status | accepted |
 | Date | 2026-05-16 |
-| Decision | Vendor the ~600-test WPT `pointerevents/` subset under `apps/jet/data/parity/wpt/pointerevents/` per #2142's importer; classify every test PASS / KNOWN-FAIL+issue / SKIP+reason in `manifest.toml`; run against the #2164 glass-pane router inside the #2149 Playwright DPR matrix; acceptance is 100% classified at green close. |
+| Decision | Vendor the ~600-test WPT `pointerevents/` subset under `data/parity/wpt/pointerevents/` per #2142's importer; classify every test PASS / KNOWN-FAIL+issue / SKIP+reason in `manifest.toml`; run against the #2164 glass-pane router inside the #2149 Playwright DPR matrix; acceptance is 100% classified at green close. |
 
 ## Context
 
@@ -104,14 +104,14 @@ following rules applied in order:
 
 The expected post-filter cardinality is ~600. The importer logs the
 pre/post-filter counts and writes them to
-`apps/jet/data/parity/wpt/pointerevents/import-summary.json` so the
+`data/parity/wpt/pointerevents/import-summary.json` so the
 weekly refresh job in #2142 can diff "tests dropped by filter" across
 WPT bumps.
 
 ### 2. Per-test classification
 
 Every test in the vendored snapshot is classified in
-`apps/jet/data/parity/wpt/pointerevents/manifest.toml` into exactly one
+`data/parity/wpt/pointerevents/manifest.toml` into exactly one
 of three states:
 
 ```toml
@@ -207,7 +207,7 @@ coverage**, not 100% PASS. Specifically:
 - Every SKIP has a `reason`, and SKIPs with `tracking_issue` are
   resolved against an open jet issue.
 - The pass-rate is recorded in
-  `apps/jet/data/parity/wpt/pointerevents/baseline.json` as
+  `data/parity/wpt/pointerevents/baseline.json` as
   `{total, passed, known_fail, skipped, pass_rate}` and CI fails if
   `passed` decreases without a manifest rotation, or if `skipped`
   grows without a new SKIP entry justifying the growth.

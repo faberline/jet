@@ -10,7 +10,7 @@
 // @command cargo test -p jet-wasm --test renderer_layout -- --nocapture
 // AW-EC-END
 
-// Contract: test gate no longer fails on apps/jet/wasm/tests/renderer_layout.rs stale v0 expectations
+// Contract: test gate no longer fails on wasm/tests/renderer_layout.rs stale v0 expectations
 // Contract: renderer_layout remains a required test gate with zero ignored cases
 #[test]
 #[ignore = "AW EC gate: run via `aw health --verify-ec` or `cargo test -- --ignored`"]

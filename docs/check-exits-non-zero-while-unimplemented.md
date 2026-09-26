@@ -1,13 +1,13 @@
 # check exits 0 while type checking is unimplemented
 
 > **Issue**: #1316
-> **Crate**: `jet` (`apps/jet/src/cli.rs`)
+> **Crate**: `jet` (`src/cli.rs`)
 > **Type**: bug
 
 ## Problem
 
 `jet check` is wired up but its handler at
-`apps/jet/src/cli.rs:1316-1320` is a stub:
+`src/cli.rs:1316-1320` is a stub:
 
 ```rust
 Some(("check", _)) => {
@@ -76,8 +76,8 @@ to stderr and exits with code 1 (anyhow's standard surface).
 
 ## Reference Context
 
-- `apps/jet/src/cli.rs:1316-1320` — the stub being replaced.
-- `apps/jet/src/cli.rs:787-795` — the *sibling* `jet init` stub
+- `src/cli.rs:1316-1320` — the stub being replaced.
+- `src/cli.rs:787-795` — the *sibling* `jet init` stub
   with the same shape; explicitly out of scope.
-- `apps/jet/src/cli.rs:928`, `:1102`, `:1421`, `:1690` —
+- `src/cli.rs:928`, `:1102`, `:1421`, `:1690` —
   `anyhow::bail!` precedents this fix follows.

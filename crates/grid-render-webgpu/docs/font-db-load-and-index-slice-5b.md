@@ -80,7 +80,7 @@ In:
     useful for tests + debug overlays.
   - `pub fn is_empty(&self) -> bool` — clippy-required companion.
 - New dep on `fontdb = { version = "0.23", default-features = false }`
-  in `apps/jet/crates/grid-render-webgpu/Cargo.toml`. Default features
+  in `crates/grid-render-webgpu/Cargo.toml`. Default features
   are off to keep the renderer's link line slim — system-font
   discovery on Linux via fontconfig is the most notable opt-in,
   but the eager parse path doesn't need it (fontdb falls back to
@@ -112,21 +112,21 @@ Out:
 /// Registry of parsed font faces, queryable by CSS-style
 /// (family, weight, style) triples.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
+/// @spec crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
 /// @issue #1751
 pub struct FontDb { /* private */ }
 
 /// Opaque index assigned by [`FontDb`] when a face is registered.
 /// `Copy + Hash + Eq` so it can be a `HashMap` key.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
+/// @spec crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
 /// @issue #1751
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct FaceId(pub u32);
 
 /// CSS-style font style for queries.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
+/// @spec crates/grid-render-webgpu/docs/font-db-load-and-index-slice-5b.md#interface
 /// @issue #1751
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum FontStyle { Normal, Italic, Oblique }
@@ -173,12 +173,12 @@ impl FontDb {
 
 ## Reference Context
 
-- Parent epic [#1700](https://github.com/chrischeng-c4/cclab/issues/1700) —
+- Parent epic [#1700](https://github.com/faberline/axiom/issues/1700) —
   text pass (glyph rasterization, shaping, atlas upload, font fallback).
 - Slice 5a (#1750) — [`FontFace`] parsed-font handle that
   [`FontDb`] caches. Spec at
-  `apps/jet/crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md`.
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs` — where the new
+  `crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md`.
+- `crates/grid-render-webgpu/src/lib.rs` — where the new
   `pub mod font_db;` lands.
 - `fontdb = "0.23"` — first version that pulls `ttf-parser = 0.25`
   transitively, matching this crate's existing pin.

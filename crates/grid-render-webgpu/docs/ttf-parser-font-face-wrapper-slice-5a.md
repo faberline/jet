@@ -62,7 +62,7 @@ In:
   - `pub fn bytes(&self) -> &[u8]` — escape hatch for slices that
     need to hand the bytes to a different parser (rustybuzz, etc.).
 - New dep on `ttf-parser = "0.25"` in
-  `apps/jet/crates/grid-render-webgpu/Cargo.toml`. Same major as the
+  `crates/grid-render-webgpu/Cargo.toml`. Same major as the
   in-tree `jet-wasm` consumer, so the workspace doesn't pull two
   copies.
 - Module-level docs explaining the WHY:
@@ -98,7 +98,7 @@ Out:
 - Live-font tests. The AC doesn't require them; CI's deterministic
   unit tests cover the invariants. If a future slice wants
   end-to-end coverage, it should add a tiny test font under
-  `apps/jet/crates/grid-render-webgpu/tests/fixtures/` so the binary
+  `crates/grid-render-webgpu/tests/fixtures/` so the binary
   blob is reviewable.
 
 ## Interface
@@ -109,7 +109,7 @@ Out:
 /// never change (units_per_em, ascender, descender, line_gap) are
 /// cached on construction so the hot path doesn't reparse for them.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md#interface
+/// @spec crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md#interface
 /// @issue #1750
 pub struct FontFace { /* private */ }
 
@@ -117,7 +117,7 @@ pub struct FontFace { /* private */ }
 /// surfaces don't carry a direct `ttf_parser` type. Round-trips
 /// to `ttf_parser::GlyphId` via `From` / `Into`.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md#interface
+/// @spec crates/grid-render-webgpu/docs/ttf-parser-font-face-wrapper-slice-5a.md#interface
 /// @issue #1750
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct GlyphId(pub u16);
@@ -164,14 +164,14 @@ impl FontFace {
 
 ## Reference Context
 
-- Parent epic [#1700](https://github.com/chrischeng-c4/cclab/issues/1700) — text pass
+- Parent epic [#1700](https://github.com/faberline/axiom/issues/1700) — text pass
   (glyph rasterization, shaping, atlas upload, font fallback).
-- `apps/jet/wasm/src/text/font_face.rs` — existing rustybuzz-based
+- `wasm/src/text/font_face.rs` — existing rustybuzz-based
   wrapper. Same "owned-bytes + lazy-reparse" idiom this slice adopts,
   but for the canvas-based shaping path; the WebGPU text pipeline
   needs its own ttf-parser-only wrapper since the renderer crate
   must not pull `rustybuzz`.
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs` — where the new
+- `crates/grid-render-webgpu/src/lib.rs` — where the new
   `pub mod font_face;` lands.
 - ttf-parser 0.25 — same major already pinned in
   `jet-wasm/Cargo.toml`; this slice reuses the version.

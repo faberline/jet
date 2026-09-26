@@ -128,13 +128,13 @@ device creation fails, draw error, readback mismatch) is a *fail*.
 
 ## Reference Context
 
-- `apps/jet/crates/grid-render-webgpu/src/cell_rect.rs` — the shader
+- `crates/grid-render-webgpu/src/cell_rect.rs` — the shader
   source + `CellInstance` layout this harness rebuilds against an
   off-screen target.
-- `apps/jet/crates/grid-render-webgpu/src/viewport.rs` —
+- `crates/grid-render-webgpu/src/viewport.rs` —
   `ViewportUniforms` (Slice 4c, #1721); the smoke renderer creates
   its own uniform buffer + bind group.
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs:1648-1663` — the
+- `crates/grid-render-webgpu/src/lib.rs:1648-1663` — the
   stubbed `build_headless_renderer` test helper (returns
   `RendererError::NoSurface`). This slice does NOT touch that path;
   the new `headless` module is a parallel surface-less pipeline.

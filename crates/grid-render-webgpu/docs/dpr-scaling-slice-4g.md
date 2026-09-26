@@ -71,7 +71,7 @@ Out:
 ## Interface
 
 ```rust
-// apps/jet/crates/grid-render-webgpu/src/dpr.rs (pure helpers — testable
+// crates/grid-render-webgpu/src/dpr.rs (pure helpers — testable
 // without a GPU)
 
 /// Multiply a logical size by `dpr`, round half-away-from-zero, and
@@ -118,9 +118,9 @@ impl<'window> WebGpuRenderer<'window> {
 
 ## Reference context
 
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs` — `WebGpuRenderer`
+- `crates/grid-render-webgpu/src/lib.rs` — `WebGpuRenderer`
   (where DPR fields land), `on_resize` (existing physical-px entry).
-- `apps/jet/crates/grid-render-webgpu/src/viewport.rs` —
+- `crates/grid-render-webgpu/src/viewport.rs` —
   `ViewportUniforms::new(width_px, height_px)` already takes physical
   px; no change needed.
 - WebGPU spec: `GPUSurfaceConfiguration::size` is in physical / device

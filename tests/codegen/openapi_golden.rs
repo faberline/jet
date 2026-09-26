@@ -42,8 +42,8 @@ fn snapshot_body(snapshot: &str) -> String {
 }
 
 /// Byte-for-byte golden comparison for the minimal fixture. Regenerate with:
-/// `jet codegen openapi apps/jet/tests/fixtures/codegen/minimal.json
-///  --out apps/jet/tests/__snapshots__/codegen` (then rename `X.ts` to
+/// `jet codegen openapi tests/fixtures/codegen/minimal.json
+///  --out tests/__snapshots__/codegen` (then rename `X.ts` to
 /// `minimal__X.ts`).
 #[test]
 fn minimal_matches_golden_snapshots() {
@@ -109,7 +109,7 @@ fn axios_backend_matches_golden_and_is_surface_invariant() {
 /// `--hooks swr` swaps only `hooks.ts` for the SWR variant (`useSWR` queries +
 /// `useSWRMutation` mutations); every other file is byte-identical to the
 /// react-query goldens. Regenerate with:
-/// `jet codegen openapi apps/jet/tests/fixtures/codegen/minimal.json
+/// `jet codegen openapi tests/fixtures/codegen/minimal.json
 ///  --out <dir> --hooks swr` (then copy `hooks.ts` to `minimal__hooks.swr.ts`).
 #[test]
 fn swr_hooks_match_golden_and_are_surface_invariant() {

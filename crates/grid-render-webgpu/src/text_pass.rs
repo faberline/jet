@@ -62,7 +62,7 @@ use bytemuck::{Pod, Zeroable};
 /// straight-RGBA multiplication, the normalized-UV per-instance layout,
 /// and the no-per-vertex-buffer bit-trick.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/text-pass-wgsl-slice-5g.md#interface
+/// @spec crates/grid-render-webgpu/docs/text-pass-wgsl-slice-5g.md#interface
 /// @issue #1756
 pub const TEXT_PASS_WGSL: &str = r#"
 struct Viewport {
@@ -134,7 +134,7 @@ fn fs_main(in: VsOut) -> @location(0) vec4<f32> {
 /// the vertex layout, not by name. Changing the order requires
 /// updating both sides in lockstep.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/text-pass-wgsl-slice-5g.md#interface
+/// @spec crates/grid-render-webgpu/docs/text-pass-wgsl-slice-5g.md#interface
 /// @issue #1756
 #[repr(C)]
 #[derive(Copy, Clone, Debug, Default, PartialEq, Pod, Zeroable)]
@@ -176,7 +176,7 @@ pub struct GlyphInstance {
 /// comments for the WHY behind the visibility split and the
 /// `Float { filterable: true }` + `Filtering` pairing.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/text-pass-bind-group-layout-slice-5h.md#interface
+/// @spec crates/grid-render-webgpu/docs/text-pass-bind-group-layout-slice-5h.md#interface
 /// @issue #1757
 pub const TEXT_PASS_BIND_GROUP_ENTRIES: [wgpu::BindGroupLayoutEntry; 3] = [
     // @binding(0) — viewport uniform (size_px + scroll_px), read by
@@ -216,7 +216,7 @@ pub const TEXT_PASS_BIND_GROUP_ENTRIES: [wgpu::BindGroupLayoutEntry; 3] = [
 /// with the `'static` label `"text_pass_bgl"`, ready for
 /// `device.create_bind_group_layout(&desc)`.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/text-pass-bind-group-layout-slice-5h.md#interface
+/// @spec crates/grid-render-webgpu/docs/text-pass-bind-group-layout-slice-5h.md#interface
 /// @issue #1757
 pub fn text_pass_bind_group_layout_descriptor() -> wgpu::BindGroupLayoutDescriptor<'static> {
     wgpu::BindGroupLayoutDescriptor {

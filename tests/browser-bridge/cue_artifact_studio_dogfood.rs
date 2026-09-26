@@ -15,7 +15,7 @@ use std::path::{Path, PathBuf};
 
 fn fixture_spec_path() -> PathBuf {
     PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-        .join("../../examples/jet-e2e-demo/cue-artifact-studio.spec.js")
+        .join("examples/jet-e2e-demo/cue-artifact-studio.spec.js")
         .canonicalize()
         .expect("cue-artifact-studio.spec.js must exist alongside the jet crate")
 }
@@ -179,13 +179,7 @@ fn fixture_path_resolves_relative_to_jet_crate() {
     let path = fixture_spec_path();
     assert!(path.is_absolute());
     assert!(
-        path.starts_with(
-            Path::new(env!("CARGO_MANIFEST_DIR"))
-                .parent()
-                .unwrap()
-                .parent()
-                .unwrap()
-        ),
+        path.starts_with(Path::new(env!("CARGO_MANIFEST_DIR"))),
         "fixture lives in the same checkout: {}",
         path.display()
     );

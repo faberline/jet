@@ -88,14 +88,14 @@ Default at construction is `[1.0, 1.0, 1.0, 1.0]`.
 
 ## Reference Context
 
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs:83-86` — `clear_color`
+- `crates/grid-render-webgpu/src/lib.rs:83-86` — `clear_color`
   field on `WebGpuRenderer`.
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs:245` — current default
+- `crates/grid-render-webgpu/src/lib.rs:245` — current default
   (BLACK; this slice flips to white).
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs:409-426` — current
+- `crates/grid-render-webgpu/src/lib.rs:409-426` — current
   `set_clear_color` / `clear_color` signatures (this slice re-shapes
   to `[f32; 4]`).
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs:450-458` — `render_frame`
+- `crates/grid-render-webgpu/src/lib.rs:450-458` — `render_frame`
   reads the field for the load-op clear value (unchanged here).
-- `apps/jet/crates/grid-render-webgpu/docs/render-pass-orchestration-slice-4e.md` —
+- `crates/grid-render-webgpu/docs/render-pass-orchestration-slice-4e.md` —
   parent slice that introduced the field + plumbed it into the pass.

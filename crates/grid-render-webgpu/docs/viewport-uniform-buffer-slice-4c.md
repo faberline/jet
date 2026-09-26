@@ -3,7 +3,7 @@
 > Issue: #1721 · Parent epic: #1699 (WebGPU render runtime) · Slice: 4c
 >
 > Spec location note: lives next to the crate
-> (`apps/jet/crates/grid-render-webgpu/docs/`) because the host worktree denies
+> (`crates/grid-render-webgpu/docs/`) because the host worktree denies
 > writes under `.aw/`. Sibling specs: Slice 4a (#1719) and Slice 4b
 > (#1720).
 
@@ -42,7 +42,7 @@ Out:
 ## Interface
 
 ```rust
-// apps/jet/crates/grid-render-webgpu/src/viewport.rs
+// crates/grid-render-webgpu/src/viewport.rs
 
 /// Uniform values consumed by the cell-rect shader at @binding(0).
 /// Layout MUST match the WGSL `Viewport` struct in `cell_rect::CELL_RECT_WGSL`
@@ -60,7 +60,7 @@ impl ViewportUniforms {
 ```
 
 ```rust
-// apps/jet/crates/grid-render-webgpu/src/lib.rs
+// crates/grid-render-webgpu/src/lib.rs
 
 impl<'window> WebGpuRenderer<'window> {
     /// Push new viewport uniforms to the GPU via Queue::write_buffer.

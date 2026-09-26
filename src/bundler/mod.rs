@@ -313,7 +313,7 @@ fn collect_side_effect_free_module_indices(
 /// A bare-specifier import that the resolver could not find on disk
 /// and that the user did not explicitly mark as external.
 ///
-/// @spec apps/jet/docs/build-fails-loudly-on-unresolved-bare-specifiers.md
+/// @spec docs/build-fails-loudly-on-unresolved-bare-specifiers.md
 /// @issue #1317
 #[derive(Debug, Clone)]
 struct UnresolvedDependency {
@@ -349,7 +349,7 @@ pub struct Bundler {
     /// `bundle()` if non-empty so the build exits non-zero instead of
     /// silently shipping invalid JS.
     ///
-    /// @spec apps/jet/docs/build-fails-loudly-on-unresolved-bare-specifiers.md
+    /// @spec docs/build-fails-loudly-on-unresolved-bare-specifiers.md
     /// @issue #1317
     unresolved_deps: Mutex<Vec<UnresolvedDependency>>,
     /// Per-module tree-sitter trees parsed during `build_graph`, drained by
@@ -915,7 +915,7 @@ impl Bundler {
     /// specifier with its importer (deduplicated by specifier, stable
     /// lexical order) so CI can act on it.
     ///
-    /// @spec apps/jet/docs/build-fails-loudly-on-unresolved-bare-specifiers.md
+    /// @spec docs/build-fails-loudly-on-unresolved-bare-specifiers.md
     /// @issue #1317
     fn check_unresolved_deps(&self) -> Result<()> {
         let deps = std::mem::take(&mut *self.unresolved_deps.lock());
@@ -1467,7 +1467,7 @@ impl Default for CompilationCache {
 /// Extracted as a free function so it can be unit-tested without spinning
 /// up a full `Bundler`.
 ///
-/// @spec apps/jet/docs/build-fails-loudly-on-unresolved-bare-specifiers.md
+/// @spec docs/build-fails-loudly-on-unresolved-bare-specifiers.md
 /// @issue #1317
 fn format_unresolved_error(deps: &[UnresolvedDependency]) -> anyhow::Error {
     use std::collections::BTreeMap;
@@ -2239,7 +2239,7 @@ mod resolved_path_tests {
 /// specifier can neither be resolved on disk nor was opted into being
 /// external, and must continue to silently skip when the user did opt in.
 ///
-/// @spec apps/jet/docs/build-fails-loudly-on-unresolved-bare-specifiers.md
+/// @spec docs/build-fails-loudly-on-unresolved-bare-specifiers.md
 /// @issue #1317
 #[cfg(test)]
 mod unresolved_deps_tests {

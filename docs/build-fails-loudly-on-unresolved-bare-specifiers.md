@@ -1,7 +1,7 @@
 # build fails loudly on unresolved bare specifiers
 
 > **Issue**: #1317
-> **Crate**: `jet` (`apps/jet/src/bundler/mod.rs`)
+> **Crate**: `jet` (`src/bundler/mod.rs`)
 > **Type**: bug
 
 ## Problem
@@ -28,13 +28,13 @@ e('react/jsx-runtime'), e('react'), e('react-dom/client'), e('lucide-react')
 
 The current code path:
 
-- `apps/jet/src/bundler/mod.rs:412-444` — static-import branch of
+- `src/bundler/mod.rs:412-444` — static-import branch of
   `build_graph`. When `resolve_dependency` returns
   `Err("Cannot resolve package: react")`, the error is downgraded to a
   `tracing::warn!` and the loop continues.
-- `apps/jet/src/bundler/mod.rs:446-472` — dynamic-import branch.
+- `src/bundler/mod.rs:446-472` — dynamic-import branch.
   Same swallow.
-- `apps/jet/src/bundler/mod.rs:398-410` — implicit
+- `src/bundler/mod.rs:398-410` — implicit
   `react/jsx-runtime` JSX dep. Same swallow.
 
 The downstream transform still emits `require(...)` / `import(...)`
@@ -54,7 +54,7 @@ In:
   return an `anyhow::Error` from `Bundler::bundle()` listing every
   unresolved specifier together with the importer paths. The
   existing `.context("Bundle failed")` wrap at
-  `apps/jet/src/cli.rs:1235` propagates this through to a non-zero
+  `src/cli.rs:1235` propagates this through to a non-zero
   exit code (anyhow's standard surface).
 - Preserve the **expected** "External module: X" silent-skip for
   bundlers running with `externalize_all_packages = true` (lib mode,
@@ -134,19 +134,19 @@ See: https://github.com/.../issues/1317
 
 ## Reference Context
 
-- `apps/jet/src/bundler/mod.rs:412-444` — static-import swallow.
-- `apps/jet/src/bundler/mod.rs:446-472` — dynamic-import swallow.
-- `apps/jet/src/bundler/mod.rs:398-410` — JSX implicit-runtime
+- `src/bundler/mod.rs:412-444` — static-import swallow.
+- `src/bundler/mod.rs:446-472` — dynamic-import swallow.
+- `src/bundler/mod.rs:398-410` — JSX implicit-runtime
   swallow.
-- `apps/jet/src/bundler/mod.rs:491-509` — `resolve_dependency`
+- `src/bundler/mod.rs:491-509` — `resolve_dependency`
   returns "External module: X" only when the resolver flags it
   external; otherwise it propagates the resolver's own error
   message ("Cannot resolve package: X").
-- `apps/jet/src/resolver/mod.rs:107-128` — resolver
+- `src/resolver/mod.rs:107-128` — resolver
   `is_external` short-circuit and the normal-path bail.
-- `apps/jet/src/cli.rs:1230-1235` — `bundler.bundle()` call site
+- `src/cli.rs:1230-1235` — `bundler.bundle()` call site
   with `.context("Bundle failed")`; this is the propagation point
   that turns an `Err` into a non-zero process exit.
-- `apps/jet/src/cli.rs:1779-1786` — lib mode flips
+- `src/cli.rs:1779-1786` — lib mode flips
   `externalize_all_packages` on; the new error path must not
   trigger here.

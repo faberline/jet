@@ -142,7 +142,7 @@ delta values, so failures are debuggable without re-running the fixture.
 
 ## Tolerance schema
 
-The artifact shape is locked in `apps/jet/data/parity/schemas/layout-box.schema.json`
+The artifact shape is locked in `data/parity/schemas/layout-box.schema.json`
 (JSON Schema draft-07). Top-level fields:
 
 - `schema_version` (const `1`) — bumped on incompatible shape changes.

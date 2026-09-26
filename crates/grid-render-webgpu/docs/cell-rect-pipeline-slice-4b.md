@@ -2,7 +2,7 @@
 
 > Issue: #1720 · Parent epic: #1699 (WebGPU render runtime) · Slice: 4b
 >
-> Spec location note: this lives next to the crate (`apps/jet/crates/grid-render-webgpu/docs/`)
+> Spec location note: this lives next to the crate (`crates/grid-render-webgpu/docs/`)
 > rather than `.aw/tech-design/projects/jet/` because the host worktree
 > denies writes under `.aw/`. Co-locating the spec with the crate it
 > describes is arguably cleaner anyway — readers find it via the crate.
@@ -48,7 +48,7 @@ Out:
 ## Interface
 
 ```rust
-// apps/jet/crates/grid-render-webgpu/src/cell_rect.rs
+// crates/grid-render-webgpu/src/cell_rect.rs
 
 /// WGSL source for the cell-rect shader (vs_main, fs_main).
 pub const CELL_RECT_WGSL: &str;
@@ -82,7 +82,7 @@ pub struct PipelineConfig {
 ```
 
 ```rust
-// apps/jet/crates/grid-render-webgpu/src/lib.rs
+// crates/grid-render-webgpu/src/lib.rs
 
 impl<'window> WebGpuRenderer<'window> {
     /// Build (or fetch cached) cell-rect pipeline for `format`.
@@ -123,7 +123,7 @@ instance buffer is bound.
 
 - Parent epic: #1699 (WebGPU render runtime)
 - Slice 4a (wrapper, merged): #1719 / PR #1904 — see
-  `apps/jet/crates/grid-render-webgpu/src/lib.rs` for the `WebGpuRenderer`
+  `crates/grid-render-webgpu/src/lib.rs` for the `WebGpuRenderer`
   type this slice extends.
 - Sibling slices (planned): cell-instance buffer pool, viewport uniform
   write-through, render-pass orchestration.

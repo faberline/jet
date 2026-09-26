@@ -101,7 +101,7 @@ Out:
 /// glyph by `(face, glyph_id, size_px)`. Two glyphs with the same
 /// key are interchangeable from the renderer's perspective.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/glyph-cache-insert-with-bitmap-slice-5d.md#interface
+/// @spec crates/grid-render-webgpu/docs/glyph-cache-insert-with-bitmap-slice-5d.md#interface
 /// @issue #1753
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct GlyphKey {
@@ -115,7 +115,7 @@ pub struct GlyphKey {
 /// reads `width` / `height`; the layout pass reads
 /// `baseline_offset` + `advance`.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/glyph-cache-insert-with-bitmap-slice-5d.md#interface
+/// @spec crates/grid-render-webgpu/docs/glyph-cache-insert-with-bitmap-slice-5d.md#interface
 /// @issue #1753
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct Placement {
@@ -128,7 +128,7 @@ pub struct Placement {
 /// One cached glyph — placement + the alpha bitmap the atlas
 /// uploads to the GPU.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/glyph-cache-insert-with-bitmap-slice-5d.md#interface
+/// @spec crates/grid-render-webgpu/docs/glyph-cache-insert-with-bitmap-slice-5d.md#interface
 /// @issue #1753
 #[derive(Debug, Clone, PartialEq)]
 pub struct GlyphEntry {
@@ -168,7 +168,7 @@ impl GlyphCache {
 
 ## Reference Context
 
-- Parent epic [#1700](https://github.com/chrischeng-c4/cclab/issues/1700) — text pass
+- Parent epic [#1700](https://github.com/faberline/axiom/issues/1700) — text pass
   (glyph rasterization, shaping, atlas upload, font fallback).
 - Slice 5a (#1750) — [`FontFace`] handle.
 - Slice 5b (#1751) — [`FontDb`] registry, source of [`FaceId`].

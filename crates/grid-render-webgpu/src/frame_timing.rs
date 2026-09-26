@@ -40,7 +40,7 @@ const RING_CAPACITY: usize = 8;
 /// Disabled (no-op) when the adapter does not expose
 /// `Features::TIMESTAMP_QUERY` — see module-level docs.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/gpu-timeline-queries-slice-4i.md#interface
+/// @spec crates/grid-render-webgpu/docs/gpu-timeline-queries-slice-4i.md#interface
 /// @issue #1727
 pub struct FrameTimingPool {
     state: PoolState,
@@ -121,7 +121,7 @@ impl FrameTimingPool {
     /// `adapter_features`, returns a permanently-disabled pool whose
     /// every method is a no-op.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/gpu-timeline-queries-slice-4i.md#interface
+    /// @spec crates/grid-render-webgpu/docs/gpu-timeline-queries-slice-4i.md#interface
     /// @issue #1727
     pub(crate) fn new(
         device: &wgpu::Device,
@@ -174,7 +174,7 @@ impl FrameTimingPool {
     /// `true` if the pool is wired against a real `TIMESTAMP_QUERY`
     /// adapter; `false` for the no-op fallback.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/gpu-timeline-queries-slice-4i.md#interface
+    /// @spec crates/grid-render-webgpu/docs/gpu-timeline-queries-slice-4i.md#interface
     /// @issue #1727
     pub fn is_enabled(&self) -> bool {
         matches!(self.state, PoolState::Enabled { .. })
@@ -183,7 +183,7 @@ impl FrameTimingPool {
     /// Most recently completed frame's GPU duration in milliseconds.
     /// `None` if no frame has completed yet or the pool is disabled.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/gpu-timeline-queries-slice-4i.md#interface
+    /// @spec crates/grid-render-webgpu/docs/gpu-timeline-queries-slice-4i.md#interface
     /// @issue #1727
     pub fn last_frame_gpu_ms(&self) -> Option<f32> {
         self.last_ms.lock().ok().and_then(|g| *g)
@@ -194,7 +194,7 @@ impl FrameTimingPool {
     /// Surface-independent + tiny, but the
     /// memory report (Slice 4bb / #1746) includes it for completeness.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/gpu-memory-accounting-slice-4bb.md#interface
+    /// @spec crates/grid-render-webgpu/docs/gpu-memory-accounting-slice-4bb.md#interface
     /// @issue #1746
     pub(crate) fn buffer_bytes_estimate(&self) -> u64 {
         match &self.state {
@@ -208,7 +208,7 @@ impl FrameTimingPool {
     /// pool is disabled — callers in [`crate::frame::FrameBuilder`]
     /// then pass `timestamp_writes: None` on the pass descriptor.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/gpu-timeline-queries-slice-4i.md#interface
+    /// @spec crates/grid-render-webgpu/docs/gpu-timeline-queries-slice-4i.md#interface
     /// @issue #1727
     pub(crate) fn active_query_set(&self) -> Option<&wgpu::QuerySet> {
         match &self.state {
@@ -229,7 +229,7 @@ impl FrameTimingPool {
     /// `encoder.finish()`. The map callback writes into the shared
     /// result cell observable via [`Self::last_frame_gpu_ms`].
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/gpu-timeline-queries-slice-4i.md#interface
+    /// @spec crates/grid-render-webgpu/docs/gpu-timeline-queries-slice-4i.md#interface
     /// @issue #1727
     pub(crate) fn finish_frame(
         &mut self,

@@ -30,7 +30,7 @@ use crate::{RenderFrameError, WebGpuRenderer};
 /// and the in-flight command encoder. Built by
 /// [`WebGpuRenderer::begin_frame`] and consumed by [`Self::commit`].
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/submit-batching-slice-4j.md#interface
+/// @spec crates/grid-render-webgpu/docs/submit-batching-slice-4j.md#interface
 /// @issue #1728
 pub struct FrameBuilder<'r, 'window> {
     renderer: &'r mut WebGpuRenderer<'window>,
@@ -76,7 +76,7 @@ impl<'r, 'window> FrameBuilder<'r, 'window> {
     /// Empty `cells` still encodes the pass (so the clear, if any,
     /// runs) but skips the instance upload + draw call.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/submit-batching-slice-4j.md#interface
+    /// @spec crates/grid-render-webgpu/docs/submit-batching-slice-4j.md#interface
     /// @issue #1728
     pub fn encode_cell_pass(&mut self, cells: &[CellInstance], clear: Option<wgpu::Color>) {
         // Nests under the active `frame` span when called from
@@ -242,7 +242,7 @@ impl<'r, 'window> FrameBuilder<'r, 'window> {
     ///
     /// Consumes `self` so the same frame can never be committed twice.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/submit-batching-slice-4j.md#interface
+    /// @spec crates/grid-render-webgpu/docs/submit-batching-slice-4j.md#interface
     /// @issue #1728
     pub fn commit(mut self) -> Result<(), RenderFrameError> {
         let mut encoder = self
@@ -292,7 +292,7 @@ impl<'r, 'window> FrameBuilder<'r, 'window> {
     /// tests to enforce the one-submit-per-frame invariant; not part
     /// of the public render-loop API.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/submit-batching-slice-4j.md#scope
+    /// @spec crates/grid-render-webgpu/docs/submit-batching-slice-4j.md#scope
     /// @issue #1728
     #[doc(hidden)]
     pub fn submit_count_for_tests(&self) -> u32 {

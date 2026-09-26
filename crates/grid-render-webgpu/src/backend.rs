@@ -38,7 +38,7 @@
 ///
 /// Pure — testable without a GPU.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/backend-selection-slice-4l.md#interface
+/// @spec crates/grid-render-webgpu/docs/backend-selection-slice-4l.md#interface
 /// @issue #1730
 pub fn backends_for_target() -> wgpu::Backends {
     #[cfg(target_arch = "wasm32")]
@@ -57,7 +57,7 @@ pub fn backends_for_target() -> wgpu::Backends {
 /// hitting "no adapter" learns whether the renderer searched the
 /// web's WebGPU surface or the native PRIMARY trio.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/backend-selection-slice-4l.md#interface
+/// @spec crates/grid-render-webgpu/docs/backend-selection-slice-4l.md#interface
 /// @issue #1730
 pub fn backend_description() -> &'static str {
     #[cfg(target_arch = "wasm32")]

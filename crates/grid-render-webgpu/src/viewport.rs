@@ -21,7 +21,7 @@ use bytemuck::{Pod, Zeroable};
 /// 8 bytes here per scroll event; a partial write at this offset is the
 /// minimum-payload contract Slice 4s (#1737) guarantees.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/scroll-driven-uniform-update-slice-4s.md#interface
+/// @spec crates/grid-render-webgpu/docs/scroll-driven-uniform-update-slice-4s.md#interface
 /// @issue #1737
 pub const SCROLL_PX_OFFSET_BYTES: wgpu::BufferAddress = 8;
 
@@ -32,7 +32,7 @@ pub const SCROLL_PX_OFFSET_BYTES: wgpu::BufferAddress = 8;
 /// offset 0, `scroll_px` is a `vec2<f32>` at offset 8. Total 16 bytes —
 /// the WGSL-required uniform alignment without any explicit padding.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/viewport-uniform-buffer-slice-4c.md#interface
+/// @spec crates/grid-render-webgpu/docs/viewport-uniform-buffer-slice-4c.md#interface
 /// @issue #1721
 #[repr(C)]
 #[derive(Copy, Clone, Debug, Default, PartialEq, Pod, Zeroable)]
@@ -49,7 +49,7 @@ impl ViewportUniforms {
     /// Construct a `ViewportUniforms` from physical pixel dimensions
     /// with `scroll_px = [0.0, 0.0]`.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/viewport-uniform-buffer-slice-4c.md#interface
+    /// @spec crates/grid-render-webgpu/docs/viewport-uniform-buffer-slice-4c.md#interface
     /// @issue #1721
     pub fn new(width_px: f32, height_px: f32) -> Self {
         Self {
@@ -63,7 +63,7 @@ impl ViewportUniforms {
     /// paths (resize, DPR change, device recovery) so a layout
     /// reflow preserves the user's scroll offset (Slice 4s, #1737).
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/scroll-driven-uniform-update-slice-4s.md#interface
+    /// @spec crates/grid-render-webgpu/docs/scroll-driven-uniform-update-slice-4s.md#interface
     /// @issue #1737
     pub fn with_scroll(width_px: f32, height_px: f32, scroll_px: [f32; 2]) -> Self {
         Self {

@@ -42,7 +42,7 @@ fn test_playwright_flag_delegates_to_playwright_runner() {
     // Ensure PlaywrightArgs can carry file paths.
     let args = PlaywrightArgs {
         files: vec![std::path::PathBuf::from(
-            "apps/jet/tests/fixtures/playwright-compat/basic.spec.ts",
+            "tests/fixtures/playwright-compat/basic.spec.ts",
         )],
     };
     assert_eq!(args.files.len(), 1);

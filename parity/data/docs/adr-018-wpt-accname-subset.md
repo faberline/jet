@@ -6,7 +6,7 @@
 | Parent epic | #2136 |
 | Status | accepted |
 | Date | 2026-05-16 |
-| Decision | Vendor a curated `wpt/accname/` subset under `apps/jet/data/parity/wpt/accname/`; drive each fixture in headless Chromium via Playwright; read the computed name out of the CDP AX tree (#2160); classify every fixture as PASS / KNOWN-FAIL+issue / SKIP+reason in a single manifest; require 100 % classification at green, with out-of-mapping roles SKIPped with a `revisit` hook. |
+| Decision | Vendor a curated `wpt/accname/` subset under `data/parity/wpt/accname/`; drive each fixture in headless Chromium via Playwright; read the computed name out of the CDP AX tree (#2160); classify every fixture as PASS / KNOWN-FAIL+issue / SKIP+reason in a single manifest; require 100 % classification at green, with out-of-mapping roles SKIPped with a `revisit` hook. |
 
 ## Context
 
@@ -77,7 +77,7 @@ declares.
 ### Vendoring layout
 
 ```
-apps/jet/data/parity/wpt/accname/
+data/parity/wpt/accname/
   manifest.toml              # per-fixture classification (this ADR)
   upstream.txt               # WPT git SHA + path the subset was pinned from
   LICENSE                    # WPT license (copy, per #2142 policy)
@@ -165,7 +165,7 @@ error and fails the gate at parse time.
 
 ### Manifest schema
 
-`apps/jet/data/parity/wpt/accname/manifest.toml`:
+`data/parity/wpt/accname/manifest.toml`:
 
 ```toml
 schema_version = 1
@@ -203,7 +203,7 @@ bucket the gate silently swallows.
 
 ### Runner location and CI wiring
 
-The runner lives under `apps/jet/data/parity/runners/accname/` and is
+The runner lives under `data/parity/runners/accname/` and is
 invoked by the existing parity gate (#2144). It emits one report per
 fixture under `target/parity/accname/<fixture-id>.json`:
 

@@ -84,7 +84,7 @@ Out:
 ## Interface
 
 ```rust
-// apps/jet/crates/grid-wasm/src/renderer_bridge.rs (wasm32 surface)
+// crates/grid-wasm/src/renderer_bridge.rs (wasm32 surface)
 
 #[wasm_bindgen]
 pub struct RendererHandle { /* opaque to JS */ }
@@ -146,13 +146,13 @@ length is a `JsValue` exception from `render_frame`.
 
 ## Reference context
 
-- `apps/jet/crates/grid-wasm/src/frame_loop.rs` — `WasmView` (#1724,
+- `crates/grid-wasm/src/frame_loop.rs` — `WasmView` (#1724,
   Slice 4f), the RAF state machine this bridge will eventually
   wire into.
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs` — `WebGpuRenderer`
+- `crates/grid-render-webgpu/src/lib.rs` — `WebGpuRenderer`
   (#1719), `set_dpr` / `on_resize_logical` (#1725 Slice 4g),
   `render_frame` (#1723 Slice 4e).
-- `apps/jet/crates/grid-render-webgpu/src/cell_rect.rs` —
+- `crates/grid-render-webgpu/src/cell_rect.rs` —
   `CellInstance` struct (the packed-Float32Array unpack target).
 - wgpu 24: `SurfaceTarget::Canvas(HtmlCanvasElement)` is the
   wasm32-only canvas-as-surface path consumed by `init_renderer`.

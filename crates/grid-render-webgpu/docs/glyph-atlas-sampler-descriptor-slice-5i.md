@@ -92,7 +92,7 @@ Out:
 /// atlas. `Linear` mag/min filter + `ClampToEdge` addressing on every
 /// axis. See module docs for the WHY behind those two choices.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/glyph-atlas-sampler-descriptor-slice-5i.md#interface
+/// @spec crates/grid-render-webgpu/docs/glyph-atlas-sampler-descriptor-slice-5i.md#interface
 /// @issue #1758
 pub fn glyph_atlas_sampler_descriptor() -> wgpu::SamplerDescriptor<'static>;
 ```
@@ -112,7 +112,7 @@ pub fn glyph_atlas_sampler_descriptor() -> wgpu::SamplerDescriptor<'static>;
 
 ## Reference Context
 
-- Parent epic [#1700](https://github.com/chrischeng-c4/cclab/issues/1700) — text pass.
+- Parent epic [#1700](https://github.com/faberline/axiom/issues/1700) — text pass.
 - Slice 5e (#1754) — `glyph_atlas_texture_descriptor`. The atlas this
   sampler reads. `mip_level_count = 1` is why the LOD clamps land at
   `(0.0, 0.0)`.

@@ -106,7 +106,7 @@ Out:
 /// position. See module docs for the WHY behind the visibility split
 /// and the `Float { filterable: true }` choice.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/text-pass-bind-group-layout-slice-5h.md#interface
+/// @spec crates/grid-render-webgpu/docs/text-pass-bind-group-layout-slice-5h.md#interface
 /// @issue #1757
 pub const TEXT_PASS_BIND_GROUP_ENTRIES: [wgpu::BindGroupLayoutEntry; 3] = [
     /* viewport, atlas, sampler */
@@ -115,7 +115,7 @@ pub const TEXT_PASS_BIND_GROUP_ENTRIES: [wgpu::BindGroupLayoutEntry; 3] = [
 /// `BindGroupLayoutDescriptor` composing [`TEXT_PASS_BIND_GROUP_ENTRIES`]
 /// with the `'static` label `"text_pass_bgl"`.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/text-pass-bind-group-layout-slice-5h.md#interface
+/// @spec crates/grid-render-webgpu/docs/text-pass-bind-group-layout-slice-5h.md#interface
 /// @issue #1757
 pub fn text_pass_bind_group_layout_descriptor() -> wgpu::BindGroupLayoutDescriptor<'static>;
 ```
@@ -134,7 +134,7 @@ pub fn text_pass_bind_group_layout_descriptor() -> wgpu::BindGroupLayoutDescript
 
 ## Reference Context
 
-- Parent epic [#1700](https://github.com/chrischeng-c4/cclab/issues/1700) — text pass.
+- Parent epic [#1700](https://github.com/faberline/axiom/issues/1700) — text pass.
 - Slice 5e (#1754) — atlas texture descriptor (R8Unorm, D2,
   sample_count=1). This layout's texture entry must match.
 - Slice 5g (#1756) — `TEXT_PASS_WGSL` pinned the binding numbers

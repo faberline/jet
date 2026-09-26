@@ -58,7 +58,7 @@ flowchart TD
     single_property_shape -->|no, 2+ properties; 0.4.16-bundle\nfallback does not apply| silent_truncate_0416(["0.4.16-bundle, multi-property: a later\nsibling member (e.g. stringify) is swallowed\nand silently dropped from the emitted .d.ts\n(WI #1238 second-comment symptom, filed\nseparately as WI #1262)"])
 ```
 
-Scope for WI #1238 (`projects/jet/src/bundler/dts.rs`): empirically re-verified against the issue's exact minimal repro (the `_Query.parse` shape: a single-property `const` whose sole property is an arrow function with its own explicit return type, `Object.assign({}, ...chain.of.calls.map((pair) => { ...; return { [computed]: value }; }))` as the concise body) against three points on the commit history:
+Scope for WI #1238 (`src/bundler/dts.rs`): empirically re-verified against the issue's exact minimal repro (the `_Query.parse` shape: a single-property `const` whose sole property is an arrow function with its own explicit return type, `Object.assign({}, ...chain.of.calls.map((pair) => { ...; return { [computed]: value }; }))` as the concise body) against three points on the commit history:
 
 1. `jet@0.4.15` tag (the version cited in the issue as reproducing): `cargo test -p jet --lib` with the issue's exact source **fails** with `isolatedDeclarations error — exported \`const _Query\` lacks an explicit type annotation` — matches the issue verbatim.
 2. `75cb5e5ca~1` (the 0.4.16 release-bundle state cited in the issue's second comment, before WI #1264/#1263 landed): the single-property exact repro now **passes** (a new `infer_single_arrow_property_object_literal_type` fallback landed in the 0.4.16 bundle and sidesteps the broken multi-member comma-splitting entirely for single-property objects), but a **2-property** variant of the same shape (`parse` using `Object.assign`+computed-key, followed by a sibling `stringify` property) **silently truncates** — the emitted `.d.ts` contains only `parse`, silently dropping `stringify`, with **no error at all**. This is a real, reproduced instance of the failure mode the issue's second comment describes and that was filed separately as WI #1262.
@@ -114,7 +114,7 @@ flowchart TD
 
 ```yaml
 changes:
-  - path: projects/jet/src/bundler/dts.rs
+  - path: src/bundler/dts.rs
     action: update
     section: unit-test
     impl_mode: hand-written

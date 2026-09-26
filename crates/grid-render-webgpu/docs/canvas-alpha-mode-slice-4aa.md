@@ -81,7 +81,7 @@ Out:
 /// Canvas alpha-compositing mode. Public, stable, renderer-typed —
 /// callers should not depend on `wgpu::CompositeAlphaMode` directly.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/canvas-alpha-mode-slice-4aa.md#interface
+/// @spec crates/grid-render-webgpu/docs/canvas-alpha-mode-slice-4aa.md#interface
 /// @issue #1745
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum AlphaMode {
@@ -142,10 +142,10 @@ impl<'window> WebGpuRenderer<'window> {
 
 ## Reference Context
 
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs:243` — current
+- `crates/grid-render-webgpu/src/lib.rs:243` — current
   `surface_config.alpha_mode = surface_caps.alpha_modes[0]`. Slice 4aa
   parameterises it.
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs` — Slice 4z's
+- `crates/grid-render-webgpu/src/lib.rs` — Slice 4z's
   `recommend_present_mode` + `set_present_mode` is the structural
   twin; this slice mirrors the pattern.
 - Parent epic #1254 — WebGPU-React renderer; Slice 4aa closes the

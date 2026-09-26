@@ -14,11 +14,9 @@ use jet_parity_gate::result::{ChannelResult, DiffKind, Status};
 use jet_parity_gate::waivers::Waivers;
 
 fn repo_root() -> PathBuf {
-    // crate dir is apps/jet/parity-gate/, repo root is three levels up.
+    // crate dir is parity/gate/, repo root is two levels up.
     let manifest_dir = Path::new(env!("CARGO_MANIFEST_DIR"));
     manifest_dir
-        .parent()
-        .unwrap()
         .parent()
         .unwrap()
         .parent()
@@ -27,11 +25,11 @@ fn repo_root() -> PathBuf {
 }
 
 fn default_manifest_path() -> PathBuf {
-    repo_root().join("apps/jet/parity/data/parity-gating.toml")
+    repo_root().join("parity/data/parity-gating.toml")
 }
 
 fn default_waivers_path() -> PathBuf {
-    repo_root().join("apps/jet/parity/data/waivers.toml")
+    repo_root().join("parity/data/waivers.toml")
 }
 
 fn sample_result(fixture: &str, channel: &str, status: Status) -> ChannelResult {

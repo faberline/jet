@@ -49,7 +49,7 @@
 /// Distinct from [`crate::glyph_cache::Placement`], which carries
 /// bitmap metrics (size + baseline + advance), not atlas coordinates.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/glyph-atlas-upload-slice-5f.md#interface
+/// @spec crates/grid-render-webgpu/docs/glyph-atlas-upload-slice-5f.md#interface
 /// @issue #1755
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct AtlasPlacement {
@@ -60,7 +60,7 @@ pub struct AtlasPlacement {
 /// Failure modes for [`upload_glyph`]. See module docs for the WHY
 /// each variant is a recoverable error rather than a panic.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/glyph-atlas-upload-slice-5f.md#interface
+/// @spec crates/grid-render-webgpu/docs/glyph-atlas-upload-slice-5f.md#interface
 /// @issue #1755
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum AtlasUploadError {
@@ -115,7 +115,7 @@ impl std::error::Error for AtlasUploadError {}
 /// for the WHY behind the `write_texture` choice and the typed-error
 /// shape.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/glyph-atlas-upload-slice-5f.md#interface
+/// @spec crates/grid-render-webgpu/docs/glyph-atlas-upload-slice-5f.md#interface
 /// @issue #1755
 pub fn upload_glyph(
     queue: &wgpu::Queue,

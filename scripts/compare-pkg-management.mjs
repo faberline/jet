@@ -9,11 +9,11 @@ import { spawnSync } from "node:child_process";
 const repoRoot = process.cwd();
 
 const defaultFixtures = [
-  "apps/jet/tests/fixtures/dom-production-build/react-bench",
-  "apps/jet/tests/fixtures/dom-production-build/mui-visual",
-  "apps/jet/tests/fixtures/dom-production-build/antd-visual",
-  "apps/jet/tests/fixtures/dom-production-build/tailwind-visual",
-  "apps/jet/tests/fixtures/dom-production-build/styled-components-visual",
+  "tests/fixtures/dom-production-build/react-bench",
+  "tests/fixtures/dom-production-build/mui-visual",
+  "tests/fixtures/dom-production-build/antd-visual",
+  "tests/fixtures/dom-production-build/tailwind-visual",
+  "tests/fixtures/dom-production-build/styled-components-visual",
 ];
 
 function parseArgs(argv) {

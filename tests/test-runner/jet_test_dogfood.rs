@@ -1,7 +1,7 @@
 // SPEC-MANAGED: .aw/tech-design/projects/jet/semantic/jet-tests.md#tests
 // CODEGEN-BEGIN
 //! Dogfood: run `jet test` over the in-tree
-//! `apps/jet/examples/jet-test-dogfood/src` corpus and assert the
+//! `examples/jet-test-dogfood/src` corpus and assert the
 //! result shape matches the agent-readable contract.
 //!
 //! Per #2607 the corpus stays in the `node` test environment (no DOM,

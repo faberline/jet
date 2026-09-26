@@ -56,7 +56,7 @@ use crate::font_face::{FontFace, GlyphId};
 /// `y` is the baseline offset of the *line* this glyph sits on —
 /// `0.0` for the first line, `line_height` for the second, etc.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/shape-run-slice-5j.md#interface
+/// @spec crates/grid-render-webgpu/docs/shape-run-slice-5j.md#interface
 /// @issue #1759
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct PositionedGlyph {
@@ -76,7 +76,7 @@ pub struct PositionedGlyph {
 /// module docs for the WHY behind the no-kerning + no-fallback +
 /// drop-unknown design.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/shape-run-slice-5j.md#interface
+/// @spec crates/grid-render-webgpu/docs/shape-run-slice-5j.md#interface
 /// @issue #1759
 pub fn shape_run(face: &FontFace, text: &str, size_px: u32) -> Vec<PositionedGlyph> {
     if text.is_empty() || size_px == 0 {

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$repo_root"
 
 phases="${JET_BASIC_DOM_PHASES:-package,browser}"
@@ -97,7 +97,7 @@ if phase_enabled package; then
   else
     package_args+=(--no-require-baselines)
   fi
-  node apps/jet/scripts/compare-pkg-management.mjs "${package_args[@]}"
+  node scripts/compare-pkg-management.mjs "${package_args[@]}"
 fi
 
 if phase_enabled browser; then
@@ -116,26 +116,26 @@ if phase_enabled browser; then
   if [[ "$require_browser_baselines" == "1" ]]; then
     browser_args+=(--require-baselines)
   fi
-  node apps/jet/scripts/verify-browser-bridge-replacement.mjs "${browser_args[@]}"
+  node scripts/verify-browser-bridge-replacement.mjs "${browser_args[@]}"
 fi
 
 if phase_enabled build; then
   echo "[jet basic dom gate] 3 Production build and bundler"
   ensure_release_jet
-  if rg -n "try_esbuild_minify|node_modules.*\\.bin.*esbuild|Command::new\\(&esbuild\\)" apps/jet/src/cli.rs; then
+  if rg -n "try_esbuild_minify|node_modules.*\\.bin.*esbuild|Command::new\\(&esbuild\\)" src/cli.rs; then
     echo "[jet basic dom gate] ERROR: jet build must use Jet's internal minifier, not optional esbuild"
     exit 1
   fi
   cargo test -p jet --lib bundler -- --nocapture
   cargo test -p jet --lib transform -- --nocapture
   cargo test -p jet --lib asset -- --nocapture
-  node apps/jet/scripts/compare-basic-builds.mjs \
+  node scripts/compare-basic-builds.mjs \
     --self-test \
     --runtime-smoke "$runtime_smoke" \
     --require-css \
     --require-public brand.svg \
     --semantic-strings "DOM Production Assets"
-  node apps/jet/scripts/compare-dom-build-corpus.mjs \
+  node scripts/compare-dom-build-corpus.mjs \
     --jet-bin target/release/jet \
     --runtime-smoke "$runtime_smoke" \
     --build-samples "$build_samples" \
@@ -155,7 +155,7 @@ if phase_enabled serve; then
   if [[ "$require_nginx_baseline" != "1" ]]; then
     prod_static_args+=(--allow-missing-nginx)
   fi
-  node apps/jet/scripts/compare-prod-static-serve.mjs "${prod_static_args[@]}"
+  node scripts/compare-prod-static-serve.mjs "${prod_static_args[@]}"
 fi
 
 if phase_enabled workspace; then

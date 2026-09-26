@@ -403,7 +403,7 @@ disposition: "commit" }` and assert:
    not a selection over the just-committed text).
 
 Both tests live under
-`apps/jet/data/parity/fixtures/ime-selection-api/` and feed the
+`data/parity/fixtures/ime-selection-api/` and feed the
 parity gate (#2144) on a `diff_kind: dom_selection_diff` channel —
 each frame's `(anchorNode, anchorOffset, focusNode, focusOffset,
 toString())` tuple is compared against a Flutter reference where

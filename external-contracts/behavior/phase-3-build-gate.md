@@ -24,7 +24,7 @@ e2e_tests:
     claim_id: bundler-production-readiness
     contract_id: phase-3-build-gate
     category: behavior
-    command: "apps/jet/scripts/verify-basic-dom-gates.sh --phase build"
+    command: "scripts/verify-basic-dom-gates.sh --phase build"
     assertions:
       - "The production build verification phase passes its complete required gate set."
 ```

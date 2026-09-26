@@ -2,7 +2,7 @@
 
 ## Brief
 
-How to change `apps/jet/crates/grid-wasm`. What it promises and the work roots it
+How to change `crates/grid-wasm`. What it promises and the work roots it
 owns live in [README.md](README.md); repository-wide authoring and verification
 rules live in the root [CONTRIBUTING.md](../../CONTRIBUTING.md).
 

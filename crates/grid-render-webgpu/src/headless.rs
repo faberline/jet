@@ -54,7 +54,7 @@ fn align_up(value: u32, align: u32) -> u32 {
 /// 3. If both fail, return `None` — the integration test treats this
 ///    as "skip with message" rather than a regression.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/headless-adapter-integration-test-slice-4t.md#interface
+/// @spec crates/grid-render-webgpu/docs/headless-adapter-integration-test-slice-4t.md#interface
 /// @issue #1738
 pub async fn request_smoke_adapter() -> Option<(wgpu::Instance, wgpu::Adapter)> {
     let instance = wgpu::Instance::new(&wgpu::InstanceDescriptor {
@@ -92,7 +92,7 @@ pub async fn request_smoke_adapter() -> Option<(wgpu::Instance, wgpu::Adapter)> 
 /// `MAP_READ` buffer, and returns the RGBA8 bytes in row-major
 /// top-to-bottom order (256-byte row padding stripped).
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/headless-adapter-integration-test-slice-4t.md#interface
+/// @spec crates/grid-render-webgpu/docs/headless-adapter-integration-test-slice-4t.md#interface
 /// @issue #1738
 pub struct HeadlessSmokeRenderer {
     device: wgpu::Device,
@@ -116,7 +116,7 @@ impl HeadlessSmokeRenderer {
     /// target of `size_px`. Single-sampled — software adapters
     /// expose patchy MSAA support.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/headless-adapter-integration-test-slice-4t.md#interface
+    /// @spec crates/grid-render-webgpu/docs/headless-adapter-integration-test-slice-4t.md#interface
     /// @issue #1738
     pub async fn new(adapter: wgpu::Adapter, size_px: (u32, u32)) -> Result<Self, RendererError> {
         let (width, height) = (size_px.0.max(1), size_px.1.max(1));
@@ -280,7 +280,7 @@ impl HeadlessSmokeRenderer {
 
     /// Target pixel dimensions.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/headless-adapter-integration-test-slice-4t.md#interface
+    /// @spec crates/grid-render-webgpu/docs/headless-adapter-integration-test-slice-4t.md#interface
     /// @issue #1738
     pub fn size_px(&self) -> (u32, u32) {
         self.size_px
@@ -292,7 +292,7 @@ impl HeadlessSmokeRenderer {
     /// `width * height * 4`; the 256-byte row padding wgpu requires
     /// for `copy_texture_to_buffer` is stripped.
     ///
-    /// @spec apps/jet/crates/grid-render-webgpu/docs/headless-adapter-integration-test-slice-4t.md#interface
+    /// @spec crates/grid-render-webgpu/docs/headless-adapter-integration-test-slice-4t.md#interface
     /// @issue #1738
     pub async fn render_single_cell(
         &mut self,

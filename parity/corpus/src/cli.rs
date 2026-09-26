@@ -10,7 +10,7 @@ use clap::{Parser, Subcommand};
 use crate::manifest::{parse_manifest, CorpusError};
 use crate::verify::verify;
 
-const DEFAULT_MANIFEST: &str = "apps/jet/parity/data/fixtures/mui/fixtures.toml";
+const DEFAULT_MANIFEST: &str = "parity/data/fixtures/mui/fixtures.toml";
 
 /// @spec .aw/tech-design/projects/jet/semantic/jet-parity-corpus-src.md#schema
 #[derive(Debug, Parser)]

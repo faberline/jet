@@ -6,7 +6,7 @@
 | Parent epic | #2133 |
 | Status | accepted |
 | Date | 2026-05-16 |
-| Decision | Vendor a curated subset of `web-platform-tests/wpt` (`focus/`, `pointerevents/`, `accname/`, `uievents/`) under `apps/jet/data/parity/wpt/upstream/` at a pinned commit recorded in `VERSION.toml`; carry upstream BSD-3-Clause+MIT license as `LICENSE.upstream` and a `NOTICE` with repo URL + rev; per-suite manifests at `apps/jet/data/parity/wpt/<suite>/manifest.toml` classify each test as PASS / KNOWN-FAIL+issue / SKIP+reason; refresh on a quarterly cadence (or out-of-band on documented spec change) via `score jet parity wpt sync --rev <git-sha>`; vendor `testharness.js` as-is and translate results to jet's five-channel artifact bundle through an out-of-tree adapter at `apps/jet/data/parity/wpt/adapter/`. |
+| Decision | Vendor a curated subset of `web-platform-tests/wpt` (`focus/`, `pointerevents/`, `accname/`, `uievents/`) under `data/parity/wpt/upstream/` at a pinned commit recorded in `VERSION.toml`; carry upstream BSD-3-Clause+MIT license as `LICENSE.upstream` and a `NOTICE` with repo URL + rev; per-suite manifests at `data/parity/wpt/<suite>/manifest.toml` classify each test as PASS / KNOWN-FAIL+issue / SKIP+reason; refresh on a quarterly cadence (or out-of-band on documented spec change) via `score jet parity wpt sync --rev <git-sha>`; vendor `testharness.js` as-is and translate results to jet's five-channel artifact bundle through an out-of-tree adapter at `data/parity/wpt/adapter/`. |
 
 ## Context
 
@@ -91,7 +91,7 @@ ref-bump.
 ### On-disk layout
 
 ```
-apps/jet/data/parity/wpt/
+data/parity/wpt/
 ├── upstream/                   # vendored subtree, read-only mirror
 │   ├── focus/                  # focus-management WPT fixtures
 │   ├── pointerevents/          # pointer-event WPT fixtures
@@ -122,11 +122,11 @@ them.
 
 ### Upstream commit pinning — `VERSION.toml`
 
-`apps/jet/data/parity/wpt/VERSION.toml` is the single source of
+`data/parity/wpt/VERSION.toml` is the single source of
 truth for "which upstream commit is currently vendored":
 
 ```toml
-# apps/jet/data/parity/wpt/VERSION.toml — managed by `score jet parity wpt sync`
+# data/parity/wpt/VERSION.toml — managed by `score jet parity wpt sync`
 upstream_repo = "https://github.com/web-platform-tests/wpt"
 upstream_rev  = "a1b2c3d4e5f6...........................1234567890ab"   # 40-char SHA
 upstream_date = "2026-05-09T00:00:00Z"                                 # commit date, UTC
@@ -156,10 +156,10 @@ Upstream WPT ships under BSD-3-Clause with a small MIT-licensed
 subset (per `wpt/LICENSE.md`). Both are permissive and
 attribution-only. We carry both obligations through two files:
 
-- `apps/jet/data/parity/wpt/LICENSE.upstream` — verbatim copy of
+- `data/parity/wpt/LICENSE.upstream` — verbatim copy of
   the upstream `LICENSE.md` at the pinned rev. `wpt sync`
   refreshes this on every rev change.
-- `apps/jet/data/parity/wpt/NOTICE` — human-readable attribution:
+- `data/parity/wpt/NOTICE` — human-readable attribution:
   upstream repo URL, pinned rev, retrieval date, SPDX expression,
   and a one-paragraph statement that the files under
   `upstream/` are governed by `LICENSE.upstream` and not by
@@ -178,7 +178,7 @@ Each suite directory carries a `manifest.toml` that classifies
 every vendored fixture in that suite. Schema:
 
 ```toml
-# apps/jet/data/parity/wpt/<suite>/manifest.toml
+# data/parity/wpt/<suite>/manifest.toml
 suite        = "pointerevents"                  # must match parent dir name
 upstream_rev = "a1b2c3d4..."                    # cross-checked against VERSION.toml
 owner_issue  = 2166                             # ADR/issue that owns this manifest
@@ -231,16 +231,16 @@ $ score jet parity wpt sync --rev a1b2c3d4e5f6...
 Behavior, per R5/R6:
 
 1. **Pre-flight.** Refuse to run if `git status --porcelain`
-   reports any modification under `apps/jet/data/parity/wpt/`.
+   reports any modification under `data/parity/wpt/`.
    Refuse to run if `--rev` is omitted (no silent `HEAD`).
 2. **Fetch.** Shallow-clone (`--depth 1 --filter=blob:none`)
    `web-platform-tests/wpt` at exactly the supplied SHA into a
    scratch dir under `target/wpt-sync-<sha>/`.
 3. **Copy.** For each suite in `VERSION.toml.scope.suites`,
    `rsync -a --delete` the suite into
-   `apps/jet/data/parity/wpt/upstream/<suite>/`. Copy each entry
+   `data/parity/wpt/upstream/<suite>/`. Copy each entry
    in `VERSION.toml.scope.resources` into
-   `apps/jet/data/parity/wpt/upstream/resources/`.
+   `data/parity/wpt/upstream/resources/`.
 4. **License refresh.** Copy `LICENSE.md` from the scratch clone
    to `LICENSE.upstream`. Re-emit `NOTICE` with the new rev,
    date, and retrieval command.
@@ -268,7 +268,7 @@ leaves classification triage to the suite-owning ADRs.
 
 - **Default:** quarterly snapshot. The first Monday of
   Feb/May/Aug/Nov, an owner (rotation tracked in
-  `apps/jet/data/parity/wpt/NOTICE`) picks the most recent
+  `data/parity/wpt/NOTICE`) picks the most recent
   upstream commit that passes upstream CI green and runs
   `wpt sync --rev <sha>` on a feature branch. Manifest drift
   triage is opened as separate issues against the suite-owning
@@ -294,7 +294,7 @@ properties }` — the canonical WPT result shape. Our policy:
    upstream is forbidden, because patches would have to be
    re-applied on every `wpt sync` and would silently rot.
 2. **Adapter sits outside.** Jet's adapter at
-   `apps/jet/data/parity/wpt/adapter/harness_bridge.ts` runs
+   `data/parity/wpt/adapter/harness_bridge.ts` runs
    inside the same Chromium instance that runs the fixture,
    subscribes to `testharness.js`'s `add_result_callback`, and
    translates each `Tests` entry into the canonical

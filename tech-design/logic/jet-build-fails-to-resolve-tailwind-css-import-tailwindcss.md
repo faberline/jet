@@ -1,7 +1,7 @@
 ---
 id: jet-build-fails-to-resolve-tailwind-css-import-tailwindcss
 summary: >
-  jet's CSS side-effect import resolver (projects/jet/src/css/import_resolver.rs)
+  jet's CSS side-effect import resolver (src/css/import_resolver.rs)
   resolves bare package specifiers via a node_modules walk-up and then opens the
   resolved path directly as a file. For Tailwind v4's `@import "tailwindcss";`,
   that path is the package directory itself (node_modules/tailwindcss), not a
@@ -133,7 +133,7 @@ flowchart TD
     bail_with_clear_error --> done_error([Directory-only bare specifier with no resolvable entry surfaces a typed descriptive error, never an unhandled I/O 'Is a directory' error])
 ```
 
-Root cause: `projects/jet/src/css/import_resolver.rs::resolve_import_path` builds the `node_modules/<pkg>` candidate for a bare-specifier `@import` and returns it as soon as `candidate.exists()` is true, without ever checking whether the candidate is a file or a directory. `resolve_file` then unconditionally calls `std::fs::read_to_string(path)` on that candidate. For a package like `tailwindcss` whose npm entry point is not a single top-level CSS file, `node_modules/tailwindcss` is a directory, so `read_to_string` fails with `Is a directory (os error 21)` -- there is no fallback to the package's own `package.json` `exports`/`style`/`main` map, unlike `resolver/mod.rs::resolve_package_dir`, which already performs this fallback for JS bare specifiers via `resolver::package::resolve_exports` and `get_package_main`.
+Root cause: `src/css/import_resolver.rs::resolve_import_path` builds the `node_modules/<pkg>` candidate for a bare-specifier `@import` and returns it as soon as `candidate.exists()` is true, without ever checking whether the candidate is a file or a directory. `resolve_file` then unconditionally calls `std::fs::read_to_string(path)` on that candidate. For a package like `tailwindcss` whose npm entry point is not a single top-level CSS file, `node_modules/tailwindcss` is a directory, so `read_to_string` fails with `Is a directory (os error 21)` -- there is no fallback to the package's own `package.json` `exports`/`style`/`main` map, unlike `resolver/mod.rs::resolve_package_dir`, which already performs this fallback for JS bare specifiers via `resolver::package::resolve_exports` and `get_package_main`.
 
 Fix (R1): add a directory-fallback branch to the CSS import resolver, reusing `resolver::package`'s existing helpers rather than re-implementing package.json exports resolution (WI Scope): when the `node_modules/<pkg>` candidate is a directory, read `candidate/package.json` and resolve the real CSS entry in priority order -- `resolve_exports(package_json, Some("."), ["style", "default"])` (mirrors the JS resolver's own call shape), then a new top-level `PackageJson.style` field (added to `resolver/package.rs`, the long-standing npm CSS-entry convention), then `get_package_main`. The first entry that resolves to an existing file on disk is passed to the existing `resolve_file` recursion unchanged; if none resolve, the resolver bails with a descriptive error naming the package.json fallback attempted, so the original `Is a directory` defect can never resurface as either a silent crash or a silent no-op.
 ## Unit Test
@@ -186,22 +186,22 @@ flowchart TD
 
 ```yaml
 changes:
-  - path: projects/jet/src/resolver/package.rs
+  - path: src/resolver/package.rs
     action: update
     section: logic
     impl_mode: hand-written
     reason: "Add a `style: Option<String>` field to `PackageJson` (alongside the existing `main`/`module`/`exports` fields) so the CSS import resolver can reuse this same struct/`read_package_json` to read the long-standing npm top-level `style` CSS-entry convention, instead of re-implementing package.json parsing in css/import_resolver.rs."
-  - path: projects/jet/src/css/import_resolver.rs
+  - path: src/css/import_resolver.rs
     action: update
     section: logic
     impl_mode: hand-written
     reason: "Fix WI #1375 R1: when a resolved node_modules/<pkg> bare-specifier candidate path (built by resolve_import_path) is a directory instead of a file, add a new fallback helper (e.g. resolve_package_css_entry) that: (1) builds candidate.join(\"package.json\"); if absent, keeps the existing unresolved-path behavior; (2) calls the existing resolver::package::resolve_exports(package_json, Some(\".\"), [\"style\", \"default\"]) helper (already used by resolver/mod.rs for JS resolution) to look up a CSS entry via the root export; (3) if no exports match, falls back to the new PackageJson.style top-level field; (4) if style is absent, falls back to resolver::package::get_package_main (module || main || \"index.js\"). The final resolved file path is joined with package_dir and returned for resolve_file to read/inline exactly as any other resolved import; if none of the three resolve to an existing file, bail with a descriptive error naming the package.json fallback attempted -- never re-attempt fs::read_to_string on the directory itself (the original \"Is a directory (os error 21)\" defect must not resurface). Reuses resolver::package's existing helpers rather than re-implementing package.json exports resolution, per WI Scope."
-  - path: projects/jet/src/css/import_resolver.rs
+  - path: src/css/import_resolver.rs
     action: update
     section: unit-test
     impl_mode: hand-written
     reason: "Add the R1-R5 regression tests specified in the unit-test section to the existing mod tests block, each building a minimal fixture package under a tempdir's node_modules/<pkg>/ (a package.json plus a real target .css file) to exercise the directory-fallback path without requiring an actual tailwindcss install: R1 exercises an 'exports' map with a '.' entry; R2 exercises a top-level 'style' field with no matching 'exports' entry; R3 exercises a 'main' field with neither 'exports' nor 'style' present; R4 exercises a directory-only bare specifier with no resolvable package.json entry, asserting a descriptive typed error (not the raw 'Is a directory' OS error and not a silent success); R5 re-runs the pre-existing css::import_resolver test suite (t3/t4/resolve_source_inlines_import/remote_imports_preserved/resolve_file_surfaces_canonicalize_error_for_missing_path/three_level_import_chain_merged) unchanged, proving no regression."
-  - path: projects/jet/README.md
+  - path: README.md
     action: update
     section: config
     impl_mode: hand-written

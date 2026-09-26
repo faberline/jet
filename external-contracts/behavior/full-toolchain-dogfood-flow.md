@@ -24,7 +24,7 @@ e2e_tests:
     claim_id: full-toolchain-dogfood-flow
     contract_id: full-toolchain-dogfood-flow
     category: behavior
-    command: "apps/jet/scripts/verify-basic-dom-gates.sh --all"
+    command: "scripts/verify-basic-dom-gates.sh --all"
     assertions:
       - "The end-to-end Jet toolchain dogfood flow passes all required package, build, browser, and production gates."
 ```

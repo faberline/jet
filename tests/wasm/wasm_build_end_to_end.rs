@@ -321,12 +321,7 @@ async fn click_dom_button(page: &jet::browser::Page, label: &str, context: &str)
 async fn counter_demo_builds_and_updates_on_webgpu_canvas() {
     common::require_full_wasm_e2e_env();
 
-    let workspace = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-        .parent()
-        .unwrap()
-        .parent()
-        .unwrap()
-        .to_path_buf();
+    let workspace = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"));
     let demo = workspace.join("examples").join("counter-demo");
     // Clean any previous build artifacts so the test exercises the
     // fresh build path.
@@ -623,12 +618,7 @@ async fn use_effect_fetch_reaches_host_api_from_wasm() {
 async fn cue_artifact_studio_dom_wasm_loads_api_and_posts() {
     common::require_env();
 
-    let workspace = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-        .parent()
-        .unwrap()
-        .parent()
-        .unwrap()
-        .to_path_buf();
+    let workspace = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"));
     let root = workspace
         .join("projects")
         .join("cue")

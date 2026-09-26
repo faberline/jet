@@ -26,6 +26,6 @@ e2e_tests:
     category: behavior
     command: "cargo test -p jet-wasm --test renderer_layout -- --nocapture"
     assertions:
-      - "test gate no longer fails on apps/jet/wasm/tests/renderer_layout.rs stale v0 expectations"
+      - "test gate no longer fails on wasm/tests/renderer_layout.rs stale v0 expectations"
       - "renderer_layout remains a required test gate with zero ignored cases"
 ```

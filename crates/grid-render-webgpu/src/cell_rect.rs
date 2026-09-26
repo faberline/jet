@@ -22,7 +22,7 @@ use bytemuck::{Pod, Zeroable};
 /// tricks so no per-vertex vertex buffer is needed — only the per-instance
 /// buffer described by [`cell_rect_vertex_layout`].
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/cell-rect-pipeline-slice-4b.md#interface
+/// @spec crates/grid-render-webgpu/docs/cell-rect-pipeline-slice-4b.md#interface
 /// @issue #1720
 pub const CELL_RECT_WGSL: &str = r#"
 struct Viewport {
@@ -74,7 +74,7 @@ fn fs_main(in: VsOut) -> @location(0) vec4<f32> {
 /// Field order matches the WGSL `CellInstance` struct in [`CELL_RECT_WGSL`];
 /// changing it requires updating both sides in lockstep.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/cell-rect-pipeline-slice-4b.md#interface
+/// @spec crates/grid-render-webgpu/docs/cell-rect-pipeline-slice-4b.md#interface
 /// @issue #1720
 #[repr(C)]
 #[derive(Copy, Clone, Debug, Default, PartialEq, Pod, Zeroable)]
@@ -89,7 +89,7 @@ pub struct CellInstance {
 /// — for example a render-pass orchestrator — can query the topology
 /// without rebuilding the pipeline.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/cell-rect-pipeline-slice-4b.md#interface
+/// @spec crates/grid-render-webgpu/docs/cell-rect-pipeline-slice-4b.md#interface
 /// @issue #1720
 #[derive(Clone, Debug)]
 pub struct PipelineConfig {
@@ -118,7 +118,7 @@ const CELL_INSTANCE_ATTRIBUTES: [wgpu::VertexAttribute; 3] = wgpu::vertex_attr_a
 /// `BindGroupLayoutDescriptor` for the single viewport uniform binding
 /// the vertex shader reads.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/cell-rect-pipeline-slice-4b.md#interface
+/// @spec crates/grid-render-webgpu/docs/cell-rect-pipeline-slice-4b.md#interface
 /// @issue #1720
 pub fn cell_rect_bind_group_layout_descriptor() -> wgpu::BindGroupLayoutDescriptor<'static> {
     wgpu::BindGroupLayoutDescriptor {
@@ -130,7 +130,7 @@ pub fn cell_rect_bind_group_layout_descriptor() -> wgpu::BindGroupLayoutDescript
 /// `VertexBufferLayout` describing one instance buffer holding
 /// `CellInstance` records (step mode = `Instance`).
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/cell-rect-pipeline-slice-4b.md#interface
+/// @spec crates/grid-render-webgpu/docs/cell-rect-pipeline-slice-4b.md#interface
 /// @issue #1720
 pub fn cell_rect_vertex_layout() -> wgpu::VertexBufferLayout<'static> {
     wgpu::VertexBufferLayout {
@@ -143,7 +143,7 @@ pub fn cell_rect_vertex_layout() -> wgpu::VertexBufferLayout<'static> {
 /// Pipeline shared config: TriangleStrip with 4 vertices/instance, standard
 /// alpha-blend over, no depth/stencil.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/cell-rect-pipeline-slice-4b.md#interface
+/// @spec crates/grid-render-webgpu/docs/cell-rect-pipeline-slice-4b.md#interface
 /// @issue #1720
 pub fn cell_rect_pipeline_config() -> PipelineConfig {
     PipelineConfig {

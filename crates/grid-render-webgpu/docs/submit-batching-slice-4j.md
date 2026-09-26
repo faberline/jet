@@ -69,7 +69,7 @@ Out:
 ## Interface
 
 ```rust
-// apps/jet/crates/grid-render-webgpu/src/frame.rs
+// crates/grid-render-webgpu/src/frame.rs
 
 /// A frame in progress: holds the acquired surface texture, target view,
 /// and the in-flight command encoder. Built by
@@ -124,12 +124,12 @@ impl<'window> WebGpuRenderer<'window> {
 
 ## Reference context
 
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs` — `WebGpuRenderer`,
+- `crates/grid-render-webgpu/src/lib.rs` — `WebGpuRenderer`,
   `render_frame` (becomes the one-pass shim over `begin_frame` →
   `encode_cell_pass` → `commit`).
-- `apps/jet/crates/grid-render-webgpu/src/cell_rect.rs` — `CellInstance`,
+- `crates/grid-render-webgpu/src/cell_rect.rs` — `CellInstance`,
   pipeline config that `encode_cell_pass` re-uses.
-- `apps/jet/crates/grid-render-webgpu/src/instance_pool.rs` — slot-0
+- `crates/grid-render-webgpu/src/instance_pool.rs` — slot-0
   instance buffer the builder uploads into.
 - wgpu 24 docs: `CommandEncoder::begin_render_pass` returns a
   `RenderPass` that holds a `&mut CommandEncoder`; the pass MUST be

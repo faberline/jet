@@ -68,7 +68,7 @@ Out:
 ## Interface
 
 ```rust
-// apps/jet/crates/grid-wasm/src/frame_loop.rs
+// crates/grid-wasm/src/frame_loop.rs
 
 /// The lifecycle state of the RAF-driven frame loop.
 ///
@@ -90,7 +90,7 @@ pub enum LoopState {
 /// `cargo test -p jet-grid-wasm` (host target) can exercise the full
 /// transition matrix without a browser.
 ///
-/// @spec apps/jet/crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
+/// @spec crates/grid-render-webgpu/docs/raf-frame-loop-slice-4f.md#interface
 /// @issue #1724
 pub struct LoopController {
     state: LoopState,
@@ -136,11 +136,11 @@ whether to actually invoke `render_frame`.
 
 ## Reference context
 
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs` — Slice 4e
+- `crates/grid-render-webgpu/src/lib.rs` — Slice 4e
   `WebGpuRenderer::render_frame` this loop drives.
-- `apps/jet/crates/grid-render-webgpu/src/cell_rect.rs` — `CellInstance`
+- `crates/grid-render-webgpu/src/cell_rect.rs` — `CellInstance`
   the (deferred) data-plane callback constructs.
-- `apps/jet/crates/grid-wasm/src/api.rs` — existing wasm-bindgen surface
+- `crates/grid-wasm/src/api.rs` — existing wasm-bindgen surface
   (`SpreadsheetEngine`). New module `frame_loop.rs` is registered
   alongside.
 - web-sys docs: `Window::request_animation_frame(&Closure<dyn FnMut(f64)>)`

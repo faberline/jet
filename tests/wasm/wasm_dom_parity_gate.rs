@@ -35,7 +35,7 @@ fn jet_build_wasm_matches_dom_build_behavior() {
     // toolchain environment correct for this repo (the `cc` shim on PATH
     // shadows the system C compiler and breaks cargo link steps).
     let status = Command::new("bash")
-        .arg("apps/jet/scripts/verify-advanced-wasm-gates.sh")
+        .arg("scripts/verify-advanced-wasm-gates.sh")
         .current_dir(&root)
         .env("CC", "/usr/bin/cc")
         .env(

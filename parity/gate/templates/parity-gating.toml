@@ -1,8 +1,8 @@
-# apps/jet/parity/data/parity-gating.toml
+# parity/data/parity-gating.toml
 #
 # Single source of truth for the jet parity CI gate.
 #
-# Issue: chrischeng-c4/cclab#2144
+# Issue: faberline/jet#2144
 # Epic:  #2133 (jet parity foundation)
 #
 # Channels — the five canonical parity oracle channels (see #2139 / R1).
@@ -12,9 +12,9 @@
 # The gate CLI lives at `jet-parity-gate` and exposes:
 #
 #     cargo run -p jet-parity-gate -- gate \
-#         --manifest apps/jet/parity/data/parity-gating.toml \
+#         --manifest parity/data/parity-gating.toml \
 #         --results-dir <oracle-out>/results \
-#         --waivers   apps/jet/parity/data/waivers.toml
+#         --waivers   parity/data/waivers.toml
 #
 # Exit codes (R3):
 #   0   — all pass (or every fail is covered by an unexpired waiver)

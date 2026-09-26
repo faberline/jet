@@ -154,12 +154,7 @@ impl JetTestApp {
         example_name: &str,
         init_scripts: &[&str],
     ) -> Result<Self> {
-        let workspace = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-            .parent()
-            .expect("crates/")
-            .parent()
-            .expect("workspace root")
-            .to_path_buf();
+        let workspace = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
         let demo = workspace.join("examples").join(example_name);
         Self::launch_project_with_init_scripts(&demo, init_scripts).await
     }

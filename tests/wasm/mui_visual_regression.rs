@@ -659,11 +659,6 @@ const WASM_SCROLL_READ_EXPR: &str = r#"(() => {
 
 fn workspace_root() -> PathBuf {
     PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-        .parent()
-        .expect("projects/")
-        .parent()
-        .expect("workspace root")
-        .to_path_buf()
 }
 
 async fn free_port() -> u16 {

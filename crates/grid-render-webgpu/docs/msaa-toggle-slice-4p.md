@@ -96,15 +96,15 @@ impl<'window> WebGpuRenderer<'window> {
 
 ## Reference Context
 
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs:365-407` —
+- `crates/grid-render-webgpu/src/lib.rs:365-407` —
   `create_cell_pipeline`; this slice re-keys the cache.
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs:399` —
+- `crates/grid-render-webgpu/src/lib.rs:399` —
   `multisample: wgpu::MultisampleState::default()`; this slice threads
   the count through.
-- `apps/jet/crates/grid-render-webgpu/src/frame.rs:122-145` —
+- `crates/grid-render-webgpu/src/frame.rs:122-145` —
   `encode_cell_pass` render-pass descriptor; this slice adjusts the
   color attachment based on MSAA state.
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs:266-275` — `on_resize`,
+- `crates/grid-render-webgpu/src/lib.rs:266-275` — `on_resize`,
   one of the surface-reconfigure paths that must reallocate the MSAA
   texture.
 - Sibling slice in progress: `adapter-feature-negotiation-slice-4q.md`

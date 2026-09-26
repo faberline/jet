@@ -24,7 +24,7 @@ e2e_tests:
     claim_id: browser-trace-parity-readiness
     contract_id: browser-trace-parity-readiness
     category: behavior
-    command: "apps/jet/scripts/verify-basic-dom-gates.sh --phase browser"
+    command: "scripts/verify-basic-dom-gates.sh --phase browser"
     assertions:
       - "The browser verification phase produces the required trace and parity evidence."
 ```

@@ -45,11 +45,11 @@ smoke-readback harness.
 - Gate: `cargo test -p jet-grid-render-webgpu`
 - Gate: `cargo test -p jet-grid-render-webgpu --lib`
 - Gate: `cargo test -p jet-grid-render-webgpu --test headless_smoke`
-- Source: `apps/jet/crates/grid-render-webgpu/tests/headless_smoke.rs`
+- Source: `crates/grid-render-webgpu/tests/headless_smoke.rs`
 
 | Work Root | Kind | WI | Gate / Evidence |
 |---|---|---:|---|
-| Renderer runtime smoke contract | epic | - | `cargo test -p jet-grid-render-webgpu`; `cargo test -p jet-grid-render-webgpu --lib`; `cargo test -p jet-grid-render-webgpu --test headless_smoke`; apps/jet/crates/grid-render-webgpu/tests/headless_smoke.rs |
+| Renderer runtime smoke contract | epic | - | `cargo test -p jet-grid-render-webgpu`; `cargo test -p jet-grid-render-webgpu --lib`; `cargo test -p jet-grid-render-webgpu --test headless_smoke`; crates/grid-render-webgpu/tests/headless_smoke.rs |
 | Headless render readback contract | epic | - | `cargo test -p jet-grid-render-webgpu --test headless_smoke` is killed by local cap memory pressure before completion |
 
 ### Text Glyph Rendering Pipeline
@@ -69,13 +69,13 @@ glyph shaping value objects.
 - Gate: currently blocked because the local cap memory policy kills the full
   gate before integration/doc-test completion
 - Gate: `cargo test -p jet-grid-render-webgpu`
-- Source: `apps/jet/crates/grid-render-webgpu/src/font_db.rs`,
-  `apps/jet/crates/grid-render-webgpu/src/text_pass.rs`,
-  `apps/jet/crates/grid-render-webgpu/docs`
+- Source: `crates/grid-render-webgpu/src/font_db.rs`,
+  `crates/grid-render-webgpu/src/text_pass.rs`,
+  `crates/grid-render-webgpu/docs`
 - Evidence: `cargo test -p jet-grid-render-webgpu`;
-  apps/jet/crates/grid-render-webgpu/src/font_db.rs;
-  apps/jet/crates/grid-render-webgpu/src/text_pass.rs;
-  apps/jet/crates/grid-render-webgpu/docs
+  crates/grid-render-webgpu/src/font_db.rs;
+  crates/grid-render-webgpu/src/text_pass.rs;
+  crates/grid-render-webgpu/docs
 
 ### Diagnostics Recovery And Resource Accounting
 
@@ -94,10 +94,10 @@ invariants.
 - Gate: currently blocked because the local cap memory policy kills the full
   gate before integration/doc-test completion
 - Gate: `cargo test -p jet-grid-render-webgpu`
-- Source: `apps/jet/crates/grid-render-webgpu/src/validation.rs`,
-  `apps/jet/crates/grid-render-webgpu/src/gpu_memory.rs`,
-  `apps/jet/crates/grid-render-webgpu/src/lost_context.rs`
+- Source: `crates/grid-render-webgpu/src/validation.rs`,
+  `crates/grid-render-webgpu/src/gpu_memory.rs`,
+  `crates/grid-render-webgpu/src/lost_context.rs`
 - Evidence: `cargo test -p jet-grid-render-webgpu`;
-  apps/jet/crates/grid-render-webgpu/src/validation.rs;
-  apps/jet/crates/grid-render-webgpu/src/gpu_memory.rs;
-  apps/jet/crates/grid-render-webgpu/src/lost_context.rs
+  crates/grid-render-webgpu/src/validation.rs;
+  crates/grid-render-webgpu/src/gpu_memory.rs;
+  crates/grid-render-webgpu/src/lost_context.rs

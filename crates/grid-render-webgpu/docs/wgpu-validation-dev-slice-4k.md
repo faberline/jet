@@ -74,7 +74,7 @@ Out:
 ## Interface
 
 ```rust
-// apps/jet/crates/grid-render-webgpu/src/validation.rs
+// crates/grid-render-webgpu/src/validation.rs
 
 /// Return the `wgpu::InstanceFlags` appropriate for the current build:
 /// `DEBUG | VALIDATION` under `cfg(debug_assertions)`, `empty()`
@@ -111,7 +111,7 @@ pub fn try_install_log_bridge()
 
 ## Reference context
 
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs` — `WebGpuRenderer::new`
+- `crates/grid-render-webgpu/src/lib.rs` — `WebGpuRenderer::new`
   (where the `InstanceDescriptor` is built).
 - wgpu 24 docs:
   - `wgpu::InstanceFlags::debugging()` = `DEBUG | VALIDATION`.

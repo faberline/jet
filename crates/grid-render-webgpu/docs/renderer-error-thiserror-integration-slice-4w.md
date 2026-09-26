@@ -136,11 +136,11 @@ pub fn renderer_error_variant_names() -> &'static [&'static str];
 
 ## Reference Context
 
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs:1225` — existing
+- `crates/grid-render-webgpu/src/lib.rs:1225` — existing
   `RendererError`.
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs:1256` — sibling
+- `crates/grid-render-webgpu/src/lib.rs:1256` — sibling
   `RenderFrameError`.
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs:198` — sole
+- `crates/grid-render-webgpu/src/lib.rs:198` — sole
   construction-time call-site that maps to `DeviceLost` today;
   `NoDevice` becomes the parallel non-lost-reason variant.
 - Parent epic #1254 — WebGPU-React renderer; this slice freezes

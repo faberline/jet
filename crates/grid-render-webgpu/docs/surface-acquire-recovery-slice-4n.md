@@ -142,14 +142,14 @@ fn classify_acquire(
 
 ## Reference Context
 
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs:469-493` — current
+- `crates/grid-render-webgpu/src/lib.rs:469-493` — current
   `begin_frame` with `lost_status.is_lost()` pre-check.
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs:794-854` —
+- `crates/grid-render-webgpu/src/lib.rs:794-854` —
   `RenderFrameError` definition + `From<wgpu::SurfaceError>`.
-- `apps/jet/crates/grid-render-webgpu/docs/render-pass-orchestration-slice-4e.md` —
+- `crates/grid-render-webgpu/docs/render-pass-orchestration-slice-4e.md` —
   parent slice that introduced `RenderFrameError`.
-- `apps/jet/crates/grid-render-webgpu/docs/lost-context-recovery-slice-4h.md` —
+- `crates/grid-render-webgpu/docs/lost-context-recovery-slice-4h.md` —
   defines `try_recover`; this slice routes callers to it via
   `NeedsRecovery`.
-- `apps/jet/crates/grid-render-webgpu/src/lib.rs:266-274` — `on_resize`,
+- `crates/grid-render-webgpu/src/lib.rs:266-274` — `on_resize`,
   the reconfigure primitive used by the `Outdated` retry path.

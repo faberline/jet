@@ -7,13 +7,13 @@
 // @contract package-phase-gate
 // @category behavior
 // @required_for_production true
-// @command apps/jet/scripts/verify-basic-dom-gates.sh --phase package
+// @command scripts/verify-basic-dom-gates.sh --phase package
 // AW-EC-END
 
 #[test]
 #[ignore = "AW EC gate: run via `aw health --verify-ec` or `cargo test -- --ignored`"]
 fn package_phase_gate() {
-    let command = "apps/jet/scripts/verify-basic-dom-gates.sh --phase package";
+    let command = "scripts/verify-basic-dom-gates.sh --phase package";
     let id = "package-phase-gate";
     let mut root = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"));
     while !root.join(".aw").is_dir() {
