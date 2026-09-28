@@ -2,7 +2,7 @@
 #
 # Single source of truth for the jet parity CI gate.
 #
-# Issue: faberline/jet#2144
+# Issue: chrischeng-c4/cclab#2144
 # Epic:  #2133 (jet parity foundation)
 #
 # Channels — the five canonical parity oracle channels (see #2139 / R1).
