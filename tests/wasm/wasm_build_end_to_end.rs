@@ -540,10 +540,10 @@ fn wasm_build_compat_lowers_mui_runtime_imports() {
     assert!(generated.contains("Element::intrinsic(\"button\""));
     assert!(generated.contains("Element::intrinsic(\"input\""));
     assert!(generated.contains("Element::text(\"Create Project\")"));
-    assert!(generated.contains("value: Some(\"Ada\".to_string())"));
-    assert!(generated.contains("placeholder: Some(\"Name\".to_string())"));
-    assert!(generated.contains("input_type: Some(\"checkbox\".to_string())"));
-    assert!(generated.contains("checked: Some(true)"));
+    assert!(generated.contains(".with_value(\"Ada\".to_string())"));
+    assert!(generated.contains(".with_placeholder(\"Name\".to_string())"));
+    assert!(generated.contains(".with_input_type(\"checkbox\".to_string())"));
+    assert!(generated.contains(".with_checked(true)"));
     assert!(!generated.contains("@mui/material"));
 }
 
@@ -576,8 +576,8 @@ fn wasm_build_compat_lowers_antd_runtime_imports() {
         generated.contains("Launch Flow"),
         "generated AntD compat fixture:\n{generated}"
     );
-    assert!(generated.contains("value: Some(\"Ada\".to_string())"));
-    assert!(generated.contains("placeholder: Some(\"Name\".to_string())"));
+    assert!(generated.contains(".with_value(\"Ada\".to_string())"));
+    assert!(generated.contains(".with_placeholder(\"Name\".to_string())"));
     assert!(!generated.contains("antd"));
 }
 

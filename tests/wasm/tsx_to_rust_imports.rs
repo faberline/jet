@@ -155,15 +155,15 @@ fn mui_visual_fixture_strict_lowering_preserves_form_controls() {
     assert!(rust.contains("Element::intrinsic(\"td\""));
     assert!(rust.contains("Element::intrinsic(\"input\""));
     assert!(rust.contains("Element::intrinsic(\"button\""));
-    assert!(rust.contains("id: Some(\"visual-root\".to_string())"));
-    assert!(rust.contains("id: Some(\"large-table\".to_string())"));
+    assert!(rust.contains(".with_id(\"visual-root\".to_string())"));
+    assert!(rust.contains(".with_id(\"large-table\".to_string())"));
     assert!(rust.contains("MUI visual table fixture"));
-    assert!(rust.contains("id: Some(\"mui-name\".to_string())"));
-    assert!(rust.contains("id: Some(\"mui-accept\".to_string())"));
-    assert!(rust.contains("class_name: Some(\"ui-case mui-card\".to_string())"));
+    assert!(rust.contains(".with_id(\"mui-name\".to_string())"));
+    assert!(rust.contains(".with_id(\"mui-accept\".to_string())"));
+    assert!(rust.contains(".with_class_name(\"ui-case mui-card\".to_string())"));
     assert!(rust.contains("use_state::<String>(\"Ada\".to_string())"));
     assert!(rust.contains("use_state::<bool>(true)"));
-    assert!(rust.contains("on_checked_change: Some"));
+    assert!(rust.contains(".with_on_checked_change"));
     assert!(!rust.contains("@mui/material"));
 }
 
@@ -179,15 +179,15 @@ fn antd_visual_fixture_strict_lowering_preserves_form_controls() {
     assert!(rust.contains("Element::intrinsic(\"td\""));
     assert!(rust.contains("Element::intrinsic(\"input\""));
     assert!(rust.contains("Element::intrinsic(\"button\""));
-    assert!(rust.contains("id: Some(\"visual-root\".to_string())"));
-    assert!(rust.contains("id: Some(\"large-table\".to_string())"));
+    assert!(rust.contains(".with_id(\"visual-root\".to_string())"));
+    assert!(rust.contains(".with_id(\"large-table\".to_string())"));
     assert!(rust.contains("AntD visual table fixture"));
-    assert!(rust.contains("id: Some(\"antd-name\".to_string())"));
-    assert!(rust.contains("id: Some(\"antd-accept\".to_string())"));
-    assert!(rust.contains("class_name: Some(\"ui-case antd-card\".to_string())"));
+    assert!(rust.contains(".with_id(\"antd-name\".to_string())"));
+    assert!(rust.contains(".with_id(\"antd-accept\".to_string())"));
+    assert!(rust.contains(".with_class_name(\"ui-case antd-card\".to_string())"));
     assert!(rust.contains("use_state::<String>(\"Ada\".to_string())"));
     assert!(rust.contains("use_state::<bool>(true)"));
-    assert!(rust.contains("on_checked_change: Some"));
+    assert!(rust.contains(".with_on_checked_change"));
 }
 
 #[test]
@@ -229,7 +229,7 @@ export function MuiButtonFixture() {
     .expect("compat lowering should preserve explicit library fixture class shape");
 
     let rust = out.rust_source;
-    assert!(rust.contains("class_name: Some(\"MuiButton-root\".to_string()),"));
+    assert!(rust.contains(".with_class_name(\"MuiButton-root\".to_string())"));
     assert!(
         !rust.contains("text-transform: uppercase"),
         "explicit library class fixtures should not get fallback MUI Button inline style.\nGENERATED:\n{rust}"
@@ -257,7 +257,7 @@ export function MuiTextFieldFixture() {
     .expect("compat lowering should preserve explicit TextField class shape");
 
     let rust = out.rust_source;
-    assert!(rust.contains("class_name: Some(\"MuiInputBase-input\".to_string()),"));
+    assert!(rust.contains(".with_class_name(\"MuiInputBase-input\".to_string())"));
     assert!(
         !rust.contains("box-sizing: border-box"),
         "explicit library class fixtures should not get fallback MUI TextField inline style.\nGENERATED:\n{rust}"

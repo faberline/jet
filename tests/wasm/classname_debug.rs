@@ -3,7 +3,7 @@
 //! Runtime verification for the `className` attribute.
 //!
 //! The transpiler maps JSX `className="primary"` → Rust
-//! `class_name: Some("primary".to_string())` on Props. We confirm
+//! `.with_class_name("primary".to_string())` on Props. We confirm
 //! that value flows all the way to the serialized element tree the
 //! debug bridge exposes.
 

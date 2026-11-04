@@ -33,21 +33,15 @@ fn counter_render(props: &Rc<dyn Any>) -> Element {
     };
     Element::intrinsic(
         "button",
-        Props {
-            id: Some("inc".to_string()),
-            on_click: Some(handler),
-            ..Default::default()
-        },
+        Props::default()
+            .with_id("inc".to_string())
+            .with_on_click(handler),
         vec![Element::text("count: "), Element::from_number(n)],
     )
 }
 
 fn counter(start: i64) -> Component {
-    Component {
-        name: "Counter",
-        render: counter_render,
-        props: Rc::new(CounterProps { start }),
-    }
+    Component::new("Counter", counter_render, Rc::new(CounterProps { start }))
 }
 
 // ── Tests ──────────────────────────────────────────────────────────────────

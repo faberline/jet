@@ -71,8 +71,9 @@ debug = [
 # extraction) or jet-local reimpls. Browser APIs are pulled in only
 # by host-bridge/debug/webgpu-app features so the pure-Rust test path
 # needs no wasm target.
-surface = { git = "https://github.com/faberline/core", tag = "v0.4.14" }
-ui-runtime = { git = "https://github.com/faberline/core", tag = "v0.4.14", default-features = false }
+# Keep both UI packages on one revision so their element and hook types agree.
+surface = { git = "https://github.com/faberline/surface", rev = "1754a2e96e487ea693be558041abdf21ffc63d27" }
+ui-runtime = { git = "https://github.com/faberline/surface", rev = "1754a2e96e487ea693be558041abdf21ffc63d27", default-features = false }
 # taffy: pure-Rust flexbox/block layout engine — see
 # .aw/tech-design/projects/jet/wasm-renderer/layout-runtime.md.
 # Pinned to the Dioxus stable series; pure-Rust, no_std-compatible,

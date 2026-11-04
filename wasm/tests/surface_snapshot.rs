@@ -5,11 +5,9 @@ use jet_wasm::{Callback, Element, Props};
 fn jet_wasm_reexports_surface_snapshot_core() {
     let element = Element::intrinsic(
         "button",
-        Props {
-            id: Some("confirm".to_string()),
-            on_click: Some(Callback::new(|_| {})),
-            ..Default::default()
-        },
+        Props::default()
+            .with_id("confirm".to_string())
+            .with_on_click(Callback::new(|_| {})),
         vec![Element::text("Confirm")],
     );
 

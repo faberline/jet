@@ -50,29 +50,23 @@ fn reducer_render(props: &Rc<dyn Any>) -> Element {
             Element::from_number(count),
             Element::intrinsic(
                 "button",
-                Props {
-                    id: Some("inc".into()),
-                    on_click: Some(Callback::new(move |_| d_inc.dispatch(CountAction::Inc))),
-                    ..Default::default()
-                },
+                Props::default()
+                    .with_id("inc")
+                    .with_on_click(Callback::new(move |_| d_inc.dispatch(CountAction::Inc))),
                 vec![Element::text("+")],
             ),
             Element::intrinsic(
                 "button",
-                Props {
-                    id: Some("dec".into()),
-                    on_click: Some(Callback::new(move |_| d_dec.dispatch(CountAction::Dec))),
-                    ..Default::default()
-                },
+                Props::default()
+                    .with_id("dec")
+                    .with_on_click(Callback::new(move |_| d_dec.dispatch(CountAction::Dec))),
                 vec![Element::text("-")],
             ),
             Element::intrinsic(
                 "button",
-                Props {
-                    id: Some("reset".into()),
-                    on_click: Some(Callback::new(move |_| d_reset.dispatch(CountAction::Reset))),
-                    ..Default::default()
-                },
+                Props::default()
+                    .with_id("reset")
+                    .with_on_click(Callback::new(move |_| d_reset.dispatch(CountAction::Reset))),
                 vec![Element::text("0")],
             ),
         ],
@@ -81,11 +75,11 @@ fn reducer_render(props: &Rc<dyn Any>) -> Element {
 
 #[test]
 fn use_reducer_dispatches_actions() {
-    let handle = mount(Component {
-        name: "Reducer",
-        render: reducer_render,
-        props: Rc::new(ReducerProps { start: 10 }),
-    });
+    let handle = mount(Component::new(
+        "Reducer",
+        reducer_render,
+        Rc::new(ReducerProps { start: 10 }),
+    ));
     assert!(handle.snapshot().text_content().starts_with("10"));
 
     handle.snapshot().find_on_click("inc").unwrap().call(());
@@ -127,16 +121,14 @@ fn ref_render(_props: &Rc<dyn Any>) -> Element {
             Element::from_number(counter.current()),
             Element::intrinsic(
                 "button",
-                Props {
-                    id: Some("bump".into()),
-                    on_click: Some(Callback::new(move |_| {
+                Props::default()
+                    .with_id("bump")
+                    .with_on_click(Callback::new(move |_| {
                         set_n_click.set(n + 1);
                         // Also tweak the ref from the handler — should
                         // persist into the next render.
                         counter_click.with_mut(|c| *c += 100);
                     })),
-                    ..Default::default()
-                },
                 vec![Element::text("bump")],
             ),
         ],
@@ -145,11 +137,7 @@ fn ref_render(_props: &Rc<dyn Any>) -> Element {
 
 #[test]
 fn use_ref_persists_across_renders() {
-    let handle = mount(Component {
-        name: "RefComp",
-        render: ref_render,
-        props: Rc::new(RefProps),
-    });
+    let handle = mount(Component::new("RefComp", ref_render, Rc::new(RefProps)));
     // First render: counter bumped from 0 → 1. text_content() walks
     // the full tree, so the button's "bump" label is part of it.
     assert_eq!(handle.snapshot().text_content(), "0 renders=1bump");
@@ -195,20 +183,16 @@ fn memo_render(_props: &Rc<dyn Any>) -> Element {
             Element::from_number(unrelated),
             Element::intrinsic(
                 "button",
-                Props {
-                    id: Some("bump-n".into()),
-                    on_click: Some(Callback::new(move |_| set_n_cb.set(n + 1))),
-                    ..Default::default()
-                },
+                Props::default()
+                    .with_id("bump-n")
+                    .with_on_click(Callback::new(move |_| set_n_cb.set(n + 1))),
                 vec![Element::text("n+")],
             ),
             Element::intrinsic(
                 "button",
-                Props {
-                    id: Some("bump-u".into()),
-                    on_click: Some(Callback::new(move |_| set_u_cb.set(unrelated + 1))),
-                    ..Default::default()
-                },
+                Props::default()
+                    .with_id("bump-u")
+                    .with_on_click(Callback::new(move |_| set_u_cb.set(unrelated + 1))),
                 vec![Element::text("u+")],
             ),
         ],
@@ -218,11 +202,7 @@ fn memo_render(_props: &Rc<dyn Any>) -> Element {
 #[test]
 fn use_memo_skips_compute_when_deps_unchanged() {
     COMPUTE_COUNT.with(|c| *c.borrow_mut() = 0);
-    let handle = mount(Component {
-        name: "Memo",
-        render: memo_render,
-        props: Rc::new(MemoProps),
-    });
+    let handle = mount(Component::new("Memo", memo_render, Rc::new(MemoProps)));
     assert_eq!(
         COMPUTE_COUNT.with(|c| *c.borrow()),
         1,
@@ -281,20 +261,14 @@ fn cb_render(_props: &Rc<dyn Any>) -> Element {
             Element::from_number(n),
             Element::intrinsic(
                 "button",
-                Props {
-                    id: Some("with".into()),
-                    on_click: Some(with_dep),
-                    ..Default::default()
-                },
+                Props::default().with_id("with").with_on_click(with_dep),
                 vec![Element::text("w")],
             ),
             Element::intrinsic(
                 "button",
-                Props {
-                    id: Some("without".into()),
-                    on_click: Some(without_dep),
-                    ..Default::default()
-                },
+                Props::default()
+                    .with_id("without")
+                    .with_on_click(without_dep),
                 vec![Element::text("r")],
             ),
         ],
@@ -303,11 +277,7 @@ fn cb_render(_props: &Rc<dyn Any>) -> Element {
 
 #[test]
 fn use_callback_returns_working_callbacks() {
-    let handle = mount(Component {
-        name: "Cb",
-        render: cb_render,
-        props: Rc::new(CbProps),
-    });
+    let handle = mount(Component::new("Cb", cb_render, Rc::new(CbProps)));
 
     handle.snapshot().find_on_click("with").unwrap().call(());
     handle.flush();

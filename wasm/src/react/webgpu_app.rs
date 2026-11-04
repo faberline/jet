@@ -668,9 +668,9 @@ fn scroll_target_at(tree: &LayoutTree, point: Point) -> Option<String> {
         }
         match &node.kind {
             crate::renderer::LaidOutKind::Intrinsic { props, .. }
-                if props.id.as_deref() == Some("table-viewport") =>
+                if props.id() == Some("table-viewport") =>
             {
-                props.id.clone()
+                props.id().map(str::to_owned)
             }
             _ => None,
         }

@@ -3,11 +3,9 @@
 //! End-to-end spike test: TSX → transpile → inspect output → verify
 //! the emitted Rust contains the expected API calls.
 //!
-//! We don't compile the emitted Rust into a child cargo (too heavy
-//! for a spike) — we check structural content against known markers
-//! from `jet-wasm`. A follow-up test will bundle the
-//! generated code into an actual cargo target once the transpiler
-//! covers enough surface to make that worthwhile.
+//! Structural checks explain lowering failures. The compiled counter test
+//! also builds the emitted Rust against the pinned standalone Surface API
+//! and runs its state/update behavior through jet-wasm.
 
 use jet::tsx_to_rust::transpile;
 
@@ -18,6 +16,59 @@ fn counter_transpiles_without_error() {
     let out = transpile(COUNTER_TSX).expect("transpile failed");
     // Show the generated code on stderr so --nocapture displays it.
     eprintln!("\n=== GENERATED ===\n{out}=================\n");
+}
+
+#[test]
+fn generated_counter_compiles_and_updates_with_standalone_surface() {
+    let root = tempfile::tempdir().unwrap();
+    std::fs::create_dir(root.path().join("src")).unwrap();
+    std::fs::copy(
+        std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("Cargo.lock"),
+        root.path().join("Cargo.lock"),
+    )
+    .unwrap();
+    let runtime = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("wasm");
+    std::fs::write(root.path().join("Cargo.toml"), format!(
+        "[workspace]\n[package]\nname = \"surface-generated-counter\"\nversion = \"0.0.0\"\nedition = \"2021\"\n[dependencies]\njet-wasm = {{ path = {:?} }}\n", runtime.to_string_lossy()
+    )).unwrap();
+    let mut code = transpile(COUNTER_TSX).unwrap();
+    code.push_str(
+        r#"
+#[test]
+fn state_flows_through_the_generated_counter() {
+    let mounted = jet_wasm::react::mount(counter(7));
+    assert_eq!(mounted.snapshot().text_content(), "count: 7");
+    mounted.snapshot().find_on_click("inc").unwrap().call(());
+    assert_eq!(mounted.snapshot().text_content(), "count: 7");
+    assert!(mounted.flush());
+    assert_eq!(mounted.snapshot().text_content(), "count: 8");
+    assert!(!mounted.flush());
+}
+"#,
+    );
+    std::fs::write(root.path().join("src/lib.rs"), code).unwrap();
+    let output = std::process::Command::new("cargo")
+        .args(["test", "--offline", "--manifest-path"])
+        .arg(root.path().join("Cargo.toml"))
+        .env("CARGO_BUILD_JOBS", "2")
+        .env(
+            "CARGO_TARGET_DIR",
+            std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("target"),
+        )
+        .output()
+        .unwrap();
+    assert!(
+        output.status.success(),
+        "generated Rust failed:\n{}\n{}",
+        String::from_utf8_lossy(&output.stdout),
+        String::from_utf8_lossy(&output.stderr)
+    );
+    let lock = std::fs::read_to_string(root.path().join("Cargo.lock")).unwrap();
+    assert_eq!(lock.matches("name = \"surface\"").count(), 1);
+    assert_eq!(lock.matches("name = \"ui-runtime\"").count(), 1);
+    assert!(lock.contains(
+        "https://github.com/faberline/surface?rev=1754a2e96e487ea693be558041abdf21ffc63d27"
+    ));
 }
 
 #[test]
@@ -67,11 +118,11 @@ fn generated_emits_jsx_as_element_intrinsic() {
         "JSX button should lower to Element::intrinsic.\nGENERATED:\n{out}"
     );
     assert!(
-        out.contains("id: Some("),
+        out.contains(".with_id("),
         "id attribute should land on Props.id.\nGENERATED:\n{out}"
     );
     assert!(
-        out.contains("on_click: Some(Callback::new("),
+        out.contains(".with_on_click(Callback::new("),
         "onClick should lower to Callback::new.\nGENERATED:\n{out}"
     );
     assert!(

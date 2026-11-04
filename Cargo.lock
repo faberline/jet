@@ -1795,6 +1795,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "be136d9dacc2a13cc70bb6c8f902b414fb2641f8db1314637c6b7933411a8f82"
 
 [[package]]
+name = "grid"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "36119f3a540b086b4e436bb2b588cf98a68863470e0e880f4d0842f112a3183a"
+
+[[package]]
 name = "h2"
 version = "0.4.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2583,7 +2589,7 @@ dependencies = [
  "serde-wasm-bindgen",
  "serde_json",
  "surface",
- "taffy",
+ "taffy 0.5.2",
  "ttf-parser 0.25.1",
  "ui-runtime",
  "unicode-bidi",
@@ -4919,10 +4925,12 @@ checksum = "13c2bddecc57b384dee18652358fb23172facb8a2c51ccc10d74c157bdea3292"
 
 [[package]]
 name = "surface"
-version = "0.4.14"
-source = "git+https://github.com/faberline/core?tag=v0.4.14#029e765efaac4080bb9e8283005a9c6792953f54"
+version = "0.1.0"
+source = "git+https://github.com/faberline/surface?rev=1754a2e96e487ea693be558041abdf21ffc63d27#1754a2e96e487ea693be558041abdf21ffc63d27"
 dependencies = [
  "serde",
+ "taffy 0.7.7",
+ "thiserror 2.0.18",
 ]
 
 [[package]]
@@ -4995,8 +5003,20 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9cb893bff0f80ae17d3a57e030622a967b8dbc90e38284d9b4b1442e23873c94"
 dependencies = [
  "arrayvec",
- "grid",
+ "grid 0.14.0",
  "num-traits",
+ "serde",
+ "slotmap",
+]
+
+[[package]]
+name = "taffy"
+version = "0.7.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ab4f4d046dd956a47a7e1a2947083d7ac3e6aa3cfaaead36173ceaa5ab11878c"
+dependencies = [
+ "arrayvec",
+ "grid 0.15.0",
  "serde",
  "slotmap",
 ]
@@ -5562,8 +5582,8 @@ checksum = "40ce102ab67701b8526c123c1bab5cbe42d7040ccfd0f64af1a385808d2f43de"
 
 [[package]]
 name = "ui-runtime"
-version = "0.4.14"
-source = "git+https://github.com/faberline/core?tag=v0.4.14#029e765efaac4080bb9e8283005a9c6792953f54"
+version = "0.1.0"
+source = "git+https://github.com/faberline/surface?rev=1754a2e96e487ea693be558041abdf21ffc63d27#1754a2e96e487ea693be558041abdf21ffc63d27"
 dependencies = [
  "serde_json",
  "surface",

@@ -147,21 +147,15 @@ fn font_spec_defaults_stable_under_theme_default() {
 fn styled_table_cell_paints_background_and_border() {
     let cell = Element::intrinsic(
         "td",
-        Props {
-            style: Some(
-                "width: 72px; height: 24px; background: #ffffff; border: 1px solid #d7dde8;"
-                    .to_string(),
-            ),
-            ..Default::default()
-        },
+        Props::default().with_style(
+            "width: 72px; height: 24px; background: #ffffff; border: 1px solid #d7dde8;"
+                .to_string(),
+        ),
         vec![Element::text("cell 0")],
     );
     let table = Element::intrinsic(
         "table",
-        Props {
-            style: Some("width: 72px;".to_string()),
-            ..Default::default()
-        },
+        Props::default().with_style("width: 72px;".to_string()),
         vec![Element::intrinsic(
             "tbody",
             Props::default(),
@@ -202,18 +196,13 @@ fn styled_table_cell_paints_background_and_border() {
 fn styled_table_cell_text_uses_cell_font_size_and_color() {
     let cell = Element::intrinsic(
         "td",
-        Props {
-            style: Some("width: 72px; height: 24px; color: #1f2937; font-size: 12px;".to_string()),
-            ..Default::default()
-        },
+        Props::default()
+            .with_style("width: 72px; height: 24px; color: #1f2937; font-size: 12px;".to_string()),
         vec![Element::text("cell 0")],
     );
     let table = Element::intrinsic(
         "table",
-        Props {
-            style: Some("width: 72px;".to_string()),
-            ..Default::default()
-        },
+        Props::default().with_style("width: 72px;".to_string()),
         vec![Element::intrinsic(
             "tbody",
             Props::default(),
