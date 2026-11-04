@@ -2383,6 +2383,7 @@ dependencies = [
  "grass",
  "httpdate",
  "image",
+ "jet-bridge",
  "jet-parity-oracle",
  "lightningcss",
  "node-resolve",
@@ -2421,6 +2422,29 @@ dependencies = [
  "walkdir",
  "which",
  "wiremock",
+ "zip",
+]
+
+[[package]]
+name = "jet-bridge"
+version = "0.1.0"
+source = "git+https://github.com/faberline/jet-bridge?rev=0fa5ffe78a3743f624b07a36c12816643e351716#0fa5ffe78a3743f624b07a36c12816643e351716"
+dependencies = [
+ "anyhow",
+ "base64",
+ "clap",
+ "dirs",
+ "futures-util",
+ "image",
+ "reqwest",
+ "serde",
+ "serde_json",
+ "tempfile",
+ "thiserror 2.0.18",
+ "tokio",
+ "tokio-tungstenite 0.28.0",
+ "tracing",
+ "tracing-subscriber",
  "zip",
 ]
 

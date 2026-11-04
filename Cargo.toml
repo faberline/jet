@@ -70,6 +70,7 @@ name = "jet"
 path = "src/main.rs"
 
 [dependencies]
+jet-bridge = { git = "https://github.com/faberline/jet-bridge", rev = "0fa5ffe78a3743f624b07a36c12816643e351716" }
 # CLI dependencies
 clap.workspace = true
 anyhow.workspace = true
