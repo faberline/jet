@@ -30,10 +30,20 @@ On 2026-11-04, macOS and Rust 1.96.1 passed:
 - 26 lowering tests, including compiling and running the generated counter.
 - `wasm32-unknown-unknown` compilation with all Jet WASM host features.
 
-The aggregate `scripts/verify-advanced-wasm-gates.sh` browser/parity gate is
-running separately. These local results alone do not establish DOM/WASM
-parity, hosted CI, or independent acceptance.
+The complete `scripts/verify-advanced-wasm-gates.sh` run passed with exit 0.
+It includes live MUI and AntD DOM/WASM visual journeys, a real WebGPU
+large-table probe, lowering gates and Chromium oracle checks. The compiled
+generated-counter test also passed after copying the root lockfile into
+the generated project.
 
-Surface is private at preparation time. Authenticated local builds work.
-Public consumers and hosted CI need dependency access before this can land.
-No repository visibility, release tag, tracker acceptance or merge changed.
+Strict runtime Clippy reports three existing findings: `large_enum_variant`
+in renderer and debug types, and `doc_lazy_continuation` in the text shaper.
+The untouched base reproduces all three. No lint suppression or public
+enum boxing was added to make this migration appear clean.
+
+Surface is public. Hosted run 41767721585 at implementation commit
+`41ecdf95aeaa2723f862d1007fe2d1eb6c7718e1` fetched the dependency and
+reported success. Its parity command explicitly skipped the unwired CI
+oracle because no results were available. That run proves dependency
+access, not hosted parity acceptance. Independent acceptance, release
+and merge remain open.
