@@ -94,7 +94,7 @@ fn build_node(
             Ok(fragment.into())
         }
         Element::Component(component) => {
-            let rendered = (component.render)(&component.props);
+            let rendered = component.render();
             build_node(document, &rendered, root, handle)
         }
         Element::Intrinsic {
@@ -124,32 +124,32 @@ fn dom_tag(tag: &str) -> &str {
 }
 
 fn apply_props(node: &web_sys::Element, props: &Props) -> Result<(), JsValue> {
-    if let Some(id) = &props.id {
+    if let Some(id) = props.id() {
         node.set_attribute("id", id)?;
     }
-    if let Some(class_name) = &props.class_name {
+    if let Some(class_name) = props.class_name() {
         node.set_attribute("class", class_name)?;
     }
-    if let Some(style) = &props.style {
+    if let Some(style) = props.style() {
         node.set_attribute("style", style)?;
     }
-    if let Some(placeholder) = &props.placeholder {
+    if let Some(placeholder) = props.placeholder() {
         node.set_attribute("placeholder", placeholder)?;
     }
     // @spec .aw/tech-design/projects/jet/specs/4072.md#logic
-    if let Some(input_type) = &props.input_type {
+    if let Some(input_type) = props.input_type() {
         node.set_attribute("type", input_type)?;
     }
-    if let Some(aria_label) = &props.aria_label {
+    if let Some(aria_label) = props.aria_label() {
         node.set_attribute("aria-label", aria_label)?;
     }
-    if let Some(html_for) = &props.html_for {
+    if let Some(html_for) = props.html_for() {
         node.set_attribute("for", html_for)?;
     }
-    if props.disabled {
+    if props.disabled() {
         node.set_attribute("disabled", "true")?;
     }
-    if let Some(checked) = props.checked {
+    if let Some(checked) = props.checked() {
         if let Some(input) = node.dyn_ref::<web_sys::HtmlInputElement>() {
             input.set_checked(checked);
         }
@@ -159,7 +159,7 @@ fn apply_props(node: &web_sys::Element, props: &Props) -> Result<(), JsValue> {
             node.remove_attribute("checked")?;
         }
     }
-    if let Some(value) = &props.value {
+    if let Some(value) = props.value() {
         if let Some(input) = node.dyn_ref::<web_sys::HtmlInputElement>() {
             input.set_value(value);
         } else if let Some(textarea) = node.dyn_ref::<web_sys::HtmlTextAreaElement>() {
@@ -201,7 +201,7 @@ fn install_events(
     root: &web_sys::Element,
     handle: &Rc<MountHandle>,
 ) -> Result<(), JsValue> {
-    if let Some(on_click) = props.on_click.clone() {
+    if let Some(on_click) = props.on_click().cloned() {
         let root = root.clone();
         let handle = handle.clone();
         let click_cb = Closure::wrap(Box::new(move |_e: web_sys::MouseEvent| {
@@ -214,7 +214,7 @@ fn install_events(
         click_cb.forget();
     }
 
-    if let Some(on_change) = props.on_change.clone() {
+    if let Some(on_change) = props.on_change().cloned() {
         let root = root.clone();
         let handle = handle.clone();
         let input_cb = Closure::wrap(Box::new(move |e: web_sys::Event| {
@@ -228,7 +228,7 @@ fn install_events(
         input_cb.forget();
     }
 
-    if let Some(on_checked_change) = props.on_checked_change.clone() {
+    if let Some(on_checked_change) = props.on_checked_change().cloned() {
         let root = root.clone();
         let handle = handle.clone();
         let change_cb = Closure::wrap(Box::new(move |e: web_sys::Event| {

@@ -31,16 +31,16 @@ fn controlled_input_lowers_value_placeholder_and_on_change() {
     let out = transpile(CONTROLLED_INPUT_TSX).expect("transpile controlled input");
 
     assert!(
-        out.contains("value: Some(name.clone()),"),
+        out.contains(".with_value(name.clone())"),
         "controlled input value must clone the state binding.\nGENERATED:\n{out}"
     );
     assert!(
-        out.contains(r#"placeholder: Some("Name".to_string()),"#),
+        out.contains(r#".with_placeholder("Name".to_string())"#),
         "placeholder must lower to Props.placeholder.\nGENERATED:\n{out}"
     );
     assert!(
         out.contains(
-            "on_change: Some(Callback::new({ let setName = setName.clone(); move |value| setName.set(value) })),"
+            ".with_on_change(Callback::new({ let setName = setName.clone(); move |value| setName.set(value) }))"
         ),
         "onChange must lower event.target.value to the String payload callback.\nGENERATED:\n{out}"
     );

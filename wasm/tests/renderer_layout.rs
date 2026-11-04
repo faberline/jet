@@ -21,12 +21,9 @@ fn button_vp() -> Viewport {
 fn scroll_td(text: &str) -> Element {
     Element::intrinsic(
         "td",
-        Props {
-            style: Some(
-                "width: 72px; height: 24px; padding: 4px; border: 1px solid #d7dde8;".to_string(),
-            ),
-            ..Default::default()
-        },
+        Props::default().with_style(
+            "width: 72px; height: 24px; padding: 4px; border: 1px solid #d7dde8;".to_string(),
+        ),
         vec![Element::text(text)],
     )
 }
@@ -45,17 +42,12 @@ fn scroll_table_fixture(row_count: usize, col_count: usize, viewport_height: f32
         .collect::<Vec<_>>();
     Element::intrinsic(
         "div",
-        Props {
-            id: Some("table-viewport".to_string()),
-            style: Some(format!("overflow: auto; height: {viewport_height}px;")),
-            ..Default::default()
-        },
+        Props::default()
+            .with_id("table-viewport".to_string())
+            .with_style(format!("overflow: auto; height: {viewport_height}px;")),
         vec![Element::intrinsic(
             "table",
-            Props {
-                style: Some(format!("width: {}px;", col_count as f32 * 81.0)),
-                ..Default::default()
-            },
+            Props::default().with_style(format!("width: {}px;", col_count as f32 * 81.0)),
             vec![Element::intrinsic("tbody", Props::default(), rows)],
         )],
     )
@@ -179,11 +171,7 @@ fn unrendered_component_panics() {
     fn noop(_: &Rc<dyn std::any::Any>) -> Element {
         Element::Empty
     }
-    let comp = Component {
-        name: "X",
-        render: noop,
-        props: Rc::new(()) as Rc<dyn std::any::Any>,
-    };
+    let comp = Component::new("X", noop, Rc::new(()) as Rc<dyn std::any::Any>);
     let _ = layout(&Element::Component(comp), button_vp());
 }
 
@@ -205,23 +193,16 @@ fn styled_table_rows_stack_vertically_and_cells_keep_fixed_size() {
     fn td(text: &str) -> Element {
         Element::intrinsic(
             "td",
-            Props {
-                style: Some(
-                    "width: 72px; height: 24px; padding: 4px; border: 1px solid #d7dde8;"
-                        .to_string(),
-                ),
-                ..Default::default()
-            },
+            Props::default().with_style(
+                "width: 72px; height: 24px; padding: 4px; border: 1px solid #d7dde8;".to_string(),
+            ),
             vec![Element::text(text)],
         )
     }
 
     let table = Element::intrinsic(
         "table",
-        Props {
-            style: Some("width: 144px;".to_string()),
-            ..Default::default()
-        },
+        Props::default().with_style("width: 144px;".to_string()),
         vec![Element::intrinsic(
             "tbody",
             Props::default(),
@@ -276,13 +257,9 @@ fn overflow_auto_container_scroll_offset_brings_later_rows_into_view() {
     fn td(text: &str) -> Element {
         Element::intrinsic(
             "td",
-            Props {
-                style: Some(
-                    "width: 72px; height: 24px; padding: 4px; border: 1px solid #d7dde8;"
-                        .to_string(),
-                ),
-                ..Default::default()
-            },
+            Props::default().with_style(
+                "width: 72px; height: 24px; padding: 4px; border: 1px solid #d7dde8;".to_string(),
+            ),
             vec![Element::text(text)],
         )
     }
@@ -301,17 +278,12 @@ fn overflow_auto_container_scroll_offset_brings_later_rows_into_view() {
         .collect::<Vec<_>>();
     let viewport = Element::intrinsic(
         "div",
-        Props {
-            id: Some("table-viewport".to_string()),
-            style: Some("overflow: auto; height: 66px;".to_string()),
-            ..Default::default()
-        },
+        Props::default()
+            .with_id("table-viewport".to_string())
+            .with_style("overflow: auto; height: 66px;".to_string()),
         vec![Element::intrinsic(
             "table",
-            Props {
-                style: Some("width: 162px;".to_string()),
-                ..Default::default()
-            },
+            Props::default().with_style("width: 162px;".to_string()),
             vec![Element::intrinsic("tbody", Props::default(), rows)],
         )],
     );

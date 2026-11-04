@@ -465,13 +465,8 @@ fn scaffold_cargo_project(
     fs::create_dir_all(work_dir.join("src")).context("create work_dir/src")?;
     // Pin jet-wasm via path so this always builds against the in-repo
     // workspace version. A future "published" mode would version-pin.
-    let workspace = workspace_root()?;
-    let jet_wasm_abs = workspace
-        .join("projects")
-        .join("jet")
-        .join("wasm")
-        .canonicalize()
-        .context("resolving jet-wasm path")?;
+    let jet_wasm_abs = jet_wasm_dir(Path::new(env!("CARGO_MANIFEST_DIR")))
+        .or_else(|_| workspace_root().and_then(|root| jet_wasm_dir(&root)))?;
 
     // Feature list the scaffolded crate asks jet-wasm for. WebGPU remains the
     // default app surface; DOM is still selectable for compatibility gates.
@@ -534,6 +529,15 @@ wasm-opt = false
     fs::write(work_dir.join("Cargo.toml"), cargo_toml)?;
     fs::write(work_dir.join("src").join("lib.rs"), generated_rust)?;
     Ok(())
+}
+
+fn jet_wasm_dir(workspace: &Path) -> Result<PathBuf> {
+    for path in [workspace.join("wasm"), workspace.join("projects/jet/wasm")] {
+        if path.join("Cargo.toml").is_file() {
+            return path.canonicalize().context("resolving jet-wasm path");
+        }
+    }
+    anyhow::bail!("jet-wasm sources not found under {}", workspace.display())
 }
 
 fn workspace_root() -> Result<PathBuf> {
@@ -881,6 +885,26 @@ mod tests {
 
     fn wasm_config(src: &str) -> config::WasmConfig {
         config::WasmConfig::parse_str(src, Path::new("/tmp/jet.toml")).unwrap()
+    }
+
+    #[test]
+    fn runtime_source_path_supports_standalone_and_legacy_workspaces() {
+        for relative in ["wasm", "projects/jet/wasm"] {
+            let root = tempfile::tempdir().unwrap();
+            let runtime = root.path().join(relative);
+            fs::create_dir_all(&runtime).unwrap();
+            fs::write(
+                runtime.join("Cargo.toml"),
+                "[package]\nname = \"jet-wasm\"\n",
+            )
+            .unwrap();
+            assert_eq!(
+                jet_wasm_dir(root.path()).unwrap(),
+                runtime.canonicalize().unwrap()
+            );
+        }
+        let empty = tempfile::tempdir().unwrap();
+        assert!(jet_wasm_dir(empty.path()).is_err());
     }
 
     #[test]

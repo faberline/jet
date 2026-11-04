@@ -318,7 +318,7 @@ impl LayoutTree {
                 return None;
             }
             match &n.kind {
-                LaidOutKind::Intrinsic { props, .. } => props.on_click.as_ref(),
+                LaidOutKind::Intrinsic { props, .. } => props.on_click(),
                 LaidOutKind::Text { .. } => None,
             }
         })
@@ -402,12 +402,9 @@ fn scroll_bounds_recurse(
                 return None;
             }
 
-            let style = parse_inline_style(props.style.as_deref());
+            let style = parse_inline_style(props.style());
             let metrics = compute_block_metrics(tag, style, children, parent_box, cursor.y);
-            if props.id.as_deref() == Some(target_id)
-                && style.overflow_auto
-                && style.height.is_some()
-            {
+            if props.id() == Some(target_id) && style.overflow_auto && style.height.is_some() {
                 return Some(scroll_bounds_from_metrics(children, metrics));
             }
 
@@ -893,7 +890,7 @@ fn measure_inline_run(children: &[Element], available_width: f32) -> InlineSize 
 fn should_use_block_flow(tag: &str, props: &Props, children: &[Element]) -> bool {
     is_block_container(tag)
         || matches!(tag, "h1" | "table" | "tbody" | "tr")
-        || props.id.as_deref() == Some("table-viewport")
+        || props.id() == Some("table-viewport")
         || has_table_descendant(children)
 }
 
@@ -937,13 +934,12 @@ fn layout_block_element(
         return layout_table_element(tag, props, children, parent_box.x, cursor, out, clip);
     }
 
-    let style = parse_inline_style(props.style.as_deref());
+    let style = parse_inline_style(props.style());
     let metrics = compute_block_metrics(tag, style, children, parent_box, cursor.y);
     push_intrinsic_node_if_visible(tag, props, metrics.rect, out, clip);
 
     let scroll_offset = props
-        .id
-        .as_deref()
+        .id()
         .filter(|_| style.overflow_auto && style.height.is_some())
         .map(|id| scroll_offsets.get(id))
         .unwrap_or_default();
@@ -1152,7 +1148,7 @@ fn measure_block_child_outer(element: &Element, available_width: f32) -> InlineS
             if *tag == "table" {
                 return measure_table(children);
             }
-            let style = parse_inline_style(props.style.as_deref());
+            let style = parse_inline_style(props.style());
             let margin = style.margin();
             let padding = style.padding();
             let border = style.border_width();
@@ -1201,7 +1197,7 @@ fn layout_table_element(
     out: &mut Vec<LaidOutNode>,
     clip: Option<Rect>,
 ) -> InlineSize {
-    let style = parse_inline_style(props.style.as_deref());
+    let style = parse_inline_style(props.style());
     let rows = collect_table_rows(children);
     let measured_w = rows
         .first()
@@ -1268,7 +1264,7 @@ fn layout_table_cells(
         else {
             continue;
         };
-        let style = parse_inline_style(props.style.as_deref());
+        let style = parse_inline_style(props.style());
         let size = measure_table_cell(style, ParsedStyle::default());
         let w = size.w;
         let h = row_rect.h.max(size.h);
@@ -1355,7 +1351,7 @@ fn measure_table_row_with_style(children: &[Element], inherited_style: ParsedSty
     let mut h: f32 = 24.0;
     for cell in collect_table_cells(children) {
         if let Element::Intrinsic { props, .. } = cell {
-            let style = parse_inline_style(props.style.as_deref());
+            let style = parse_inline_style(props.style());
             let size = measure_table_cell(style, inherited_style);
             w += size.w;
             h = h.max(size.h);
@@ -1885,7 +1881,7 @@ fn scroll_ratio(offset: f32, max_offset: f32) -> f32 {
 }
 
 fn paint_intrinsic(tag: &str, props: &Props, rect: Rect, theme: &Theme, ops: &mut Vec<PaintOp>) {
-    let style = parse_inline_style(props.style.as_deref());
+    let style = parse_inline_style(props.style());
     if let Some(color) = style.background {
         ops.push(PaintOp::FillRect { rect, color });
     }
@@ -2056,10 +2052,7 @@ mod tests {
         use crate::Props;
 
         fn props(id: &str) -> Props {
-            Props {
-                id: Some(id.to_string()),
-                ..Default::default()
-            }
+            Props::default().with_id(id.to_string())
         }
 
         fn text(value: &str) -> Element {
@@ -2115,11 +2108,9 @@ mod tests {
             .nodes
             .iter()
             .filter_map(|node| match &node.kind {
-                LaidOutKind::Intrinsic { tag, props } => Some((
-                    *tag,
-                    props.id.as_deref().unwrap_or_default(),
-                    round_rect(node.rect),
-                )),
+                LaidOutKind::Intrinsic { tag, props } => {
+                    Some((*tag, props.id().unwrap_or_default(), round_rect(node.rect)))
+                }
                 LaidOutKind::Text { .. } => None,
             })
             .collect::<Vec<_>>();
@@ -2238,7 +2229,7 @@ mod tests {
         let cb = Callback::new(move |_: ()| c.set(c.get() + 1));
 
         let mut props = Props::default();
-        props.on_click = Some(cb);
+        props = props.with_on_click(cb);
 
         let tree = LayoutTree {
             root_rect: Rect {

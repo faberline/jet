@@ -331,17 +331,17 @@ pub fn function_component(
         "pub fn {factory_name}({ctor_args}) -> Component {{"
     ));
     out.indent();
-    out.push_line("Component {");
+    out.push_line("Component::new(");
     out.indent();
-    out.push_line(&format!("name: \"{name}\","));
-    out.push_line(&format!("render: {render_fn},"));
+    out.push_line(&format!("\"{name}\","));
+    out.push_line(&format!("{render_fn},"));
     if has_props {
-        out.push_line(&format!("props: Rc::new({props_type} {{ {ctor_inits} }}),"));
+        out.push_line(&format!("Rc::new({props_type} {{ {ctor_inits} }}),"));
     } else {
-        out.push_line("props: Rc::new(()),");
+        out.push_line("Rc::new(()),");
     }
     out.dedent();
-    out.push_line("}");
+    out.push_line(")");
     out.dedent();
     out.push_line("}");
     out.push_line("");
@@ -397,13 +397,13 @@ pub fn compat_function_component(
 
     out.push_line(&format!("pub fn {snake}() -> Component {{"));
     out.indent();
-    out.push_line("Component {");
+    out.push_line("Component::new(");
     out.indent();
-    out.push_line(&format!("name: \"{name}\","));
-    out.push_line(&format!("render: {render_fn},"));
-    out.push_line("props: Rc::new(()),");
+    out.push_line(&format!("\"{name}\","));
+    out.push_line(&format!("{render_fn},"));
+    out.push_line("Rc::new(()),");
     out.dedent();
-    out.push_line("}");
+    out.push_line(")");
     out.dedent();
     out.push_line("}");
     out.push_line("");
@@ -607,10 +607,7 @@ fn jet_text(content: impl Into<String>) -> Element {
 fn jet_box(class_name: &str, children: Vec<Element>) -> Element {
     Element::intrinsic(
         "div",
-        Props {
-            class_name: Some(class_name.to_string()),
-            ..Default::default()
-        },
+        Props::default().with_class_name(class_name.to_string()),
         children,
     )
 }
@@ -618,11 +615,7 @@ fn jet_box(class_name: &str, children: Vec<Element>) -> Element {
 fn jet_button(label: impl Into<String>, on_click: Option<Callback<()>>) -> Element {
     Element::intrinsic(
         "button",
-        Props {
-            class_name: Some("jet-action".to_string()),
-            on_click,
-            ..Default::default()
-        },
+        ({ let mut __surface_props = Props::default().with_class_name("jet-action".to_string()); if let Some(__surface_value) = on_click { __surface_props = __surface_props.with_on_click(__surface_value); } __surface_props }),
         vec![jet_text(label.into())],
     )
 }
@@ -674,11 +667,7 @@ for idx in 0..projects_array.length() {
     let set_active_index = set_active_index.clone();
     project_nodes.push(Element::intrinsic(
         "button",
-        Props {
-            class_name: Some(class_name.to_string()),
-            on_click: Some(Callback::new(move |_| set_active_index.set(idx_i64))),
-            ..Default::default()
-        },
+        Props::default().with_class_name(class_name.to_string()).with_on_click(Callback::new(move |_| set_active_index.set(idx_i64))),
         vec![
             jet_text(jet_first_text(&jet_js_str(&project, "name"), "Untitled project")),
             jet_text(jet_first_text(&jet_js_str(&project, "next_action"), "Continue")),
@@ -782,25 +771,16 @@ let send_message = {
 
 let draft_input = Element::intrinsic(
     "input",
-    Props {
-        class_name: Some("jet-input".to_string()),
-        value: Some(draft.clone()),
-        placeholder: Some("Describe a request or answer a WorkItem question".to_string()),
-        on_change: Some(Callback::new({
+    Props::default().with_class_name("jet-input".to_string()).with_value(draft.clone()).with_placeholder("Describe a request or answer a WorkItem question".to_string()).with_on_change(Callback::new({
             let set_draft = set_draft.clone();
             move |value| set_draft.set(value)
         })),
-        ..Default::default()
-    },
     vec![],
 );
 
 Element::intrinsic(
     "main",
-    Props {
-        class_name: Some("jet-artifact-studio".to_string()),
-        ..Default::default()
-    },
+    Props::default().with_class_name("jet-artifact-studio".to_string()),
     vec![
         jet_box(
             "jet-sidebar",
@@ -844,13 +824,13 @@ Element::intrinsic(
 
     out.push_line(&format!("pub fn {snake}() -> Component {{"));
     out.indent();
-    out.push_line("Component {");
+    out.push_line("Component::new(");
     out.indent();
-    out.push_line(&format!("name: \"{name}\","));
-    out.push_line(&format!("render: {render_fn},"));
-    out.push_line("props: Rc::new(()),");
+    out.push_line(&format!("\"{name}\","));
+    out.push_line(&format!("{render_fn},"));
+    out.push_line("Rc::new(()),");
     out.dedent();
-    out.push_line("}");
+    out.push_line(")");
     out.dedent();
     out.push_line("}");
     out.push_line("");
@@ -1806,11 +1786,21 @@ fn emit_jsx_fragment(
 }
 
 fn render_props_literal(lines: &[String]) -> String {
-    if lines.is_empty() {
-        "Props::default()".to_string()
-    } else {
-        format!("Props {{ {} ..Default::default() }}", lines.join(" "))
+    let mut props = "Props::default()".to_string();
+    for line in lines {
+        let (field, value) = line
+            .trim()
+            .trim_end_matches(',')
+            .split_once(':')
+            .expect("property emitters supply a field and expression");
+        let value = value.trim();
+        let value = value
+            .strip_prefix("Some(")
+            .and_then(|v| v.strip_suffix(')'))
+            .unwrap_or(value);
+        props.push_str(&format!(".with_{}({value})", field.trim()));
     }
+    props
 }
 
 fn strict_tag_lowering(

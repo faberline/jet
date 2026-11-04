@@ -109,7 +109,7 @@ impl JetDebug {
             &fibers
                 .iter()
                 .map(|f| DebugFiber {
-                    id: f.id,
+                    id: f.id.get(),
                     hook_count: f.hook_count,
                     dirty: f.dirty,
                 })
@@ -123,7 +123,7 @@ impl JetDebug {
     /// apps are never going to hit 4-billion fibers.
     #[wasm_bindgen(js_name = "hookValues")]
     pub fn hook_values(&self, fiber_id: u32) -> Result<JsValue, JsValue> {
-        let hooks = debug_snapshot_hooks(fiber_id as u64);
+        let hooks = debug_snapshot_hooks(crate::react::FiberId::new(fiber_id as u64));
         to_js(
             &hooks
                 .iter()
@@ -214,22 +214,22 @@ impl DebugElement {
             } => Self::Intrinsic {
                 tag,
                 props: DebugProps {
-                    id: props.id.clone(),
-                    class_name: props.class_name.clone(),
-                    style: props.style.clone(),
-                    input_type: props.input_type.clone(),
-                    value: props.value.clone(),
-                    placeholder: props.placeholder.clone(),
-                    checked: props.checked,
-                    aria_label: props.aria_label.clone(),
-                    html_for: props.html_for.clone(),
-                    has_on_click: props.on_click.is_some(),
-                    has_on_change: props.on_change.is_some(),
+                    id: props.id().map(str::to_owned),
+                    class_name: props.class_name().map(str::to_owned),
+                    style: props.style().map(str::to_owned),
+                    input_type: props.input_type().map(str::to_owned),
+                    value: props.value().map(str::to_owned),
+                    placeholder: props.placeholder().map(str::to_owned),
+                    checked: props.checked(),
+                    aria_label: props.aria_label().map(str::to_owned),
+                    html_for: props.html_for().map(str::to_owned),
+                    has_on_click: props.on_click().is_some(),
+                    has_on_change: props.on_change().is_some(),
                 },
                 children: children.iter().map(DebugElement::from_element).collect(),
             },
             Element::Text(s) => Self::Text { text: s.clone() },
-            Element::Component(c) => Self::Component { name: c.name },
+            Element::Component(c) => Self::Component { name: c.name() },
             Element::Empty => Self::Empty,
             Element::Fragment(children) => Self::Fragment {
                 children: children.iter().map(DebugElement::from_element).collect(),
@@ -283,8 +283,8 @@ impl DebugLaidOutNode {
             kind: match &n.kind {
                 LaidOutKind::Intrinsic { tag, props } => DebugLaidOutKind::Intrinsic {
                     tag,
-                    id: props.id.clone(),
-                    has_on_click: props.on_click.is_some(),
+                    id: props.id().map(str::to_owned),
+                    has_on_click: props.on_click().is_some(),
                 },
                 LaidOutKind::Text { content, .. } => DebugLaidOutKind::Text {
                     text: content.clone(),

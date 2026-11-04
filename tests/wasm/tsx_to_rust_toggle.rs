@@ -66,7 +66,9 @@ fn self_closing_emits_empty_children() {
     );
     // The img has no children.
     assert!(
-        out.contains("Element::intrinsic(\"img\", Props { id: Some(\"icon\".to_string()), ..Default::default() }, vec![])"),
+        out.contains(
+            "Element::intrinsic(\"img\", Props::default().with_id(\"icon\".to_string()), vec![])"
+        ),
         "self-closing img should emit empty children vec.\nGENERATED:\n{out}"
     );
 }
