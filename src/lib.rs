@@ -81,3 +81,6 @@ pub mod wasm_dev;
 // Re-export pnpm parity modules for convenience
 pub use pkg_manager::{audit, gc, npmrc, nx, patch, publish, workspace};
 // CODEGEN-END
+
+#[cfg(test)]
+mod bridge_consumer_tests;
